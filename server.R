@@ -93,7 +93,7 @@ server <- function(input, output, session) {
   })
   
   output$boxavgreadmaths <- renderValueBox({
-    valueBox(paste(mean(c(as.numeric(input$readinginput),as.numeric(input$mathsinput)))),
+    valueBox(paste(mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))),
              "subtitle - whatever this should be called", 
              color = "blue")
     })
