@@ -91,13 +91,28 @@ server <- function(input, output, session) {
       color = "blue"
     )
   })
-  
+
   output$boxavgreadmaths <- renderValueBox({
     valueBox(paste(mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))),
-             "subtitle - whatever this should be called", 
-             color = "blue")
-    })
-  
+      "subtitle - whatever this should be called",
+      color = "blue"
+    )
+  })
+
+  # feel free to change the name to be more descriptive!!!
+  output$ifbox <- renderValueBox({
+    average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))
+
+    valueBox((if (average < 100) {
+      paste("Group 1")
+    } else if (average >= 100) {
+      paste("Group 2")
+    }),
+    subtitle = "if statement box",
+    color = "blue"
+    )
+  })
+
   output$boxpcRevBal <- renderValueBox({
     latest <- (reactiveRevBal() %>% filter(
       year == max(year),
@@ -125,7 +140,7 @@ server <- function(input, output, session) {
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
   })
-  
+
   # Stop app ---------------------------------------------------------------------------------
 
   session$onSessionEnded(function() {

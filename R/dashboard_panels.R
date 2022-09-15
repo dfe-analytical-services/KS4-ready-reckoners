@@ -195,8 +195,8 @@ dashboard2_panel <- function() {
                                         selected = "Grade = N"
                             ),
                             h3("Pupil's KS2 average point score"),
-                            valueBoxOutput("boxavgreadmaths", width = 12),
-                            textOutput('test')
+                            valueBoxOutput("boxavgreadmaths", width = 6),
+                            valueBoxOutput("ifbox", width = 6)
                             #,
                             # valueBoxOutput("boxpcRevBal", width = 12),
                           #  box(
