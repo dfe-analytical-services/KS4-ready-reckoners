@@ -91,8 +91,12 @@ server <- function(input, output, session) {
       color = "blue"
     )
   })
+  
   output$boxavgreadmaths <- renderValueBox({
-    mean(c(input$readinginput,input$mathsinput))})
+    valueBox(paste(mean(c(as.numeric(input$readinginput),as.numeric(input$mathsinput)))),
+             "subtitle - whatever this should be called", 
+             color = "blue")
+    })
   
   output$boxpcRevBal <- renderValueBox({
     latest <- (reactiveRevBal() %>% filter(
@@ -121,8 +125,7 @@ server <- function(input, output, session) {
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
   })
-
-
+  
   # Stop app ---------------------------------------------------------------------------------
 
   session$onSessionEnded(function() {

@@ -34,7 +34,7 @@ homepage_panel <- function() {
                   br(),
                   strong("The Progress 8 element breakdown school ready reckoner."),
                   ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in Progress 8 or any of its elements, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-                  (actionLink("https://www.compare-school-performance.service.gov.uk/", "checking site")),
+                  (a(href="https://www.compare-school-performance.service.gov.uk/", "checking site")),
                   br(),
                   br(),
                   strong("The EBacc subject pupil ready reckoner."),
@@ -43,18 +43,18 @@ homepage_panel <- function() {
                   br(),
                   strong("The EBacc subject school ready reckoner."),
                   ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in any of the three subject areas in the English Baccalaureate, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-                  (actionLink("https://www.compare-school-performance.service.gov.uk/", "checking site.")),
+                  (a(href="https://www.compare-school-performance.service.gov.uk/", "checking site.")),
                   br(),
                   br(),
                   br(),
                   h3("How to use this app"),
                   p("1) Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
-                  p("2) Follow the instructions steps within."),
+                  p("2) Follow the instructions steps within.")
                 ),
                 br()
               )
             )
-          ),
+          )
         )#,
         
        # Right panel ------------------------------------------------------
@@ -98,31 +98,7 @@ dashboard_panel <- function() {
       gov_row(
         column(
           width=12,
-        h1("School level ready reckoner"),
-        ),
-        column(
-          width=12,
-          div(
-            class = "well",
-            style = "min-height: 100%; height: 100%; overflow-y: visible",
-            fluidRow(
-            column(
-              width=12,
-              p("To generate data on your school, please input individual pupil figures below or upload pupil figures from the checking site"),
-              selectizeInput("selectPhase",
-                    "Select desired variable",
-                    choices = choicesPhase
-                    ))#,
-        # column(
-        #   width=1,
-        #   selectizeInput(
-        #     inputId = "selectArea",
-        #     label = "Choose an area:",
-        #     choices = choicesAreas$area_name
-        # )
-        # )
-        )
-          )
+        h1("School level ready reckoner")
         ),
         
         column(
@@ -161,15 +137,15 @@ dashboard_panel <- function() {
               class = "well",
               style = "min-height: 100%; height: 100%; overflow-y: visible",
               fluidRow(
-                column(
-                  width=12,
-                  selectizeInput("selectBenchLAs",
-                                 "Select benchamrk LAs",
-                                 choices = choicesLAs$area_name,
-                                 multiple=TRUE,
-                                 options = list(maxItems = 3)
-                  )
-                )
+                # column(
+                #   width=12,
+                #   selectizeInput("selectBenchLAs",
+                #                  "Select benchamrk LAs",
+                #                  choices = choicesLAs$area_name,
+                #                  multiple=TRUE,
+                #                  options = list(maxItems = 3)
+                #   )
+                # )
                   )
               ),
                 dataTableOutput("tabBenchmark")
@@ -195,30 +171,7 @@ dashboard2_panel <- function() {
       gov_row(
         column(
           width=12,
-          h1("Pupil level ready reckoner"),
-        ),
-        column(
-          width=12,
-          div(
-            class = "well",
-            style = "min-height: 100%; height: 100%; overflow-y: visible",
-            fluidRow(
-              column(
-                width=12,
-                selectizeInput("selectPhase",
-                               "Select desired variable",
-                               choices = choicesPhase
-                ))#,
-              # column(
-              #   width=6,
-              #   selectizeInput(
-              #     inputId = "selectArea",
-              #     label = "Choose an area:",
-              #     choices = choicesAreas$area_name
-              #   )
-              # )
-              )
-          )
+          h1("Pupil level ready reckoner")
         ),
         
         column(
@@ -325,7 +278,8 @@ dashboard2_panel <- function() {
                                         selected = "Grade = N"
                             ),
                             h3("Pupil's KS2 average point score"),
-                            valueBoxOutput("boxavgreadmaths", width = 12)
+                            valueBoxOutput("boxavgreadmaths", width = 12),
+                            textOutput('test')
                             #,
                             # valueBoxOutput("boxpcRevBal", width = 12),
                           #  box(
@@ -340,38 +294,14 @@ dashboard2_panel <- function() {
                           column(
                             width=12,
                             h2("Outputs 2 (h2)"),
-                            p("This is the standard paragraph style for adding guiding info around data content."),
-                            column(
-                              width=6,
-                              box(
-                                width=12,
-                                plotlyOutput("colBenchmark")
-                              )
+                            p("This is the standard paragraph style for adding guiding info around data content.")
                             ),
-                            column(
-                              width=6,
-                              div(
-                                class = "well",
-                                style = "min-height: 100%; height: 100%; overflow-y: visible",
-                                fluidRow(
-                                  column(
-                                    width=12,
-                                    selectizeInput("selectBenchLAs",
-                                                   "Select benchamrk LAs",
-                                                   choices = choicesLAs$area_name,
-                                                   multiple=TRUE,
-                                                   options = list(maxItems = 3)
-                                    )
-                                  )
-                                )
-                              ),
-                              dataTableOutput("tabBenchmark")
+                              )#,
+                              #dataTableOutput("tabBenchmark")
                             ))
                         ))
           )
         )
         # add box to show user input
-      )
-    )
-  )
+  
 }
