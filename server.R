@@ -91,6 +91,9 @@ server <- function(input, output, session) {
       color = "blue"
     )
   })
+  output$boxavgreadmaths <- renderValueBox({
+    mean(c(input$readinginput,input$mathsinput))})
+  
   output$boxpcRevBal <- renderValueBox({
     latest <- (reactiveRevBal() %>% filter(
       year == max(year),
