@@ -217,11 +217,25 @@ output$estimatedscorebox <- renderValueBox({
 
 output$VAscorebox <- renderValueBox({
   
-  valueBox(reactiveestimated(),
+  valueBox(input$p8score - reactiveestimated(),
            subtitle = "Pupil value added score",
            color = "green"
   )
 })
+
+output$VAscoreavbox <- renderValueBox({
+  
+  valueBox(round(((input$p8score - reactiveestimated())/10), 2),
+           subtitle = "Pupil value added score",
+           color = "green"
+  )
+})
+
+output$estvsactual <- renderPlotly(
+  
+  ggplot(df, aes(x = x, y = y)) +
+    geom_line() +geom_point(x = 4, y = 3, size = 5, colour = 'red')
+)
 
   output$boxpcRevBal <- renderValueBox({
     latest <- (reactiveRevBal() %>% filter(
