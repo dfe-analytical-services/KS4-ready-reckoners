@@ -204,7 +204,7 @@ dashboard2_panel <- function() {
                             h3("Pupil's value added score:"))
                             )
                         )
-                      ),
+                      ,
                       tabPanel(
                         "EBacc subject area",
                         fluidRow(
@@ -218,7 +218,7 @@ dashboard2_panel <- function() {
                             )
                         ))
           )
-        )
+        ))
         # add box to show user input
   
 }

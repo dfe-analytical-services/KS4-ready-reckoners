@@ -80,7 +80,7 @@ site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-templa
 source("R/support_links.R")
 source("R/read_data.R")
 
-read.csv("data/p8_pupil_coefficients_dummy.csv")
+pupil_coefficients <- read.csv("data/p8_pupil_coefficients_dummy.csv")
 
 # Read in the data
 dfRevBal <- read_revenue_data()
