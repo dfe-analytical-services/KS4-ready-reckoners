@@ -201,6 +201,7 @@ dashboard2_panel <- function() {
                              verbatimTextOutput("value"),
                             h3("Pupil's estimated key stage 4 attainment score:"),
                             valueBoxOutput("estimatedscorebox", width = 6),
+                            valueBoxOutput("VAscorebox", width = 6),
                             h3("Pupil's value added score:"))
                             )
                         )

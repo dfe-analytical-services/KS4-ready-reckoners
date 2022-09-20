@@ -211,6 +211,16 @@ output$estimatedscorebox <- renderValueBox({
   )
 })
 
+output$VAscorebox <- renderValueBox({
+  
+  valueBox(pupil_coefficients %>%
+             filter(ks2emss == reactiveKS2()) %>%
+             select(p8score),
+           subtitle = "Pupil value added score",
+           color = "green"
+  )
+})
+
   output$boxpcRevBal <- renderValueBox({
     latest <- (reactiveRevBal() %>% filter(
       year == max(year),
