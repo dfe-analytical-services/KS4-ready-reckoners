@@ -194,14 +194,14 @@ dashboard2_panel <- function() {
                                         choices = choicesPupil$label,
                                         selected = "Grade = N"
                             ),
-                            h3("Pupil's KS2 average point score"),
                             valueBoxOutput("boxavgreadmaths", width = 6),
-                            valueBoxOutput("ifbox", width = 6)
-                            #,
-                            # valueBoxOutput("boxpcRevBal", width = 12),
-                          #  box(
-                           #     width=12,
-                          #     plotlyOutput("avgreadmaths"))
+                            valueBoxOutput("PAGcatbox", width = 6),
+                            valueBoxOutput("PAGbox", width = 6),
+                            numericInput("p8score", h3("Enter the pupil's key stage 4 attainment score:"), 10, min = 0, max = 90, step = 0.01),
+                             verbatimTextOutput("value"),
+                            h3("Pupil's estimated key stage 4 attainment score:"),
+                            valueBoxOutput("estimatedscorebox", width = 6),
+                            h3("Pupil's value added score:"))
                             )
                         )
                       ),
@@ -215,7 +215,7 @@ dashboard2_panel <- function() {
                             ),
                               )#,
                               #dataTableOutput("tabBenchmark")
-                            ))
+                            )
                         ))
           )
         )
