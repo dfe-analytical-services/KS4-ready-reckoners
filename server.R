@@ -109,6 +109,12 @@ server <- function(input, output, session) {
     else if (reactivemean() >= 119.5) {
       paste(34)}
   })
+  
+  reactiveestimated <- reactive({
+    pupil_coefficients %>%
+      filter(ks2emss == reactiveKS2()) %>%
+      select(p8score)
+  })
     
   
 
@@ -203,9 +209,7 @@ output$estimatedscorebox <- renderValueBox({
   
   #make it use PAG score to look up p8score from coefficient table as estimated score  
   
-  valueBox(pupil_coefficients %>%
-             filter(ks2emss == reactiveKS2()) %>%
-             select(p8score),
+  valueBox(reactiveestimated(),
   subtitle = "Estimated key stage 4 score",
   color = "green"
   )
@@ -213,9 +217,7 @@ output$estimatedscorebox <- renderValueBox({
 
 output$VAscorebox <- renderValueBox({
   
-  valueBox(pupil_coefficients %>%
-             filter(ks2emss == reactiveKS2()) %>%
-             select(p8score),
+  valueBox(reactiveestimated(),
            subtitle = "Pupil value added score",
            color = "green"
   )
