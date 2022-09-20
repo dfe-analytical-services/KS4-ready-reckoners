@@ -202,8 +202,10 @@ dashboard2_panel <- function() {
                             h3("Pupil's estimated key stage 4 attainment score:"),
                             valueBoxOutput("estimatedscorebox", width = 6),
                             valueBoxOutput("VAscorebox", width = 6),
-                            valueBoxOutput("VAscoreavbox", width = 6),
-                            plotlyOutput("estvsactual", width = 12),
+                            valueBoxOutput("VAscoreavbox", width = 6)),
+                          column(
+                            width = 12,
+                            plotlyOutput("estvsactual"),
                             h3("Pupil's value added score:"))
                             )
                         )
