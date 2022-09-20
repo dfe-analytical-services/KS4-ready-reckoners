@@ -34,89 +34,90 @@ server <- function(input, output, session) {
       school_phase == input$selectPhase
     )
   })
-  
+
   reactivemean <- reactive({
     average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))
   })
-  
+
   reactiveKS2 <- reactive({
     if (reactivemean() <= 79.5) {
       paste(1)
     } else if (reactivemean() <= 86) {
-      paste(2)} 
-    else if (reactivemean() <= 87.5) {
-      paste(3)}
-    else if (reactivemean() <= 89) {
-      paste(4)} 
-    else if (reactivemean() <= 90.5) {
-      paste(5)}
-    else if (reactivemean() <= 92) {
-      paste(6)} 
-    else if (reactivemean() <= 93) {
-      paste(7)}
-    else if (reactivemean() <= 94) {
-      paste(8)} 
-    else if (reactivemean() <= 95) {
-      paste(9)}
-    else if (reactivemean() <= 96) {
-      paste(10)} 
-    else if (reactivemean() <= 97) {
-      paste(11)}
-    else if (reactivemean() <= 98) {
-      paste(12)} 
-    else if (reactivemean() <= 99) {
-      paste(13)}
-    else if (reactivemean() <= 100) {
-      paste(14)} 
-    else if (reactivemean() <= 101) {
-      paste(15)}
-    else if (reactivemean() <= 102) {
-      paste(16)} 
-    else if (reactivemean() <= 103) {
-      paste(17)}
-    else if (reactivemean() <= 104) {
-      paste(18)} 
-    else if (reactivemean() <= 105) {
-      paste(19)}
-    else if (reactivemean() <= 106) {
-      paste(20)} 
-    else if (reactivemean() <= 107) {
-      paste(21)}
-    else if (reactivemean() <= 108) {
-      paste(22)} 
-    else if (reactivemean() <= 109) {
-      paste(23)}
-    else if (reactivemean() <= 110) {
-      paste(24)} 
-    else if (reactivemean() <= 111) {
-      paste(25)}
-    else if (reactivemean() <= 112) {
-      paste(26)} 
-    else if (reactivemean() <= 113) {
-      paste(27)}
-    else if (reactivemean() <= 114) {
-      paste(28)} 
-    else if (reactivemean() <= 115) {
-      paste(29)}
-    else if (reactivemean() <= 116) {
-      paste(30)} 
-    else if (reactivemean() <= 117) {
-      paste(31)}
-    else if (reactivemean() <= 118) {
-      paste(32)} 
-    else if (reactivemean() <= 119) {
-      paste(33)}
-    else if (reactivemean() >= 119.5) {
-      paste(34)}
+      paste(2)
+    } else if (reactivemean() <= 87.5) {
+      paste(3)
+    } else if (reactivemean() <= 89) {
+      paste(4)
+    } else if (reactivemean() <= 90.5) {
+      paste(5)
+    } else if (reactivemean() <= 92) {
+      paste(6)
+    } else if (reactivemean() <= 93) {
+      paste(7)
+    } else if (reactivemean() <= 94) {
+      paste(8)
+    } else if (reactivemean() <= 95) {
+      paste(9)
+    } else if (reactivemean() <= 96) {
+      paste(10)
+    } else if (reactivemean() <= 97) {
+      paste(11)
+    } else if (reactivemean() <= 98) {
+      paste(12)
+    } else if (reactivemean() <= 99) {
+      paste(13)
+    } else if (reactivemean() <= 100) {
+      paste(14)
+    } else if (reactivemean() <= 101) {
+      paste(15)
+    } else if (reactivemean() <= 102) {
+      paste(16)
+    } else if (reactivemean() <= 103) {
+      paste(17)
+    } else if (reactivemean() <= 104) {
+      paste(18)
+    } else if (reactivemean() <= 105) {
+      paste(19)
+    } else if (reactivemean() <= 106) {
+      paste(20)
+    } else if (reactivemean() <= 107) {
+      paste(21)
+    } else if (reactivemean() <= 108) {
+      paste(22)
+    } else if (reactivemean() <= 109) {
+      paste(23)
+    } else if (reactivemean() <= 110) {
+      paste(24)
+    } else if (reactivemean() <= 111) {
+      paste(25)
+    } else if (reactivemean() <= 112) {
+      paste(26)
+    } else if (reactivemean() <= 113) {
+      paste(27)
+    } else if (reactivemean() <= 114) {
+      paste(28)
+    } else if (reactivemean() <= 115) {
+      paste(29)
+    } else if (reactivemean() <= 116) {
+      paste(30)
+    } else if (reactivemean() <= 117) {
+      paste(31)
+    } else if (reactivemean() <= 118) {
+      paste(32)
+    } else if (reactivemean() <= 119) {
+      paste(33)
+    } else if (reactivemean() >= 119.5) {
+      paste(34)
+    }
   })
-  
+
   reactiveestimated <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score)
   })
-    
-  
+
+
 
   # Define server logic required to draw a histogram
   output$lineRevBal <- renderPlotly({
@@ -184,58 +185,54 @@ server <- function(input, output, session) {
 
   # feel free to change the name to be more descriptive!!!
   output$PAGcatbox <- renderValueBox({
-
     valueBox((if (reactivemean() < 100) {
       paste("Below standard")
     } else if (reactivemean() <= 110) {
-      paste("Achieving standard")} 
-      else if (reactivemean() > 110) {
+      paste("Achieving standard")
+    } else if (reactivemean() > 110) {
       paste("Above standard")
-      }),
+    }),
     subtitle = "Prior attainment group categorisation",
     color = "blue"
     )
   })
-    
-output$PAGbox <- renderValueBox({
-  
+
+  output$PAGbox <- renderValueBox({
     valueBox(reactiveKS2(),
-    subtitle = "Prior attainment group categorisation",
-    color = "blue"
+      subtitle = "Prior attainment group categorisation",
+      color = "blue"
     )
   })
 
-output$estimatedscorebox <- renderValueBox({
-  
-  #make it use PAG score to look up p8score from coefficient table as estimated score  
-  
-  valueBox(reactiveestimated(),
-  subtitle = "Estimated key stage 4 score",
-  color = "green"
-  )
-})
+  output$estimatedscorebox <- renderValueBox({
 
-output$VAscorebox <- renderValueBox({
-  
-  valueBox(input$p8score - reactiveestimated(),
-           subtitle = "Pupil value added score",
-           color = "green"
-  )
-})
+    # make it use PAG score to look up p8score from coefficient table as estimated score
 
-output$VAscoreavbox <- renderValueBox({
-  
-  valueBox(round(((input$p8score - reactiveestimated())/10), 2),
-           subtitle = "Pupil value added score",
-           color = "green"
-  )
-})
+    valueBox(reactiveestimated(),
+      subtitle = "Estimated key stage 4 score",
+      color = "green"
+    )
+  })
 
-output$estvsactual <- renderPlotly(
-  
-  ggplot(df, aes(x = x, y = y)) +
-    geom_line() +geom_point(x = 4, y = 3, size = 5, colour = 'red')
-)
+  output$VAscorebox <- renderValueBox({
+    valueBox(input$p8score - reactiveestimated(),
+      subtitle = "Pupil value added score",
+      color = "green"
+    )
+  })
+
+  output$VAscoreavbox <- renderValueBox({
+    valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
+      subtitle = "Pupil value added score",
+      color = "green"
+    )
+  })
+
+  output$estvsactual <- renderPlotly({
+    ggplot(df, aes(x = x, y = y)) +
+      geom_line() +
+      geom_point(x = 4, y = 3, size = 5, colour = "red")
+  })
 
   output$boxpcRevBal <- renderValueBox({
     latest <- (reactiveRevBal() %>% filter(

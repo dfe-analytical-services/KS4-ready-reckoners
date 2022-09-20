@@ -82,8 +82,10 @@ source("R/read_data.R")
 
 pupil_coefficients <- read.csv("data/p8_pupil_coefficients_dummy.csv")
 
-df<-data.frame(x=c(1,2,3,4,5),
-                 y=c(1,2,3,4,5))
+df <- data.frame(
+  x = c(1, 2, 3, 4, 5),
+  y = c(1, 2, 3, 4, 5)
+)
 
 # Read in the data
 dfRevBal <- read_revenue_data()
