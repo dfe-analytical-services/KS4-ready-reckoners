@@ -82,15 +82,16 @@ source("R/read_data.R")
 
 pupil_coefficients <- read.csv("data/p8_pupil_coefficients_dummy.csv")
 pupil_modelvalues <- read.csv("data/ebac_pupil_modelvalues_dummy.csv")
+pupil_modelvalues$ks2emss <- as.numeric(pupil_modelvalues$ks2emss)
 
 df <- data.frame(
-  x = c(1:90),
-  y = c(1:90)
+  x = c(0:90),
+  y = c(0:90)
 )
 
 df2 <- data.frame(
-  x = c(1:9),
-  y = c(1:9)
+  x = c(0:9),
+  y = c(0:9)
 )
 
 # # Read in the data
