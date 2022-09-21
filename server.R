@@ -117,7 +117,7 @@ server <- function(input, output, session) {
   })
   
   reactiveKS2ebac <- reactive({
-    if (reactivemean() <= 79.5) {
+    if (reactivemeanebac() <= 79.5) {
       paste(1)
     } else if (reactivemeanebac() <= 86) {
       paste(2)
