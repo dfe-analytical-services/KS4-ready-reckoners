@@ -88,6 +88,11 @@ df <- data.frame(
   y = c(1:90)
 )
 
+df2 <- data.frame(
+  x = c(1:9),
+  y = c(1:9)
+)
+
 # # Read in the data
 # dfRevBal <- read_revenue_data()
 # # Get geographical levels from data

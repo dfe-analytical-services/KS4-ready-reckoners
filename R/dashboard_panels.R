@@ -279,7 +279,7 @@ dashboard2_panel <- function() {
                           br(),
                           h3("English Baccalaureate - humanities subject area"),
                           br(),
-                          numericInput("ebaccscorehum", p("Enter the pupil's score in the humanities EBacc element:"), "Enter value", min = 0, max = 9, step = 0.01),
+                          numericInput("ebaccscorehum", p("Enter the pupil's score in the humanities EBacc element:"), 0, min = 0, max = 9, step = 0.01),
                           valueBoxOutput("estimatedscoreboxebachum", width = 6),
                           valueBoxOutput("VAscoreboxebachum", width = 6),
                           #valueBoxOutput("VAscoreavboxeng", width = 6),
@@ -320,7 +320,7 @@ dashboard2_panel <- function() {
                             )
                         ))
           ))
-        )
+        )))
         # add box to show user input
   
 }

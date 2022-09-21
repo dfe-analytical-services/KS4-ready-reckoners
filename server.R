@@ -140,6 +140,24 @@ server <- function(input, output, session) {
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_open)
   })
+  
+  reactiveestimatedebacsci <- reactive({
+    pupil_modelvalues %>%
+      filter(ks2emss == reactiveKS2()) %>%
+      select(science_score)
+  }) 
+  
+  reactiveestimatedebachum <- reactive({
+    pupil_modelvalues %>%
+      filter(ks2emss == reactiveKS2()) %>%
+      select(humanities_score)
+  }) 
+  
+  reactiveestimatedebaclan <- reactive({
+    pupil_modelvalues %>%
+      filter(ks2emss == reactiveKS2()) %>%
+      select(languages_score)
+  }) 
 
 
 
@@ -411,7 +429,7 @@ server <- function(input, output, session) {
   # })
   
   output$estvsactualebacsci <- renderPlotly({
-    ggplot(df, aes(x = x, y = y)) +
+    ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "green") +
       ggtitle("Estimated against actual KS4 outcome") +
@@ -446,7 +464,7 @@ server <- function(input, output, session) {
   # })
   
   output$estvsactualebachum <- renderPlotly({
-    ggplot(df, aes(x = x, y = y)) +
+    ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "orange") +
       ggtitle("Estimated against actual KS4 outcome") +
@@ -481,7 +499,7 @@ server <- function(input, output, session) {
   # })
   
   output$estvsactualebaclan <- renderPlotly({
-    ggplot(df, aes(x = x, y = y)) +
+    ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "blue") +
       ggtitle("Estimated against actual KS4 outcome") +
