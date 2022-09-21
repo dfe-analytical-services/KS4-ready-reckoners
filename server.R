@@ -110,12 +110,12 @@ server <- function(input, output, session) {
       paste(34)
     }
   })
-  
-  
+
+
   reactivemeanebac <- reactive({
     average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinputebac], choicesPupil$value[choicesPupil$label == input$readinginputebac]))
   })
-  
+
   reactiveKS2ebac <- reactive({
     if (reactivemeanebac() <= 79.5) {
       paste(1)
@@ -187,55 +187,55 @@ server <- function(input, output, session) {
       paste(34)
     }
   })
-  
+
 
   reactiveestimated <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score)
   })
-  
+
   reactiveestimatedeng <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_eng)
   })
-  
+
   reactiveestimatedmath <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_mat)
   })
-  
+
   reactiveestimatedebac <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_ebac)
   })
-  
+
   reactiveestimatedopen <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_open)
   })
-  
+
   reactiveestimatedebacsci <- reactive({
-  as.numeric(pupil_modelvalues %>%
+    as.numeric(pupil_modelvalues %>%
       filter(ks2emss == reactiveKS2ebac()) %>%
       select(science_score))
-  }) 
-  
+  })
+
   reactiveestimatedebachum <- reactive({
     as.numeric(pupil_modelvalues %>%
       filter(ks2emss == reactiveKS2ebac()) %>%
       select(humanities_score))
-  }) 
-  
+  })
+
   reactiveestimatedebaclan <- reactive({
     as.numeric(pupil_modelvalues %>%
       filter(ks2emss == reactiveKS2ebac()) %>%
       select(languages_score))
-  }) 
+  })
 
 
 
@@ -354,114 +354,108 @@ server <- function(input, output, session) {
       geom_line() +
       geom_point(x = as.numeric(reactiveestimated()), y = input$p8score, size = 2, colour = "#FF007F") +
       ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome") +
-    theme(
-      plot.title = element_text(color="black", size=14, face="bold"),
-      axis.title.x = element_text(color="black", size=10, face="plain"),
-      axis.title.y = element_text(color="black", size=10, face="plain"))
+      xlab("Estimated KS4 outcome") +
+      ylab("Actual KS4 outcome") +
+      theme(
+        plot.title = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
+        axis.title.y = element_text(color = "black", size = 10, face = "plain")
+      )
   })
-  
+
   output$estimatedscoreboxeng <- renderValueBox({
-    
-    
     valueBox(reactiveestimatedeng(),
-             subtitle = "Estimated key stage 4 score - English element",
-             color = "purple"
+      subtitle = "Estimated key stage 4 score - English element",
+      color = "purple"
     )
   })
-  
+
   output$VAscoreboxeng <- renderValueBox({
     valueBox(input$p8scoreeng - reactiveestimatedeng(),
-             subtitle = "Pupil value added score - English element",
-             color = "purple"
+      subtitle = "Pupil value added score - English element",
+      color = "purple"
     )
   })
-  
+
   output$VAscoreavboxeng <- renderValueBox({
     valueBox(round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2),
-             subtitle = "Pupil value added score - English element",
-             color = "purple"
+      subtitle = "Pupil value added score - English element",
+      color = "purple"
     )
   })
-  
+
   output$estimatedscoreboxmath <- renderValueBox({
-    
-    
     valueBox(reactiveestimatedmath(),
-             subtitle = "Estimated key stage 4 score - maths element",
-             color = "orange"
+      subtitle = "Estimated key stage 4 score - maths element",
+      color = "orange"
     )
   })
-  
+
   output$VAscoreboxmath <- renderValueBox({
     valueBox(input$p8scoremath - reactiveestimatedmath(),
-             subtitle = "Pupil value added score - maths element",
-             color = "orange"
+      subtitle = "Pupil value added score - maths element",
+      color = "orange"
     )
   })
-  
+
   output$VAscoreavboxmath <- renderValueBox({
     valueBox(round(((input$p8scoremath - reactiveestimatedmath()) / 2), 2),
-             subtitle = "Pupil value added score - maths element",
-             color = "orange"
+      subtitle = "Pupil value added score - maths element",
+      color = "orange"
     )
   })
-  
+
   output$estimatedscoreboxebac <- renderValueBox({
-    
-    
     valueBox(reactiveestimatedebac(),
-             subtitle = "Estimated key stage 4 score - EBacc element",
-             color = "aqua"
+      subtitle = "Estimated key stage 4 score - EBacc element",
+      color = "aqua"
     )
   })
-  
+
   output$VAscoreboxebac <- renderValueBox({
     valueBox(input$p8scoreebac - reactiveestimatedebac(),
-             subtitle = "Pupil value added score - EBacc element",
-             color = "aqua"
+      subtitle = "Pupil value added score - EBacc element",
+      color = "aqua"
     )
   })
-  
+
   output$VAscoreavboxebac <- renderValueBox({
     valueBox(round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2),
-             subtitle = "Pupil value added score - EBacc element",
-             color = "aqua"
+      subtitle = "Pupil value added score - EBacc element",
+      color = "aqua"
     )
   })
-  
+
   output$estimatedscoreboxopen <- renderValueBox({
-    
-    
     valueBox(reactiveestimatedopen(),
-             subtitle = "Estimated key stage 4 score - open element",
-             color = "fuchsia"
+      subtitle = "Estimated key stage 4 score - open element",
+      color = "fuchsia"
     )
   })
-  
+
   output$VAscoreboxopen <- renderValueBox({
     valueBox(input$p8scoreopen - reactiveestimatedopen(),
-             subtitle = "Pupil value added score - open element",
-             color = "fuchsia"
+      subtitle = "Pupil value added score - open element",
+      color = "fuchsia"
     )
   })
-  
+
   output$VAscoreavboxopen <- renderValueBox({
     valueBox(round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2),
-             subtitle = "Pupil value added score - open element",
-             color = "fuchsia"
+      subtitle = "Pupil value added score - open element",
+      color = "fuchsia"
     )
   })
-  
- # --------------------------------------------------------------------end of P8 tab
-  
+
+  # --------------------------------------------------------------------end of P8 tab
+
   output$boxavgreadmathsebac <- renderValueBox({
     valueBox(reactivemeanebac(),
-             "Pupil's KS2 average point score",
-             color = "blue"
+      "Pupil's KS2 average point score",
+      color = "blue"
     )
   })
-  
+
 
   output$PAGcatboxebac <- renderValueBox({
     valueBox((if (reactivemeanebac() < 100) {
@@ -475,119 +469,119 @@ server <- function(input, output, session) {
     color = "blue"
     )
   })
-  
+
   output$PAGboxebac <- renderValueBox({
     valueBox(reactiveKS2ebac(),
-             subtitle = "Prior attainment group categorisation",
-             color = "blue"
+      subtitle = "Prior attainment group categorisation",
+      color = "blue"
     )
   })
-  
+
   output$estimatedscoreboxebacsci <- renderValueBox({
-    
-    
     valueBox(reactiveestimatedebacsci(),
-             subtitle = "Estimated Ebacc score - science subject area",
-             color = "green"
+      subtitle = "Estimated Ebacc score - science subject area",
+      color = "green"
     )
   })
-  
+
   output$VAscoreboxebacsci <- renderValueBox({
     valueBox(input$ebacscoresci - reactiveestimatedebacsci(),
-             subtitle = "Pupil value added score",
-             color = "green"
+      subtitle = "Pupil value added score",
+      color = "green"
     )
   })
-  
+
   # output$VAscoreavbox <- renderValueBox({
   #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
   #            subtitle = "Pupil value added score",
   #            color = "green"
   #   )
   # })
-  
+
   output$estvsactualebacsci <- renderPlotly({
     ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "green") +
       ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome") +
+      xlab("Estimated KS4 outcome") +
+      ylab("Actual KS4 outcome") +
       theme(
-        plot.title = element_text(color="black", size=14, face="bold"),
-        axis.title.x = element_text(color="black", size=10, face="plain"),
-        axis.title.y = element_text(color="black", size=10, face="plain"))
+        plot.title = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
+        axis.title.y = element_text(color = "black", size = 10, face = "plain")
+      )
   })
-  
+
   output$estimatedscoreboxebachum <- renderValueBox({
-    
-    
     valueBox(reactiveestimatedebachum(),
-             subtitle = "Estimated Ebacc score - humanities subject area",
-             color = "orange"
+      subtitle = "Estimated Ebacc score - humanities subject area",
+      color = "orange"
     )
   })
-  
+
   output$VAscoreboxebachum <- renderValueBox({
     valueBox(input$ebacscorehum - reactiveestimatedebachum(),
-             subtitle = "Pupil value added score",
-             color = "orange"
+      subtitle = "Pupil value added score",
+      color = "orange"
     )
   })
-  
+
   # output$VAscoreavbox <- renderValueBox({
   #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
   #            subtitle = "Pupil value added score",
   #            color = "green"
   #   )
   # })
-  
+
   output$estvsactualebachum <- renderPlotly({
     ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "orange") +
       ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome") +
+      xlab("Estimated KS4 outcome") +
+      ylab("Actual KS4 outcome") +
       theme(
-        plot.title = element_text(color="black", size=14, face="bold"),
-        axis.title.x = element_text(color="black", size=10, face="plain"),
-        axis.title.y = element_text(color="black", size=10, face="plain"))
+        plot.title = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
+        axis.title.y = element_text(color = "black", size = 10, face = "plain")
+      )
   })
 
   output$estimatedscoreboxebaclan <- renderValueBox({
-    
-    
     valueBox(reactiveestimatedebaclan(),
-             subtitle = "Estimated Ebacc score - languages subject area",
-             color = "blue"
+      subtitle = "Estimated Ebacc score - languages subject area",
+      color = "blue"
     )
   })
-  
+
   output$VAscoreboxebaclan <- renderValueBox({
     valueBox(input$ebacscorelan - reactiveestimatedebaclan(),
-             subtitle = "Pupil value added score",
-             color = "blue"
+      subtitle = "Pupil value added score",
+      color = "blue"
     )
   })
-  
+
   # output$VAscoreavbox <- renderValueBox({
   #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
   #            subtitle = "Pupil value added score",
   #            color = "green"
   #   )
   # })
-  
+
   output$estvsactualebaclan <- renderPlotly({
     ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "blue") +
       ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome") +
+      xlab("Estimated KS4 outcome") +
+      ylab("Actual KS4 outcome") +
       theme(
-        plot.title = element_text(color="black", size=14, face="bold"),
-        axis.title.x = element_text(color="black", size=10, face="plain"),
-        axis.title.y = element_text(color="black", size=10, face="plain"))
+        plot.title = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
+        axis.title.y = element_text(color = "black", size = 10, face = "plain")
+      )
   })
-  
+
 
 
   observeEvent(input$link_to_app_content_tab, {

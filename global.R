@@ -104,20 +104,20 @@ df2 <- data.frame(
 #     la_name, old_la_code, new_la_code
 #   ) %>%
 #   distinct()
-# 
+#
 # choicesLAs <- dfAreas %>%
 #   filter(geographic_level == "Local authority") %>%
 #   select(geographic_level, area_name = la_name) %>%
 #   arrange(area_name)
-# 
+#
 # choicesAreas <- dfAreas %>%
 #   filter(geographic_level == "National") %>%
 #   select(geographic_level, area_name = country_name) %>%
 #   rbind(dfAreas %>% filter(geographic_level == "Regional") %>% select(geographic_level, area_name = region_name)) %>%
 #   rbind(choicesLAs)
-# 
+#
 # choicesYears <- unique(dfRevBal$time_period)
-# 
+#
 # choicesPhase <- unique(dfRevBal$school_phase)
 
 choicesPupil <- data.frame(
