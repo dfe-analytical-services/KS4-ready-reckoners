@@ -5,3 +5,4 @@ data/date_format.meta.csv,published
 data/some_unpublished_data.csv,unpublished
 data/p8_pupil_coefficients_dummy.csv,reference
 data/p8_pupil_coefficients_dummy.xlsx,reference
+data/ebac_pupil_modelvalues_dummy.csv,reference

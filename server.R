@@ -356,6 +356,142 @@ server <- function(input, output, session) {
              color = "fuchsia"
     )
   })
+  
+ # --------------------------------------------------------------------end of P8 tab
+  
+  output$boxavgreadmathsebac <- renderValueBox({
+    valueBox(reactivemean(),
+             "Pupil's KS2 average point score",
+             color = "blue"
+    )
+  })
+  
+
+  output$PAGcatboxebac <- renderValueBox({
+    valueBox((if (reactivemean() < 100) {
+      paste("Below standard")
+    } else if (reactivemean() <= 110) {
+      paste("Achieving standard")
+    } else if (reactivemean() > 110) {
+      paste("Above standard")
+    }),
+    subtitle = "Prior attainment group categorisation",
+    color = "blue"
+    )
+  })
+  
+  output$PAGboxebac <- renderValueBox({
+    valueBox(reactiveKS2(),
+             subtitle = "Prior attainment group categorisation",
+             color = "blue"
+    )
+  })
+  
+  output$estimatedscoreboxebacsci <- renderValueBox({
+    
+    
+    valueBox(reactiveestimatedebacsci(),
+             subtitle = "Estimated Ebacc score - science subject area",
+             color = "green"
+    )
+  })
+  
+  output$VAscoreboxebacsci <- renderValueBox({
+    valueBox(input$ebacscoresci - reactiveestimatedebacsci(),
+             subtitle = "Pupil value added score",
+             color = "green"
+    )
+  })
+  
+  # output$VAscoreavbox <- renderValueBox({
+  #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
+  #            subtitle = "Pupil value added score",
+  #            color = "green"
+  #   )
+  # })
+  
+  output$estvsactualebacsci <- renderPlotly({
+    ggplot(df, aes(x = x, y = y)) +
+      geom_line() +
+      geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "green") +
+      ggtitle("Estimated against actual KS4 outcome") +
+      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome") +
+      theme(
+        plot.title = element_text(color="black", size=14, face="bold"),
+        axis.title.x = element_text(color="black", size=10, face="plain"),
+        axis.title.y = element_text(color="black", size=10, face="plain"))
+  })
+  
+  output$estimatedscoreboxebachum <- renderValueBox({
+    
+    
+    valueBox(reactiveestimatedebachum(),
+             subtitle = "Estimated Ebacc score - humanities subject area",
+             color = "orange"
+    )
+  })
+  
+  output$VAscoreboxebachum <- renderValueBox({
+    valueBox(input$ebacscorehum - reactiveestimatedebachum(),
+             subtitle = "Pupil value added score",
+             color = "orange"
+    )
+  })
+  
+  # output$VAscoreavbox <- renderValueBox({
+  #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
+  #            subtitle = "Pupil value added score",
+  #            color = "green"
+  #   )
+  # })
+  
+  output$estvsactualebachum <- renderPlotly({
+    ggplot(df, aes(x = x, y = y)) +
+      geom_line() +
+      geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "orange") +
+      ggtitle("Estimated against actual KS4 outcome") +
+      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome") +
+      theme(
+        plot.title = element_text(color="black", size=14, face="bold"),
+        axis.title.x = element_text(color="black", size=10, face="plain"),
+        axis.title.y = element_text(color="black", size=10, face="plain"))
+  })
+
+  output$estimatedscoreboxebaclan <- renderValueBox({
+    
+    
+    valueBox(reactiveestimatedebaclan(),
+             subtitle = "Estimated Ebacc score - languages subject area",
+             color = "blue"
+    )
+  })
+  
+  output$VAscoreboxebaclan <- renderValueBox({
+    valueBox(input$ebacscorelan - reactiveestimatedebaclan(),
+             subtitle = "Pupil value added score",
+             color = "blue"
+    )
+  })
+  
+  # output$VAscoreavbox <- renderValueBox({
+  #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
+  #            subtitle = "Pupil value added score",
+  #            color = "green"
+  #   )
+  # })
+  
+  output$estvsactualebaclan <- renderPlotly({
+    ggplot(df, aes(x = x, y = y)) +
+      geom_line() +
+      geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "blue") +
+      ggtitle("Estimated against actual KS4 outcome") +
+      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome") +
+      theme(
+        plot.title = element_text(color="black", size=14, face="bold"),
+        axis.title.x = element_text(color="black", size=10, face="plain"),
+        axis.title.y = element_text(color="black", size=10, face="plain"))
+  })
+  
 
 
   observeEvent(input$link_to_app_content_tab, {

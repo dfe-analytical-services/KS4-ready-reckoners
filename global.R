@@ -81,37 +81,38 @@ source("R/support_links.R")
 source("R/read_data.R")
 
 pupil_coefficients <- read.csv("data/p8_pupil_coefficients_dummy.csv")
+pupil_modelvalues <- read.csv("data/ebac_pupil_modelvalues_dummy.csv")
 
 df <- data.frame(
   x = c(1:90),
   y = c(1:90)
 )
 
-# Read in the data
-dfRevBal <- read_revenue_data()
-# Get geographical levels from data
-dfAreas <- dfRevBal %>%
-  select(
-    geographic_level, country_name, country_code,
-    region_name, region_code,
-    la_name, old_la_code, new_la_code
-  ) %>%
-  distinct()
-
-choicesLAs <- dfAreas %>%
-  filter(geographic_level == "Local authority") %>%
-  select(geographic_level, area_name = la_name) %>%
-  arrange(area_name)
-
-choicesAreas <- dfAreas %>%
-  filter(geographic_level == "National") %>%
-  select(geographic_level, area_name = country_name) %>%
-  rbind(dfAreas %>% filter(geographic_level == "Regional") %>% select(geographic_level, area_name = region_name)) %>%
-  rbind(choicesLAs)
-
-choicesYears <- unique(dfRevBal$time_period)
-
-choicesPhase <- unique(dfRevBal$school_phase)
+# # Read in the data
+# dfRevBal <- read_revenue_data()
+# # Get geographical levels from data
+# dfAreas <- dfRevBal %>%
+#   select(
+#     geographic_level, country_name, country_code,
+#     region_name, region_code,
+#     la_name, old_la_code, new_la_code
+#   ) %>%
+#   distinct()
+# 
+# choicesLAs <- dfAreas %>%
+#   filter(geographic_level == "Local authority") %>%
+#   select(geographic_level, area_name = la_name) %>%
+#   arrange(area_name)
+# 
+# choicesAreas <- dfAreas %>%
+#   filter(geographic_level == "National") %>%
+#   select(geographic_level, area_name = country_name) %>%
+#   rbind(dfAreas %>% filter(geographic_level == "Regional") %>% select(geographic_level, area_name = region_name)) %>%
+#   rbind(choicesLAs)
+# 
+# choicesYears <- unique(dfRevBal$time_period)
+# 
+# choicesPhase <- unique(dfRevBal$school_phase)
 
 choicesPupil <- data.frame(
   label = c(
