@@ -80,28 +80,149 @@ site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-templa
 source("R/support_links.R")
 source("R/read_data.R")
 
-# Read in the data
-dfRevBal <- read_revenue_data()
-# Get geographical levels from data
-dfAreas <- dfRevBal %>%
-  select(
-    geographic_level, country_name, country_code,
-    region_name, region_code,
-    la_name, old_la_code, new_la_code
-  ) %>%
-  distinct()
+pupil_coefficients <- read.csv("data/p8_pupil_coefficients_dummy.csv")
+pupil_modelvalues <- read.csv("data/ebac_pupil_modelvalues_dummy.csv")
+pupil_modelvalues$ks2emss <- as.numeric(pupil_modelvalues$ks2emss)
 
-choicesLAs <- dfAreas %>%
-  filter(geographic_level == "Local authority") %>%
-  select(geographic_level, area_name = la_name) %>%
-  arrange(area_name)
+df <- data.frame(
+  x = c(0:90),
+  y = c(0:90)
+)
 
-choicesAreas <- dfAreas %>%
-  filter(geographic_level == "National") %>%
-  select(geographic_level, area_name = country_name) %>%
-  rbind(dfAreas %>% filter(geographic_level == "Regional") %>% select(geographic_level, area_name = region_name)) %>%
-  rbind(choicesLAs)
+df2 <- data.frame(
+  x = c(0:9),
+  y = c(0:9)
+)
 
-choicesYears <- unique(dfRevBal$time_period)
+# # Read in the data
+# dfRevBal <- read_revenue_data()
+# # Get geographical levels from data
+# dfAreas <- dfRevBal %>%
+#   select(
+#     geographic_level, country_name, country_code,
+#     region_name, region_code,
+#     la_name, old_la_code, new_la_code
+#   ) %>%
+#   distinct()
+#
+# choicesLAs <- dfAreas %>%
+#   filter(geographic_level == "Local authority") %>%
+#   select(geographic_level, area_name = la_name) %>%
+#   arrange(area_name)
+#
+# choicesAreas <- dfAreas %>%
+#   filter(geographic_level == "National") %>%
+#   select(geographic_level, area_name = country_name) %>%
+#   rbind(dfAreas %>% filter(geographic_level == "Regional") %>% select(geographic_level, area_name = region_name)) %>%
+#   rbind(choicesLAs)
+#
+# choicesYears <- unique(dfRevBal$time_period)
+#
+# choicesPhase <- unique(dfRevBal$school_phase)
 
-choicesPhase <- unique(dfRevBal$school_phase)
+choicesPupil <- data.frame(
+  label = c(
+    "Exam year 2016, TAOUTCOME = 'BLW'",
+    "Exam year 2016, TAOUTCOME = 'PKF'",
+    "Exam year 2016, TAOUTCOME = 'PKE'",
+    "Exam year 2016, TAOUTCOME = 'PKG'",
+    "Exam year 2017, TAOUTCOME = 'BLW'",
+    "Exam year 2017, TAOUTCOME = 'PKF'",
+    "Exam year 2017, TAOUTCOME = 'PKE'",
+    "Exam year 2017, TAOUTCOME = 'PKG'",
+    "Grade = N",
+    "80",
+    "81",
+    "82",
+    "83",
+    "84",
+    "85",
+    "86",
+    "87",
+    "88",
+    "89",
+    "90",
+    "91",
+    "92",
+    "93",
+    "94",
+    "95",
+    "96",
+    "97",
+    "98",
+    "99",
+    "100",
+    "101",
+    "102",
+    "103",
+    "104",
+    "105",
+    "106",
+    "107",
+    "108",
+    "109",
+    "110",
+    "111",
+    "112",
+    "113",
+    "114",
+    "115",
+    "116",
+    "117",
+    "118",
+    "119",
+    "120"
+  ),
+  value = c(
+    70,
+    73,
+    76,
+    79,
+    71,
+    73,
+    76,
+    79,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120
+  )
+)

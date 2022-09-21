@@ -5,7 +5,7 @@ homepage_panel <- function() {
       gov_row(
         column(
           12,
-          h1("DfE Analytical Services R-Shiny data dashboard template (h1)"),
+          h1("KS4 Ready Reckoner dashboard"),
           br(),
           br()
         ),
@@ -13,55 +13,72 @@ homepage_panel <- function() {
         ## Left panel -------------------------------------------------------
         
         column(
-          6,
+          12, #6,--AB trial
           div(
             div(
               class = "panel panel-info",
               div(
                 class = "panel-heading",
                 style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
-                h2("Contents (h2)")
+                h2("Guidance")
               ),
               div(
                 class = "panel-body",
                 tags$div(
                   title = "This section is useful if you want to understand how well different industries retain graduates.",
-                  h3("Introduction (h3)"),
-                  p("This app demonstrates the DfE Analytical Services R-Shiny data dashboard template."),
-                  p("You might want to add some brief introductory text here alongside some links to different tabs within your dashboard. Here's an example of a link working:"),
-                  p(actionLink("link_to_app_content_tab", "Dashboard panel")),
-                  p("You need to add an observeEvent() function to the server.R script for any link that navigates within your App.")
+                  h3("Introduction"),
+                  p("There are four key stage 2 to 4 ready reckoners:"),
+                  strong("The Progress 8 element breakdown pupil ready reckoner."),
+                  ("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
+                  br(),
+                  br(),
+                  strong("The Progress 8 element breakdown school ready reckoner."),
+                  ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in Progress 8 or any of its elements, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
+                  (a(href="https://www.compare-school-performance.service.gov.uk/", "checking site")),
+                  br(),
+                  br(),
+                  strong("The EBacc subject pupil ready reckoner."),
+                  ("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 attainment in any of the three subject areas in the English Baccalaureate."),
+                  br(),
+                  br(),
+                  strong("The EBacc subject school ready reckoner."),
+                  ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in any of the three subject areas in the English Baccalaureate, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
+                  (a(href="https://www.compare-school-performance.service.gov.uk/", "checking site.")),
+                  br(),
+                  br(),
+                  br(),
+                  h3("How to use this app"),
+                  p("1) Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
+                  p("2) Follow the instructions steps within.")
                 ),
                 br()
               )
             )
-          ),
-        ),
-        
-        ## Right panel ------------------------------------------------------
-        
-        column(
-          6,
-          div(
-            div(
-              class = "panel panel-info",
-              div(
-                class = "panel-heading",
-                style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
-                h2("Background Info (h2)")
-              ),
-              div(
-                class = "panel-body",
-                h3("Context and purpose (h3)"),
-                p("This app is the DfE Analytical Service's R-Shiny template demonstration app and is being developed to provide a coherent styling for DfE dashboards alongside some useful example componenets that teams can adapt for their own uses."),
-                p("DfE teams using this template should avoid changing the styling and layout, keeping the header, footer and side navigation list formats."),
-                                p("You might want to add some relevant background information for your users here. For example some useful links to your EES publication, data sources and other relevant resources."),
-                h3("Guidance sources (h3)"),
-                p("For example, here we'll add some of the key resources we draw on to guide styling and vizualisation...")
-              )
-            )
           )
-        )
+        )#,
+        
+       # Right panel ------------------------------------------------------
+        
+      # column(
+      #     1,
+      #     div(
+      #       div(
+      #         class = "panel panel-info",
+      #         div(
+#               class = "panel-heading",
+#                style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
+#               h2("How to use")
+#              ),
+#              div(
+#                class = "panel-body",
+#                strong("1) Select the 'School' or 'Pupil ready reckoner' tab from the left side bar."),
+#                br(),
+#                br(),
+#                strong("2) Follow the instructions steps within.")
+#             )
+#            )
+#          )
+#        )
       )
     )
   )
@@ -72,7 +89,7 @@ homepage_panel <- function() {
 dashboard_panel <- function() {
   tabPanel(
     value = "dashboard",
-    "Dashboard",
+    "School ready reckoner",
     
     # Define UI for application that draws a histogram
     
@@ -81,40 +98,18 @@ dashboard_panel <- function() {
       gov_row(
         column(
           width=12,
-        h1("Overall content title for this dashboard page (h1)"),
-        ),
-        column(
-          width=12,
-          div(
-            class = "well",
-            style = "min-height: 100%; height: 100%; overflow-y: visible",
-            fluidRow(
-            column(
-              width=6,
-              selectizeInput("selectPhase",
-                    "Select a school phase",
-                    choices = choicesPhase
-                    )),
-        column(
-          width=6,
-          selectizeInput(
-            inputId = "selectArea",
-            label = "Choose an area:",
-            choices = choicesAreas$area_name
-        )
-        ))
-          )
+        h1("School level ready reckoner")
         ),
         
         column(
           width=12,
                tabsetPanel(id = "tabsetpanels",
                  tabPanel(
-                   "Example panel 1",
+                   "Progress 8",
                    fluidRow(
                      column(
                        width=12,
-          h2("Outputs 1 (h2)"),
+          h2("Select KS2 scaled score for READING"),
           valueBoxOutput("boxavgRevBal", width = 6),
           valueBoxOutput("boxpcRevBal", width = 6),
           box(
@@ -123,7 +118,7 @@ dashboard_panel <- function() {
         )
         ),
         tabPanel(
-          "Example panel 2",
+          "EBacc subject area",
           fluidRow(
             column(
               width=12,
@@ -142,15 +137,15 @@ dashboard_panel <- function() {
               class = "well",
               style = "min-height: 100%; height: 100%; overflow-y: visible",
               fluidRow(
-                column(
-                  width=12,
-                  selectizeInput("selectBenchLAs",
-                                 "Select benchamrk LAs",
-                                 choices = choicesLAs$area_name,
-                                 multiple=TRUE,
-                                 options = list(maxItems = 3)
-                  )
-                )
+                # column(
+                #   width=12,
+                #   selectizeInput("selectBenchLAs",
+                #                  "Select benchamrk LAs",
+                #                  choices = choicesLAs$area_name,
+                #                  multiple=TRUE,
+                #                  options = list(maxItems = 3)
+                #   )
+                # )
                   )
               ),
                 dataTableOutput("tabBenchmark")
@@ -162,4 +157,170 @@ dashboard_panel <- function() {
 )
           )
   )
+}
+
+dashboard2_panel <- function() {
+  tabPanel(
+    value = "dashboard2",
+    "Pupil ready reckoner",
+    
+    # Define UI for application that draws a histogram
+    
+    # Sidebar with a slider input for number of bins
+    gov_main_layout(
+      gov_row(
+        column(
+          width=12,
+          h1("Pupil level ready reckoner")
+        ),
+        
+        column(
+          width=12,
+          tabsetPanel(id = "tabsetpanels",
+                      tabPanel(
+                        "Progress 8",
+                        fluidRow(
+                          column(
+                            width=12,
+                            h3("Select the pupil's key stage 2 scaled score for READING"),
+                            selectInput("readinginput",
+                                        label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
+                                        choices = choicesPupil$label,
+                                        selected = "Grade = N"
+                            ),
+                            h3("Select the pupil's key stage 2 scaled score for MATHEMATICS"),
+                            selectInput("mathsinput",
+                                        label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
+                                        choices = choicesPupil$label,
+                                        selected = "Grade = N"
+                            ),
+                            valueBoxOutput("boxavgreadmaths", width = 6),
+                            valueBoxOutput("PAGcatbox", width = 6),
+                            valueBoxOutput("PAGbox", width = 6),
+                            h3("Progress 8 element"),
+                            br(),
+                            numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), 0, min = 0, max = 90, step = 0.01),
+                            valueBoxOutput("estimatedscorebox", width = 6),
+                            valueBoxOutput("VAscorebox", width = 6),
+                            valueBoxOutput("VAscoreavbox", width = 6)),
+                          column(
+                            width = 12,
+                            plotlyOutput("estvsactual")),
+                            br(),
+                            br(),
+                            br(),
+                            h3("Progress 8 - English element"),
+                            br(),
+                            numericInput("p8scoreeng", p("Enter the pupil's key stage 4 attainment score for their P8 English element:"), "Enter value", min = 0, max = 18, step = 0.01),
+                            valueBoxOutput("estimatedscoreboxeng", width = 6),
+                            valueBoxOutput("VAscoreboxeng", width = 6),
+                            valueBoxOutput("VAscoreavboxeng", width = 6),
+                            br(),
+                            br(),
+                            br(),
+                            h3("Progress 8 - maths element"),
+                            br(),
+                            numericInput("p8scoremath", p("Enter the pupil's key stage 4 attainment score for their P8 maths element:"), 0, min = 0, max = 18, step = 0.01),
+                            valueBoxOutput("estimatedscoreboxmath", width = 6),
+                            valueBoxOutput("VAscoreboxmath", width = 6),
+                            valueBoxOutput("VAscoreavboxmath", width = 6)),
+                            br(),
+                            br(),
+                            br(),
+                        h3("Progress 8 - EBacc element"),
+                        br(),
+                        numericInput("p8scoreebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 0, min = 0, max = 27, step = 0.01),
+                        valueBoxOutput("estimatedscoreboxebac", width = 6),
+                        valueBoxOutput("VAscoreboxebac", width = 6),
+                        valueBoxOutput("VAscoreavboxebac", width = 6),
+                        br(),
+                        br(),
+                        br(),
+                        h3("Progress 8 - open element"),
+                        br(),
+                        numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 0, min = 0, max = 27, step = 0.01),
+                        valueBoxOutput("estimatedscoreboxopen", width = 6),
+                        valueBoxOutput("VAscoreboxopen", width = 6),
+                        valueBoxOutput("VAscoreavboxopen", width = 6))
+#                            )
+                        
+                      ,
+                      tabPanel(
+                        "EBacc subject area",
+                        fluidRow(
+                          column(
+                            width=12,
+                            h3("Select the pupil's key stage 2 scaled score for READING"),
+                            selectInput("readinginputebac",
+                                        label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
+                                        choices = choicesPupil$label,
+                                        selected = "Grade = N"
+                            ),
+                            h3("Select the pupil's key stage 2 scaled score for MATHEMATICS"),
+                            selectInput("mathsinputebac",
+                                        label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
+                                        choices = choicesPupil$label,
+                                        selected = "Grade = N"
+                            ),
+                            valueBoxOutput("boxavgreadmathsebac", width = 6),
+                            valueBoxOutput("PAGcatboxebac", width = 6),
+                            valueBoxOutput("PAGboxebac", width = 6),
+                            h3("English Baccalaureate - science subject area"),
+                            br(),
+                            numericInput("ebacscoresci", p("Enter the pupil's score in the science EBacc element:"), 0, min = 0, max = 9, step = 0.01),
+                            valueBoxOutput("estimatedscoreboxebacsci", width = 6),
+                            valueBoxOutput("VAscoreboxebacsci", width = 6),
+                            #valueBoxOutput("VAscoreavbox", width = 6)),
+                          column(
+                            width = 12,
+                            plotlyOutput("estvsactualebacsci")),
+                          br(),
+                          br(),
+                          br(),
+                          h3("English Baccalaureate - humanities subject area"),
+                          br(),
+                          numericInput("ebacscorehum", p("Enter the pupil's score in the humanities EBacc element:"), 0, min = 0, max = 9, step = 0.01),
+                          valueBoxOutput("estimatedscoreboxebachum", width = 6),
+                          valueBoxOutput("VAscoreboxebachum", width = 6),
+                          #valueBoxOutput("VAscoreavboxeng", width = 6),
+                          column(
+                            width = 12,
+                            plotlyOutput("estvsactualebachum")),
+                          br(),
+                          br(),
+                          br(),
+                          h3("English Baccalaureate - languages subject area"),
+                          br(),
+                          numericInput("ebacscorelan", p("Enter the pupil's score in the languages EBacc element:"), 0, min = 0, max = 9, step = 0.01),
+                          valueBoxOutput("estimatedscoreboxebaclan", width = 6),
+                          valueBoxOutput("VAscoreboxebaclan", width = 6),
+                     #     valueBoxOutput("VAscoreavboxebaclan", width = 6)),
+                          column(
+                          width = 12,
+                          plotlyOutput("estvsactualebaclan"))
+                     # ,
+                     #    br(),
+                     #    br(),
+                     #    br(),
+                     #    h3("Progress 8 - EBacc element"),
+                     #    br(),
+                     #    numericInput("p8scoreebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 0, min = 0, max = 27, step = 0.01),
+                     #    valueBoxOutput("estimatedscoreboxebac", width = 6),
+                     #    valueBoxOutput("VAscoreboxebac", width = 6),
+                     #    valueBoxOutput("VAscoreavboxebac", width = 6),
+                     #    br(),
+                     #    br(),
+                     #    br(),
+                     #    h3("Progress 8 - open element"),
+                     #    br(),
+                     #    numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 0, min = 0, max = 27, step = 0.01),
+                     #    valueBoxOutput("estimatedscoreboxopen", width = 6),
+                     #    valueBoxOutput("VAscoreboxopen", width = 6),
+                     #    valueBoxOutput("VAscoreavboxopen", width = 6)
+                            )
+                        ))
+          ))
+        )))
+        # add box to show user input
+  
 }
