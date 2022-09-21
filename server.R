@@ -110,6 +110,84 @@ server <- function(input, output, session) {
       paste(34)
     }
   })
+  
+  
+  reactivemeanebac <- reactive({
+    average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinputebac], choicesPupil$value[choicesPupil$label == input$readinginputebac]))
+  })
+  
+  reactiveKS2ebac <- reactive({
+    if (reactivemean() <= 79.5) {
+      paste(1)
+    } else if (reactivemeanebac() <= 86) {
+      paste(2)
+    } else if (reactivemeanebac() <= 87.5) {
+      paste(3)
+    } else if (reactivemeanebac() <= 89) {
+      paste(4)
+    } else if (reactivemeanebac() <= 90.5) {
+      paste(5)
+    } else if (reactivemeanebac() <= 92) {
+      paste(6)
+    } else if (reactivemeanebac() <= 93) {
+      paste(7)
+    } else if (reactivemeanebac() <= 94) {
+      paste(8)
+    } else if (reactivemeanebac() <= 95) {
+      paste(9)
+    } else if (reactivemeanebac() <= 96) {
+      paste(10)
+    } else if (reactivemeanebac() <= 97) {
+      paste(11)
+    } else if (reactivemeanebac() <= 98) {
+      paste(12)
+    } else if (reactivemeanebac() <= 99) {
+      paste(13)
+    } else if (reactivemeanebac() <= 100) {
+      paste(14)
+    } else if (reactivemeanebac() <= 101) {
+      paste(15)
+    } else if (reactivemeanebac() <= 102) {
+      paste(16)
+    } else if (reactivemeanebac() <= 103) {
+      paste(17)
+    } else if (reactivemeanebac() <= 104) {
+      paste(18)
+    } else if (reactivemeanebac() <= 105) {
+      paste(19)
+    } else if (reactivemeanebac() <= 106) {
+      paste(20)
+    } else if (reactivemeanebac() <= 107) {
+      paste(21)
+    } else if (reactivemeanebac() <= 108) {
+      paste(22)
+    } else if (reactivemeanebac() <= 109) {
+      paste(23)
+    } else if (reactivemeanebac() <= 110) {
+      paste(24)
+    } else if (reactivemeanebac() <= 111) {
+      paste(25)
+    } else if (reactivemeanebac() <= 112) {
+      paste(26)
+    } else if (reactivemeanebac() <= 113) {
+      paste(27)
+    } else if (reactivemeanebac() <= 114) {
+      paste(28)
+    } else if (reactivemeanebac() <= 115) {
+      paste(29)
+    } else if (reactivemeanebac() <= 116) {
+      paste(30)
+    } else if (reactivemeanebac() <= 117) {
+      paste(31)
+    } else if (reactivemeanebac() <= 118) {
+      paste(32)
+    } else if (reactivemeanebac() <= 119) {
+      paste(33)
+    } else if (reactivemeanebac() >= 119.5) {
+      paste(34)
+    }
+  })
+  
 
   reactiveestimated <- reactive({
     pupil_coefficients %>%
@@ -142,21 +220,21 @@ server <- function(input, output, session) {
   })
   
   reactiveestimatedebacsci <- reactive({
-    pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2()) %>%
-      select(science_score)
+  as.numeric(pupil_modelvalues %>%
+      filter(ks2emss == reactiveKS2ebac()) %>%
+      select(science_score))
   }) 
   
   reactiveestimatedebachum <- reactive({
-    pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2()) %>%
-      select(humanities_score)
+    as.numeric(pupil_modelvalues %>%
+      filter(ks2emss == reactiveKS2ebac()) %>%
+      select(humanities_score))
   }) 
   
   reactiveestimatedebaclan <- reactive({
-    pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2()) %>%
-      select(languages_score)
+    as.numeric(pupil_modelvalues %>%
+      filter(ks2emss == reactiveKS2ebac()) %>%
+      select(languages_score))
   }) 
 
 
@@ -378,7 +456,7 @@ server <- function(input, output, session) {
  # --------------------------------------------------------------------end of P8 tab
   
   output$boxavgreadmathsebac <- renderValueBox({
-    valueBox(reactivemean(),
+    valueBox(reactivemeanebac(),
              "Pupil's KS2 average point score",
              color = "blue"
     )
@@ -386,11 +464,11 @@ server <- function(input, output, session) {
   
 
   output$PAGcatboxebac <- renderValueBox({
-    valueBox((if (reactivemean() < 100) {
+    valueBox((if (reactivemeanebac() < 100) {
       paste("Below standard")
-    } else if (reactivemean() <= 110) {
+    } else if (reactivemeanebac() <= 110) {
       paste("Achieving standard")
-    } else if (reactivemean() > 110) {
+    } else if (reactivemeanebac() > 110) {
       paste("Above standard")
     }),
     subtitle = "Prior attainment group categorisation",
@@ -399,7 +477,7 @@ server <- function(input, output, session) {
   })
   
   output$PAGboxebac <- renderValueBox({
-    valueBox(reactiveKS2(),
+    valueBox(reactiveKS2ebac(),
              subtitle = "Prior attainment group categorisation",
              color = "blue"
     )
