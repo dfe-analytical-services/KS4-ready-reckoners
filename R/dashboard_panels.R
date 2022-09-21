@@ -197,16 +197,26 @@ dashboard2_panel <- function() {
                             valueBoxOutput("boxavgreadmaths", width = 6),
                             valueBoxOutput("PAGcatbox", width = 6),
                             valueBoxOutput("PAGbox", width = 6),
-                            numericInput("p8score", h3("Enter the pupil's key stage 4 attainment score:"), 10, min = 0, max = 90, step = 0.01),
+                            h3("Progress 8 element"),
+                            br(),
+                            numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), 10, min = 0, max = 90, step = 0.01),
                              verbatimTextOutput("value"),
-                            h3("Pupil's estimated key stage 4 attainment score:"),
                             valueBoxOutput("estimatedscorebox", width = 6),
-                            h3("Pupil's value added score:"),
                             valueBoxOutput("VAscorebox", width = 6),
                             valueBoxOutput("VAscoreavbox", width = 6)),
                           column(
                             width = 12,
-                            plotlyOutput("estvsactual"))
+                            plotlyOutput("estvsactual")),
+                            br(),
+                            br(),
+                            br(),
+                            h3("Progress 8 - English element"),
+                            br(),
+                            numericInput("p8scoreeng", p("Enter the pupil's key stage 4 attainment score for their P8 English element:"), 10, min = 0, max = 18, step = 0.01),
+                            verbatimTextOutput("value"),
+                            valueBoxOutput("estimatedscoreboxeng", width = 6),
+                            valueBoxOutput("VAscoreboxeng", width = 6),
+                            valueBoxOutput("VAscoreavboxeng", width = 6))
                             )
                         )
                       ,

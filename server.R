@@ -116,6 +116,13 @@ server <- function(input, output, session) {
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score)
   })
+  
+  reactiveestimatedeng <- reactive({
+    pupil_coefficients %>%
+      filter(ks2emss == reactiveKS2()) %>%
+      select(p8score_eng)
+  })
+
 
 
 
@@ -231,34 +238,39 @@ server <- function(input, output, session) {
   output$estvsactual <- renderPlotly({
     ggplot(df, aes(x = x, y = y)) +
       geom_line() +
-      geom_point(x = reactiveestimated(), y = input$p8score, size = 5, colour = "red") +
+      geom_point(x = as.numeric(reactiveestimated()), y = input$p8score, size = 2, colour = "#FF007F") +
       ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome")
+      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome") +
+    theme(
+      plot.title = element_text(color="black", size=14, face="bold"),
+      axis.title.x = element_text(color="black", size=10, face="plain"),
+      axis.title.y = element_text(color="black", size=10, face="plain"))
   })
-
-  output$boxpcRevBal <- renderValueBox({
-    latest <- (reactiveRevBal() %>% filter(
-      year == max(year),
-      area_name == input$selectArea,
-      school_phase == input$selectPhase
-    ))$average_revenue_balance
-    penult <- (reactiveRevBal() %>% filter(
-      year == max(year) - 1,
-      area_name == input$selectArea,
-      school_phase == input$selectPhase
-    ))$average_revenue_balance
-
-    # Put value into box to plug into app
-    valueBox(
-      # take input number
-      paste0("£", format(latest - penult,
-        big.mark = ","
-      )),
-      # add subtitle to explain what it's hsowing
-      paste0("Change on previous year"),
-      color = "blue"
+  
+  output$estimatedscoreboxeng <- renderValueBox({
+    
+    
+    valueBox(reactiveestimatedeng(),
+             subtitle = "Estimated key stage 4 score - English element",
+             color = "purple"
     )
   })
+  
+  output$VAscoreboxeng <- renderValueBox({
+    valueBox(input$p8score_eng - reactiveestimatedeng(),
+             subtitle = "Pupil value added score - English element",
+             color = "purple"
+    )
+  })
+  
+  output$VAscoreavboxeng <- renderValueBox({
+    valueBox(round(((input$p8score_eng - reactiveestimatedeng()) / 2), 2),
+             subtitle = "Pupil value added score - English element",
+             color = "purple"
+    )
+  })
+  
+
 
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
