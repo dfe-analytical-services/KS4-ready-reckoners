@@ -122,6 +122,24 @@ server <- function(input, output, session) {
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_eng)
   })
+  
+  reactiveestimatedmath <- reactive({
+    pupil_coefficients %>%
+      filter(ks2emss == reactiveKS2()) %>%
+      select(p8score_mat)
+  })
+  
+  reactiveestimatedebac <- reactive({
+    pupil_coefficients %>%
+      filter(ks2emss == reactiveKS2()) %>%
+      select(p8score_ebac)
+  })
+  
+  reactiveestimatedopen <- reactive({
+    pupil_coefficients %>%
+      filter(ks2emss == reactiveKS2()) %>%
+      select(p8score_open)
+  })
 
 
 
@@ -257,19 +275,87 @@ server <- function(input, output, session) {
   })
   
   output$VAscoreboxeng <- renderValueBox({
-    valueBox(input$p8score_eng - reactiveestimatedeng(),
+    valueBox(input$p8scoreeng - reactiveestimatedeng(),
              subtitle = "Pupil value added score - English element",
              color = "purple"
     )
   })
   
   output$VAscoreavboxeng <- renderValueBox({
-    valueBox(round(((input$p8score_eng - reactiveestimatedeng()) / 2), 2),
+    valueBox(round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2),
              subtitle = "Pupil value added score - English element",
              color = "purple"
     )
   })
   
+  output$estimatedscoreboxmath <- renderValueBox({
+    
+    
+    valueBox(reactiveestimatedmath(),
+             subtitle = "Estimated key stage 4 score - maths element",
+             color = "orange"
+    )
+  })
+  
+  output$VAscoreboxmath <- renderValueBox({
+    valueBox(input$p8scoremath - reactiveestimatedmath(),
+             subtitle = "Pupil value added score - maths element",
+             color = "orange"
+    )
+  })
+  
+  output$VAscoreavboxmath <- renderValueBox({
+    valueBox(round(((input$p8scoremath - reactiveestimatedmath()) / 2), 2),
+             subtitle = "Pupil value added score - maths element",
+             color = "orange"
+    )
+  })
+  
+  output$estimatedscoreboxebac <- renderValueBox({
+    
+    
+    valueBox(reactiveestimatedebac(),
+             subtitle = "Estimated key stage 4 score - EBacc element",
+             color = "aqua"
+    )
+  })
+  
+  output$VAscoreboxebac <- renderValueBox({
+    valueBox(input$p8scoreebac - reactiveestimatedebac(),
+             subtitle = "Pupil value added score - EBacc element",
+             color = "aqua"
+    )
+  })
+  
+  output$VAscoreavboxebac <- renderValueBox({
+    valueBox(round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2),
+             subtitle = "Pupil value added score - EBacc element",
+             color = "aqua"
+    )
+  })
+  
+  output$estimatedscoreboxopen <- renderValueBox({
+    
+    
+    valueBox(reactiveestimatedopen(),
+             subtitle = "Estimated key stage 4 score - open element",
+             color = "fuchsia"
+    )
+  })
+  
+  output$VAscoreboxopen <- renderValueBox({
+    valueBox(input$p8scoreopen - reactiveestimatedopen(),
+             subtitle = "Pupil value added score - open element",
+             color = "fuchsia"
+    )
+  })
+  
+  output$VAscoreavboxopen <- renderValueBox({
+    valueBox(round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2),
+             subtitle = "Pupil value added score - open element",
+             color = "fuchsia"
+    )
+  })
 
 
   observeEvent(input$link_to_app_content_tab, {

@@ -200,7 +200,6 @@ dashboard2_panel <- function() {
                             h3("Progress 8 element"),
                             br(),
                             numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), 10, min = 0, max = 90, step = 0.01),
-                             verbatimTextOutput("value"),
                             valueBoxOutput("estimatedscorebox", width = 6),
                             valueBoxOutput("VAscorebox", width = 6),
                             valueBoxOutput("VAscoreavbox", width = 6)),
@@ -213,12 +212,35 @@ dashboard2_panel <- function() {
                             h3("Progress 8 - English element"),
                             br(),
                             numericInput("p8scoreeng", p("Enter the pupil's key stage 4 attainment score for their P8 English element:"), 10, min = 0, max = 18, step = 0.01),
-                            verbatimTextOutput("value"),
                             valueBoxOutput("estimatedscoreboxeng", width = 6),
                             valueBoxOutput("VAscoreboxeng", width = 6),
-                            valueBoxOutput("VAscoreavboxeng", width = 6))
-                            )
-                        )
+                            valueBoxOutput("VAscoreavboxeng", width = 6),
+                            br(),
+                            br(),
+                            br(),
+                            h3("Progress 8 - maths element"),
+                            br(),
+                            numericInput("p8scoremath", p("Enter the pupil's key stage 4 attainment score for their P8 maths element:"), 10, min = 0, max = 18, step = 0.01),
+                            valueBoxOutput("estimatedscoreboxmath", width = 6),
+                            valueBoxOutput("VAscoreboxmath", width = 6),
+                            valueBoxOutput("VAscoreavboxmath", width = 6)),
+                        h3("Progress 8 - EBacc element"),
+                        br(),
+                        numericInput("p8scorebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 10, min = 0, max = 27, step = 0.01),
+                        valueBoxOutput("estimatedscoreboxebac", width = 6),
+                        valueBoxOutput("VAscoreboxebac", width = 6),
+                        valueBoxOutput("VAscoreavboxebac", width = 6),
+                        br(),
+                        br(),
+                        br(),
+                        h3("Progress 8 - open element"),
+                        br(),
+                        numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 10, min = 0, max = 27, step = 0.01),
+                        valueBoxOutput("estimatedscoreboxopen", width = 6),
+                        valueBoxOutput("VAscoreboxopen", width = 6),
+                        valueBoxOutput("VAscoreavboxopen", width = 6))
+#                            )
+                        
                       ,
                       tabPanel(
                         "EBacc subject area",
@@ -232,8 +254,8 @@ dashboard2_panel <- function() {
                               #dataTableOutput("tabBenchmark")
                             )
                         ))
-          )
-        ))
+          ))
+        )
         # add box to show user input
   
 }
