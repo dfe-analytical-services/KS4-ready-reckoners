@@ -83,8 +83,8 @@ source("R/read_data.R")
 pupil_coefficients <- read.csv("data/p8_pupil_coefficients_dummy.csv")
 
 df <- data.frame(
-  x = c(1, 2, 3, 4, 5),
-  y = c(1, 2, 3, 4, 5)
+  x = c(1:90),
+  y = c(1:90)
 )
 
 # Read in the data

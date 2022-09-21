@@ -231,7 +231,9 @@ server <- function(input, output, session) {
   output$estvsactual <- renderPlotly({
     ggplot(df, aes(x = x, y = y)) +
       geom_line() +
-      geom_point(x = 4, y = 3, size = 5, colour = "red")
+      geom_point(x = reactiveestimated(), y = input$p8score, size = 5, colour = "red") +
+      ggtitle("Estimated against actual KS4 outcome") +
+      xlab("Estimated KS4 outcome") + ylab("Actual KS4 outcome")
   })
 
   output$boxpcRevBal <- renderValueBox({
