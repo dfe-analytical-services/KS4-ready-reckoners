@@ -238,7 +238,9 @@ server <- function(input, output, session) {
   })
 
 
-
+output$p8scoreinputbox <- renderUI({
+  numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
+})
 
   # Define server logic required to draw a histogram
   output$lineRevBal <- renderPlotly({
