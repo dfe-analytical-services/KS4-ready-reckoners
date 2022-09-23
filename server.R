@@ -40,7 +40,7 @@ server <- function(input, output, session) {
   })
 
   reactiveKS2 <- reactive({
-    if (reactivemean() <= 79.5) {
+    if (reactivemean() <= 82) {
       paste(1)
     } else if (reactivemean() <= 86) {
       paste(2)
@@ -117,7 +117,7 @@ server <- function(input, output, session) {
   })
 
   reactiveKS2ebac <- reactive({
-    if (reactivemeanebac() <= 79.5) {
+    if (reactivemeanebac() <= 82) {
       paste(1)
     } else if (reactivemeanebac() <= 86) {
       paste(2)
@@ -344,7 +344,7 @@ server <- function(input, output, session) {
 
   output$VAscoreavbox <- renderValueBox({
     valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
-      subtitle = "Pupil value added score",
+      subtitle = "Pupil value added average score",
       color = "green"
     )
   })
@@ -379,7 +379,7 @@ server <- function(input, output, session) {
 
   output$VAscoreavboxeng <- renderValueBox({
     valueBox(round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2),
-      subtitle = "Pupil value added score - English element",
+      subtitle = "Pupil value added average score - English element",
       color = "purple"
     )
   })
@@ -400,7 +400,7 @@ server <- function(input, output, session) {
 
   output$VAscoreavboxmath <- renderValueBox({
     valueBox(round(((input$p8scoremath - reactiveestimatedmath()) / 2), 2),
-      subtitle = "Pupil value added score - maths element",
+      subtitle = "Pupil value added average score - maths element",
       color = "orange"
     )
   })
@@ -421,7 +421,7 @@ server <- function(input, output, session) {
 
   output$VAscoreavboxebac <- renderValueBox({
     valueBox(round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2),
-      subtitle = "Pupil value added score - EBacc element",
+      subtitle = "Pupil value added average score - EBacc element",
       color = "aqua"
     )
   })
@@ -442,7 +442,7 @@ server <- function(input, output, session) {
 
   output$VAscoreavboxopen <- renderValueBox({
     valueBox(round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2),
-      subtitle = "Pupil value added score - open element",
+      subtitle = "Pupil value added average score - open element",
       color = "fuchsia"
     )
   })
