@@ -93,6 +93,8 @@ dashboard_panel <- function() {
     
     # Define UI for application that draws a histogram
     
+    
+    
     # Sidebar with a slider input for number of bins
     gov_main_layout(
       gov_row(
@@ -109,6 +111,12 @@ dashboard_panel <- function() {
                    fluidRow(
                      column(
                        width=12,
+          fileInput("user_input_VA",
+                    "Please download a csv file your school's pupil scores from https://tableschecking.education.gov.uk/ and upload the file here:",
+                    multiple = FALSE,
+                    accept = c('text/csv','text/comma-separated-values','.csv')),
+          br(),
+          DT::dataTableOutput("user_view"),
           h2("Select KS2 scaled score for READING"),
           valueBoxOutput("boxavgRevBal", width = 6),
           valueBoxOutput("boxpcRevBal", width = 6),
@@ -122,6 +130,12 @@ dashboard_panel <- function() {
           fluidRow(
             column(
               width=12,
+              fileInput("user_input_VA_ebac",
+                        "Please download a csv file your school's pupil scores from https://tableschecking.education.gov.uk/ and upload the file here:",
+                        multiple = FALSE,
+                        accept = c('text/csv','text/comma-separated-values','.csv')),
+              br(),
+              DT::dataTableOutput("user_view_ebac"),
           h2("Outputs 2 (h2)"),
           p("This is the standard paragraph style for adding guiding info around data content."),
           column(

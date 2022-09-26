@@ -583,7 +583,28 @@ output$p8scoreinputbox <- renderUI({
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
   })
+  
+  user_VA_data <- reactive({
+    csv_filename <- input$user_input_VA
+    if(is.null(csv_filename))return(NULL)
+    data <- read.csv(csv_filename$datapath, header = TRUE)
+    return(data)
+  })
 
+  output$user_view <- DT::renderDataTable({
+    DT::datatable(user_VA_data())
+  })
+  
+  user_VA_data_ebac <- reactive({
+    csv_filename <- input$user_input_VA_ebac
+    if(is.null(csv_filename))return(NULL)
+    data <- read.csv(csv_filename$datapath, header = TRUE)
+    return(data)
+  })
+  
+  output$user_view_ebac <- DT::renderDataTable({
+    DT::datatable(user_VA_data_ebac())
+  })
 
 
   observeEvent(input$link_to_app_content_tab, {
