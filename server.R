@@ -571,7 +571,7 @@ server <- function(input, output, session) {
   })
 
   output$VAscoreboxebaclan <- renderValueBox({
-    valueBox(ifelse(input$ebacscorlan <= 9, input$ebacscorelan - reactiveestimatedebaclan(), NA),
+    valueBox(ifelse(input$ebacscorelan <= 9, input$ebacscorelan - reactiveestimatedebaclan(), NA),
       subtitle = "Pupil value added score",
       color = "blue"
     )
