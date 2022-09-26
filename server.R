@@ -237,10 +237,24 @@ server <- function(input, output, session) {
       select(languages_score))
   })
 
-
 output$p8scoreinputbox <- renderUI({
-  numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
+  sumscore <- sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen)
+  numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sumscore, min = 0, max = 95, step = 0.01)
 })
+
+# Numeric input warnings --------------------------------------------------
+
+iv <- InputValidator$new()
+iv$add_rule("p8scoreeng", sv_between(0, 18))
+iv$add_rule("p8scoremath", sv_between(0, 18))
+iv$add_rule("p8scoreebac", sv_between(0, 27))
+iv$add_rule("p8scoreopen", sv_between(0, 27))
+iv$add_rule("p8score", sv_between(0, 95))
+iv$add_rule("ebacscoresci", sv_between(0, 9))
+iv$add_rule("ebacscorehum", sv_between(0, 9))
+iv$add_rule("ebacscorelan", sv_between(0, 9))
+iv$enable()
+
 
   # Define server logic required to draw a histogram
   output$lineRevBal <- renderPlotly({
