@@ -237,23 +237,23 @@ server <- function(input, output, session) {
       select(languages_score))
   })
 
-output$p8scoreinputbox <- renderUI({
-  sumscore <- sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen)
-  numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sumscore, min = 0, max = 95, step = 0.01)
-})
+  output$p8scoreinputbox <- renderUI({
+    sumscore <- sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen)
+    numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sumscore, min = 0, max = 95, step = 0.01)
+  })
 
-# Numeric input warnings --------------------------------------------------
+  # Numeric input warnings --------------------------------------------------
 
-iv <- InputValidator$new()
-iv$add_rule("p8scoreeng", sv_between(0, 18))
-iv$add_rule("p8scoremath", sv_between(0, 18))
-iv$add_rule("p8scoreebac", sv_between(0, 27))
-iv$add_rule("p8scoreopen", sv_between(0, 27))
-iv$add_rule("p8score", sv_between(0, 95))
-iv$add_rule("ebacscoresci", sv_between(0, 9))
-iv$add_rule("ebacscorehum", sv_between(0, 9))
-iv$add_rule("ebacscorelan", sv_between(0, 9))
-iv$enable()
+  iv <- InputValidator$new()
+  iv$add_rule("p8scoreeng", sv_between(0, 18))
+  iv$add_rule("p8scoremath", sv_between(0, 18))
+  iv$add_rule("p8scoreebac", sv_between(0, 27))
+  iv$add_rule("p8scoreopen", sv_between(0, 27))
+  iv$add_rule("p8score", sv_between(0, 95))
+  iv$add_rule("ebacscoresci", sv_between(0, 9))
+  iv$add_rule("ebacscorehum", sv_between(0, 9))
+  iv$add_rule("ebacscorelan", sv_between(0, 9))
+  iv$enable()
 
 
   # Define server logic required to draw a histogram
@@ -394,7 +394,7 @@ iv$enable()
   })
 
   output$VAscoreavboxeng <- renderValueBox({
-    valueBox(ifelse(input$p8scoreeng<=18, round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2), NA),
+    valueBox(ifelse(input$p8scoreeng <= 18, round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2), NA),
       subtitle = "Pupil value added average score - English element",
       color = "purple"
     )
@@ -408,7 +408,7 @@ iv$enable()
   })
 
   output$VAscoreboxmath <- renderValueBox({
-    valueBox(ifelse(input$p8scoremath<=18, input$p8scoremath - reactiveestimatedmath(), NA),
+    valueBox(ifelse(input$p8scoremath <= 18, input$p8scoremath - reactiveestimatedmath(), NA),
       subtitle = "Pupil value added score - maths element",
       color = "orange"
     )
@@ -429,14 +429,14 @@ iv$enable()
   })
 
   output$VAscoreboxebac <- renderValueBox({
-    valueBox(ifelse(input$p8scoreebac<=27, input$p8scoreebac - reactiveestimatedebac(),NA),
+    valueBox(ifelse(input$p8scoreebac <= 27, input$p8scoreebac - reactiveestimatedebac(), NA),
       subtitle = "Pupil value added score - EBacc element",
       color = "aqua"
     )
   })
 
   output$VAscoreavboxebac <- renderValueBox({
-    valueBox(ifelse(input$p8scoreebac<=27, round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2),NA),
+    valueBox(ifelse(input$p8scoreebac <= 27, round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2), NA),
       subtitle = "Pupil value added average score - EBacc element",
       color = "aqua"
     )
@@ -450,14 +450,14 @@ iv$enable()
   })
 
   output$VAscoreboxopen <- renderValueBox({
-    valueBox(ifelse(input$p8scoreopen<=27, input$p8scoreopen - reactiveestimatedopen(),NA),
+    valueBox(ifelse(input$p8scoreopen <= 27, input$p8scoreopen - reactiveestimatedopen(), NA),
       subtitle = "Pupil value added score - open element",
       color = "fuchsia"
     )
   })
 
   output$VAscoreavboxopen <- renderValueBox({
-    valueBox(ifelse(input$p8scoreopen<=27, round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2),NA),
+    valueBox(ifelse(input$p8scoreopen <= 27, round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2), NA),
       subtitle = "Pupil value added average score - open element",
       color = "fuchsia"
     )
@@ -501,7 +501,7 @@ iv$enable()
   })
 
   output$VAscoreboxebacsci <- renderValueBox({
-    valueBox(ifelse(input$ebacscoresci<=9, input$ebacscoresci - reactiveestimatedebacsci(),NA),
+    valueBox(ifelse(input$ebacscoresci <= 9, input$ebacscoresci - reactiveestimatedebacsci(), NA),
       subtitle = "Pupil value added score",
       color = "green"
     )
@@ -536,7 +536,7 @@ iv$enable()
   })
 
   output$VAscoreboxebachum <- renderValueBox({
-    valueBox(ifelse(input$ebacscorehum<=9, input$ebacscorehum - reactiveestimatedebachum(),NA),
+    valueBox(ifelse(input$ebacscorehum <= 9, input$ebacscorehum - reactiveestimatedebachum(), NA),
       subtitle = "Pupil value added score",
       color = "orange"
     )
@@ -571,7 +571,7 @@ iv$enable()
   })
 
   output$VAscoreboxebaclan <- renderValueBox({
-    valueBox(ifelse(input$ebacscorlan<=9, input$ebacscorelan - reactiveestimatedebaclan(),NA),
+    valueBox(ifelse(input$ebacscorlan <= 9, input$ebacscorelan - reactiveestimatedebaclan(), NA),
       subtitle = "Pupil value added score",
       color = "blue"
     )
