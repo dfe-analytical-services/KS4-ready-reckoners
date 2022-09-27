@@ -242,7 +242,8 @@ server <- function(input, output, session) {
   })
   
   reactiveconfidenceintervalsp8 <- reactive({
-    boxlowconflimp8score)
+    data <- user_VA_data()
+    round(mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2)
   })  
 
 
@@ -630,14 +631,14 @@ output$p8scoreinputbox <- renderUI({
   })
   
  output$boxp8scorenatcomp <- renderValueBox({
-    valueBox((if (reactiveconfidenceintervalsp8()) > 0) {
+    valueBox((if (reactiveconfidenceintervalsp8() > 0) {
       paste("Your school's Progress 8 Score is significantly above national average")
-    } else if (reactiveconfidenceintervalsp8()) < 0) {
+    } else if (reactiveconfidenceintervalsp8() < 0) {
       paste("Your school's Progress 8 Score is significantly below national average")
     } else {
       paste("Your school's Progress 8 Score is not significantly different from national average")
     }),
-#    subtitle = "Prior attainment group categorisation",
+    subtitle = "subtitle",
     color = "blue"
     )
   })
