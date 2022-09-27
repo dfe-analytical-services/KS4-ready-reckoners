@@ -120,6 +120,8 @@ dashboard_panel <- function() {
           valueBoxOutput("boxavgschoolp8score", width = 6),
           valueBoxOutput("boxpupilnumberp8score", width = 6),
           valueBoxOutput("boxconfintp8score", width = 6),
+          valueBoxOutput("boxuppconflimp8score", width = 6),
+          valueBoxOutput("boxlowconflimp8score", width = 6),
 #          h2("Select KS2 scaled score for READING"),
 #          valueBoxOutput("boxavgRevBal", width = 6),
 #          valueBoxOutput("boxpcRevBal", width = 6),

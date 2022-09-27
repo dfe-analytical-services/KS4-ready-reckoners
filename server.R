@@ -592,7 +592,7 @@ output$p8scoreinputbox <- renderUI({
   
   output$boxavgschoolp8score <- renderValueBox({
     data <- user_VA_data()
-    valueBox(mean(data$p8score),
+    valueBox(round(mean(data$p8score),2),
              "Final school  score (average of pupils' scores)",
              color = "blue")
   })
@@ -605,10 +605,25 @@ output$p8scoreinputbox <- renderUI({
   })
   
   output$boxconfintp8score <- renderValueBox({
-  valueBox((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))),
+    data <- user_VA_data()
+  valueBox(round((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))),2),
            subtitle = "P8 confidence interval",
-           color = "blue"
-  }))
+           color = "blue")
+  })
+  
+  output$boxuppconflimp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round(mean(data$p8score)+((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2),
+             subtitle = "Upper confidence limit",
+             color = "blue")
+  })
+  
+  output$boxlowconflimp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round(mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2),
+             subtitle = "Lower confidence limit",
+             color = "blue")
+  })
   
   user_VA_data <- reactive({
     csv_filename <- input$user_input_VA
