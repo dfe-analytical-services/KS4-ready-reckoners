@@ -240,6 +240,10 @@ server <- function(input, output, session) {
       filter(ks2emss == reactiveKS2ebac()) %>%
       select(languages_score))
   })
+  
+  reactiveconfidenceintervalsp8 <- reactive({
+    boxlowconflimp8score)
+  })  
 
 
 output$p8scoreinputbox <- renderUI({
@@ -623,6 +627,19 @@ output$p8scoreinputbox <- renderUI({
     valueBox(round(mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2),
              subtitle = "Lower confidence limit",
              color = "blue")
+  })
+  
+ output$boxp8scorenatcomp <- renderValueBox({
+    valueBox((if (reactiveconfidenceintervalsp8()) > 0) {
+      paste("Your school's Progress 8 Score is significantly above national average")
+    } else if (reactiveconfidenceintervalsp8()) < 0) {
+      paste("Your school's Progress 8 Score is significantly below national average")
+    } else {
+      paste("Your school's Progress 8 Score is not significantly different from national average")
+    }),
+#    subtitle = "Prior attainment group categorisation",
+    color = "blue"
+    )
   })
   
   user_VA_data <- reactive({
