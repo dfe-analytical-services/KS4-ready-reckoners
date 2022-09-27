@@ -117,9 +117,10 @@ dashboard_panel <- function() {
                     accept = c('text/csv','text/comma-separated-values','.csv')),
           br(),
           DT::dataTableOutput("user_view"),
+          valueBoxOutput("boxavgschoolp8score", width = 6),
           h2("Select KS2 scaled score for READING"),
-          valueBoxOutput("boxavgRevBal", width = 6),
-          valueBoxOutput("boxpcRevBal", width = 6),
+#          valueBoxOutput("boxavgRevBal", width = 6),
+#          valueBoxOutput("boxpcRevBal", width = 6),
           box(
             width=12,
           plotlyOutput("lineRevBal")))

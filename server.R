@@ -28,12 +28,16 @@ server <- function(input, output, session) {
   show("app-content")
 
   # Simple server stuff goes here ------------------------------------------------------------
-  reactiveRevBal <- reactive({
-    dfRevBal %>% filter(
-      area_name == input$selectArea | area_name == "England",
-      school_phase == input$selectPhase
-    )
-  })
+  # reactiveRevBal <- reactive({
+  #   dfRevBal %>% filter(
+  #     area_name == input$selectArea | area_name == "England",
+  #     school_phase == input$selectPhase
+  #   )
+  # })
+  
+
+  
+#  ---------------------
 
   reactivemean <- reactive({
     average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))
@@ -242,62 +246,62 @@ output$p8scoreinputbox <- renderUI({
   numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
 })
 
-  # Define server logic required to draw a histogram
-  output$lineRevBal <- renderPlotly({
-    ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
-      config(displayModeBar = F) %>%
-      layout(legend = list(orientation = "h", x = 0, y = -0.2))
-  })
-
-  reactiveBenchmark <- reactive({
-    dfRevBal %>%
-      filter(
-        area_name %in% c(input$selectArea, input$selectBenchLAs),
-        school_phase == input$selectPhase,
-        year == max(year)
-      )
-  })
-
-  output$colBenchmark <- renderPlotly({
-    ggplotly(plotAvgRevBenchmark(reactiveBenchmark()) %>%
-      config(displayModeBar = F),
-    height = 420
-    )
-  })
-
-  output$tabBenchmark <- renderDataTable({
-    datatable(reactiveBenchmark() %>%
-      select(
-        Area = area_name,
-        `Average Revenue Balance (£)` = average_revenue_balance,
-        `Total Revenue Balance (£m)` = total_revenue_balance_million
-      ),
-    options = list(
-      scrollX = TRUE,
-      paging = FALSE
-    )
-    )
-  })
+  # # Define server logic required to draw a histogram
+  # output$lineRevBal <- renderPlotly({
+  #   ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
+  #     config(displayModeBar = F) %>%
+  #     layout(legend = list(orientation = "h", x = 0, y = -0.2))
+  # })
+  # 
+  # reactiveBenchmark <- reactive({
+  #   dfRevBal %>%
+  #     filter(
+  #       area_name %in% c(input$selectArea, input$selectBenchLAs),
+  #       school_phase == input$selectPhase,
+  #       year == max(year)
+  #     )
+  # })
+  # 
+  # output$colBenchmark <- renderPlotly({
+  #   ggplotly(plotAvgRevBenchmark(reactiveBenchmark()) %>%
+  #     config(displayModeBar = F),
+  #   height = 420
+  #   )
+  # })
+  # 
+  # output$tabBenchmark <- renderDataTable({
+  #   datatable(reactiveBenchmark() %>%
+  #     select(
+  #       Area = area_name,
+  #       `Average Revenue Balance (£)` = average_revenue_balance,
+  #       `Total Revenue Balance (£m)` = total_revenue_balance_million
+  #     ),
+  #   options = list(
+  #     scrollX = TRUE,
+  #     paging = FALSE
+  #   )
+  #   )
+  # })
 
   # Define server logic to create a box
 
-  output$boxavgRevBal <- renderValueBox({
-
-    # Put value into box to plug into app
-    valueBox(
-      # take input number
-      paste0("£", format((reactiveRevBal() %>% filter(
-        year == max(year),
-        area_name == input$selectArea,
-        school_phase == input$selectPhase
-      ))$average_revenue_balance,
-      big.mark = ","
-      )),
-      # add subtitle to explain what it's hsowing
-      paste0("This is the latest value for the selected inputs"),
-      color = "blue"
-    )
-  })
+  # output$boxavgRevBal <- renderValueBox({
+  # 
+  #   # Put value into box to plug into app
+  #   valueBox(
+  #     # take input number
+  #     paste0("£", format((reactiveRevBal() %>% filter(
+  #       year == max(year),
+  #       area_name == input$selectArea,
+  #       school_phase == input$selectPhase
+  #     ))$average_revenue_balance,
+  #     big.mark = ","
+  #     )),
+  #     # add subtitle to explain what it's hsowing
+  #     paste0("This is the latest value for the selected inputs"),
+  #     color = "blue"
+  #   )
+  # })
 
   output$boxavgreadmaths <- renderValueBox({
     valueBox(reactivemean(),
@@ -582,6 +586,14 @@ output$p8scoreinputbox <- renderUI({
         axis.title.x = element_text(color = "black", size = 10, face = "plain"),
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
+  })
+  
+  #Schools tab
+  
+  output$boxavgschoolp8score <- renderValueBox({
+    valueBox(mean(c(p8score$data)),
+             "Final school  score (average of pupils' scores",
+             color = "blue")
   })
   
   user_VA_data <- reactive({
