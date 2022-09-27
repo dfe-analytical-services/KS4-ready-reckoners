@@ -593,7 +593,14 @@ output$p8scoreinputbox <- renderUI({
   output$boxavgschoolp8score <- renderValueBox({
     data <- user_VA_data()
     valueBox(mean(data$p8score),
-             "Final school  score (average of pupils' scores",
+             "Final school  score (average of pupils' scores)",
+             color = "blue")
+  })
+  
+  output$boxpupilnumberp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(length(data$p8score),
+             "Number of pupils included in P8 calculation",
              color = "blue")
   })
   
