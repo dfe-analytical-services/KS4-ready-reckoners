@@ -604,6 +604,12 @@ output$p8scoreinputbox <- renderUI({
              color = "blue")
   })
   
+  output$boxconfintp8score <- renderValueBox({
+  valueBox((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))),
+           subtitle = "P8 confidence interval",
+           color = "blue"
+  }))
+  
   user_VA_data <- reactive({
     csv_filename <- input$user_input_VA
     if(is.null(csv_filename))return(NULL)
