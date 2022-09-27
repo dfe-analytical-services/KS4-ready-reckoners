@@ -591,7 +591,7 @@ output$p8scoreinputbox <- renderUI({
   #Schools tab
   
   output$boxavgschoolp8score <- renderValueBox({
-    valueBox(mean(c(p8score$data)),
+    valueBox(mean(c(p8scores$data)),
              "Final school  score (average of pupils' scores",
              color = "blue")
   })
