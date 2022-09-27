@@ -591,7 +591,8 @@ output$p8scoreinputbox <- renderUI({
   #Schools tab
   
   output$boxavgschoolp8score <- renderValueBox({
-    valueBox(mean(c(p8scores$data)),
+    data <- user_VA_data()
+    valueBox(mean(data$p8score),
              "Final school  score (average of pupils' scores",
              color = "blue")
   })
@@ -617,8 +618,7 @@ output$p8scoreinputbox <- renderUI({
   output$user_view_ebac <- DT::renderDataTable({
     DT::datatable(user_VA_data_ebac())
   })
-
-
+  
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
   })
