@@ -665,6 +665,18 @@ output$p8scoreinputbox <- renderUI({
     DT::datatable(user_VA_data_ebac())
   })
   
+  output$errorbarchart <- renderPlotly({
+    data <- user_VA_data()
+    upperlimit <- mean(data$p8score)+((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
+    lowerlimit<- mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))
+    ggplot(data,
+         aes("Comparison to national average","Value added score")) +
+ #   geom_bar(stat = "identity")+
+    geom_errorbar(aes(ymin=lowerlimit,
+                      ymax=upperlimit),
+                  width=.2))
+  })
+  
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
   })

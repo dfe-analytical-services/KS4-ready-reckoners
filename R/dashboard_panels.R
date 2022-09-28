@@ -123,6 +123,9 @@ dashboard_panel <- function() {
           valueBoxOutput("boxuppconflimp8score", width = 6),
           valueBoxOutput("boxlowconflimp8score", width = 6),
           valueBoxOutput("boxp8scorenatcomp", width = 6),
+          column(
+            width = 12,
+            plotlyOutput("errorbarchart")),
 #          h2("Select KS2 scaled score for READING"),
 #          valueBoxOutput("boxavgRevBal", width = 6),
 #          valueBoxOutput("boxpcRevBal", width = 6),
