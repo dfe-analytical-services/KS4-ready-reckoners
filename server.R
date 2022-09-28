@@ -668,13 +668,15 @@ output$p8scoreinputbox <- renderUI({
   output$errorbarchart <- renderPlotly({
     data <- user_VA_data()
     upperlimit <- mean(data$p8score)+((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
-    lowerlimit<- mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))
-    ggplot(data,
-         aes("Comparison to national average","Value added score")) +
+    lowerlimit<- mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
+    
+    ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score",
+                     )) +
  #   geom_bar(stat = "identity")+
     geom_errorbar(aes(ymin=lowerlimit,
-                      ymax=upperlimit),
-                  width=.2))
+                      ymax=upperlimit, 
+                      x = 1),
+                  width=.2)
   })
   
   observeEvent(input$link_to_app_content_tab, {
