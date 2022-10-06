@@ -632,13 +632,13 @@ output$p8scoreinputbox <- renderUI({
   
  output$boxp8scorenatcomp <- renderValueBox({
     valueBox((if (reactiveconfidenceintervalsp8() > 0) {
-      paste("Your school's Progress 8 Score is significantly above national average")
+      paste("Significantly above")
     } else if (reactiveconfidenceintervalsp8() < 0) {
-      paste("Your school's Progress 8 Score is significantly below national average")
+      paste("Significantly below")
     } else {
-      paste("Your school's Progress 8 Score is not significantly different from national average")
+      paste("Not significantly different")
     }),
-    subtitle = "subtitle",
+    subtitle = "Your school's Progress 8 score compared to the national average",
     color = "blue"
     )
   })
