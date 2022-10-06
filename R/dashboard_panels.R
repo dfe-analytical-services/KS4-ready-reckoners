@@ -117,6 +117,11 @@ dashboard_panel <- function() {
                     accept = c('text/csv','text/comma-separated-values','.csv')),
           br(),
           DT::dataTableOutput("user_view"),
+          selectInput("p8elementinput",
+                      label = "Please select the progress measure for which you would like to calculate a school VA score.",
+                      choices = c('Progress 8', 'Progress 8 - English element', 'Progress 8 - maths element', 'Progress 8 - EBacc element', 'Progress 8 - open element'),
+                      selected = "Progress 8"
+          ),
           valueBoxOutput("boxavgschoolp8score", width = 6),
           valueBoxOutput("boxpupilnumberp8score", width = 6),
           valueBoxOutput("boxconfintp8score", width = 6),

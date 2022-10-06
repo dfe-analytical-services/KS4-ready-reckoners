@@ -672,6 +672,7 @@ output$p8scoreinputbox <- renderUI({
     
     ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score",
                      )) +
+#      errorbarchart.update_yaxes(range=[-10,10]) +
  #   geom_bar(stat = "identity")+
     geom_errorbar(aes(ymin=lowerlimit,
                       ymax=upperlimit, 
