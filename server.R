@@ -667,16 +667,28 @@ output$p8scoreinputbox <- renderUI({
   
   output$errorbarchart <- renderPlotly({
     data <- user_VA_data()
+    point <- round(mean(data$p8score),2)
+    df <- data.frame(x = c(-7.5:7.5), y = c(-7.5:7.5))
     upperlimit <- mean(data$p8score)+((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
     lowerlimit<- mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
     
-    ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score",
-                     )) +
- #   geom_bar(stat = "identity")+
+    #ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
+    ggplot(df, aes(x = x, y = 0)) +
+      geom_line() +
+      geom_text(aes(label = 'National average', x = -0.45, y = 0.5, hjust = 0)) +
+      #geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
+      geom_point(aes(x = 0, y = point), colour = 'blue', size = 2) +
+      ylim(c(-7.5,7.5)) +
+      xlim(c(-0.5,0.5)) +
+      xlab("Comparison to national average") +
+      ylab("Value added score") +
     geom_errorbar(aes(ymin=lowerlimit,
-                      ymax=upperlimit, 
-                      x = 1),
-                  width=.2)
+                      ymax=upperlimit,
+                      x = 0),
+                  width = 0.05) +
+      theme(axis.text.x=element_blank(),
+            axis.ticks.x=element_blank())
+
   })
   
   observeEvent(input$link_to_app_content_tab, {
