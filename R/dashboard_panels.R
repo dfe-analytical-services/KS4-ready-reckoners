@@ -135,13 +135,11 @@ dashboard_panel <- function() {
           p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
           column(
             width = 12,
-            plotlyOutput("errorbarchart")),
+            plotlyOutput("errorbarchart"))
 #          h2("Select KS2 scaled score for READING"),
 #          valueBoxOutput("boxavgRevBal", width = 6),
 #          valueBoxOutput("boxpcRevBal", width = 6),
-          box(
-            width=12,
-          plotlyOutput("lineRevBal")))
+          )
         )
         ),
         tabPanel(
@@ -174,10 +172,8 @@ dashboard_panel <- function() {
               p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
               column(
                 width = 12,
-                plotlyOutput("ebacerrorbarchart")),
-              box(
-                width=12,
-                plotlyOutput("lineRevBal"))
+                plotlyOutput("ebacerrorbarchart"))
+              
             )
           )
         #   column(
