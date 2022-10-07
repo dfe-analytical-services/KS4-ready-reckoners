@@ -34,10 +34,10 @@ server <- function(input, output, session) {
   #     school_phase == input$selectPhase
   #   )
   # })
-  
 
-  
-#  ---------------------
+
+
+  #  ---------------------
 
   reactivemean <- reactive({
     average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))
@@ -240,16 +240,16 @@ server <- function(input, output, session) {
       filter(ks2emss == reactiveKS2ebac()) %>%
       select(languages_score))
   })
-  
+
   reactiveconfidenceintervalsp8 <- reactive({
     data <- user_VA_data()
-    round(mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2)
-  })  
+    round(mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score)))), 2)
+  })
 
 
-output$p8scoreinputbox <- renderUI({
-  numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
-})
+  output$p8scoreinputbox <- renderUI({
+    numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
+  })
 
   # # Define server logic required to draw a histogram
   # output$lineRevBal <- renderPlotly({
@@ -257,7 +257,7 @@ output$p8scoreinputbox <- renderUI({
   #     config(displayModeBar = F) %>%
   #     layout(legend = list(orientation = "h", x = 0, y = -0.2))
   # })
-  # 
+  #
   # reactiveBenchmark <- reactive({
   #   dfRevBal %>%
   #     filter(
@@ -266,14 +266,14 @@ output$p8scoreinputbox <- renderUI({
   #       year == max(year)
   #     )
   # })
-  # 
+  #
   # output$colBenchmark <- renderPlotly({
   #   ggplotly(plotAvgRevBenchmark(reactiveBenchmark()) %>%
   #     config(displayModeBar = F),
   #   height = 420
   #   )
   # })
-  # 
+  #
   # output$tabBenchmark <- renderDataTable({
   #   datatable(reactiveBenchmark() %>%
   #     select(
@@ -291,7 +291,7 @@ output$p8scoreinputbox <- renderUI({
   # Define server logic to create a box
 
   # output$boxavgRevBal <- renderValueBox({
-  # 
+  #
   #   # Put value into box to plug into app
   #   valueBox(
   #     # take input number
@@ -592,45 +592,50 @@ output$p8scoreinputbox <- renderUI({
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
   })
-  
-  #Schools tab
-  
+
+  # Schools tab
+
   output$boxavgschoolp8score <- renderValueBox({
     data <- user_VA_data()
-    valueBox(round(mean(data$p8score),2),
-             "Final school  score (average of pupils' scores)",
-             color = "blue")
+    valueBox(round(mean(data$p8score), 2),
+      "Final school  score (average of pupils' scores)",
+      color = "blue"
+    )
   })
-  
+
   output$boxpupilnumberp8score <- renderValueBox({
     data <- user_VA_data()
     valueBox(length(data$p8score),
-             "Number of pupils included in P8 calculation",
-             color = "blue")
+      "Number of pupils included in P8 calculation",
+      color = "blue"
+    )
   })
-  
+
   output$boxconfintp8score <- renderValueBox({
     data <- user_VA_data()
-  valueBox(round((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))),2),
-           subtitle = "P8 confidence interval",
-           color = "blue")
+    valueBox(round((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))), 2),
+      subtitle = "P8 confidence interval",
+      color = "blue"
+    )
   })
-  
+
   output$boxuppconflimp8score <- renderValueBox({
     data <- user_VA_data()
-    valueBox(round(mean(data$p8score)+((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2),
-             subtitle = "Upper confidence limit",
-             color = "blue")
+    valueBox(round(mean(data$p8score) + ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score)))), 2),
+      subtitle = "Upper confidence limit",
+      color = "blue"
+    )
   })
-  
+
   output$boxlowconflimp8score <- renderValueBox({
     data <- user_VA_data()
-    valueBox(round(mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2),
-             subtitle = "Lower confidence limit",
-             color = "blue")
+    valueBox(round(mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score)))), 2),
+      subtitle = "Lower confidence limit",
+      color = "blue"
+    )
   })
-  
- output$boxp8scorenatcomp <- renderValueBox({
+
+  output$boxp8scorenatcomp <- renderValueBox({
     valueBox((if (reactiveconfidenceintervalsp8() > 0) {
       paste("Your school's Progress 8 Score is significantly above national average")
     } else if (reactiveconfidenceintervalsp8() < 0) {
@@ -642,10 +647,12 @@ output$p8scoreinputbox <- renderUI({
     color = "blue"
     )
   })
-  
+
   user_VA_data <- reactive({
     csv_filename <- input$user_input_VA
-    if(is.null(csv_filename))return(NULL)
+    if (is.null(csv_filename)) {
+      return(NULL)
+    }
     data <- read.csv(csv_filename$datapath, header = TRUE)
     return(data)
   })
@@ -653,44 +660,50 @@ output$p8scoreinputbox <- renderUI({
   output$user_view <- DT::renderDataTable({
     DT::datatable(user_VA_data())
   })
-  
+
   user_VA_data_ebac <- reactive({
     csv_filename <- input$user_input_VA_ebac
-    if(is.null(csv_filename))return(NULL)
+    if (is.null(csv_filename)) {
+      return(NULL)
+    }
     data <- read.csv(csv_filename$datapath, header = TRUE)
     return(data)
   })
-  
+
   output$user_view_ebac <- DT::renderDataTable({
     DT::datatable(user_VA_data_ebac())
   })
-  
+
   output$errorbarchart <- renderPlotly({
     data <- user_VA_data()
-    point <- round(mean(data$p8score),2)
+    point <- round(mean(data$p8score), 2)
     df <- data.frame(x = c(-7.5:7.5), y = c(-7.5:7.5))
-    upperlimit <- mean(data$p8score)+((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
-    lowerlimit<- mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
-    
-    #ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
+    upperlimit <- mean(data$p8score) + ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
+    lowerlimit <- mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
+
+    # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
     ggplot(df, aes(x = x, y = 0)) +
       geom_line() +
-      geom_text(aes(label = 'National average', x = -0.45, y = 0.5, hjust = 0)) +
-      #geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
-      geom_point(aes(x = 0, y = point), colour = 'blue', size = 2) +
-      ylim(c(-7.5,7.5)) +
-      xlim(c(-0.5,0.5)) +
+      geom_text(aes(label = "National average", x = -0.45, y = 0.5, hjust = 0)) +
+      # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
+      geom_point(aes(x = 0, y = point), colour = "blue", size = 2) +
+      ylim(c(-7.5, 7.5)) +
+      xlim(c(-0.5, 0.5)) +
       xlab("Comparison to national average") +
       ylab("Value added score") +
-    geom_errorbar(aes(ymin=lowerlimit,
-                      ymax=upperlimit,
-                      x = 0),
-                  width = 0.05) +
-      theme(axis.text.x=element_blank(),
-            axis.ticks.x=element_blank())
-
+      geom_errorbar(aes(
+        ymin = lowerlimit,
+        ymax = upperlimit,
+        x = 0
+      ),
+      width = 0.05
+      ) +
+      theme(
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()
+      )
   })
-  
+
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
   })
