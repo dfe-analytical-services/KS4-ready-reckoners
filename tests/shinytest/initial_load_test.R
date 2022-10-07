@@ -25,11 +25,13 @@ app$snapshot(
 dfTestInputs <- data.frame(
   field = c(
     "navlistPanel",
-    "tabsetpanels", "readinginput", "mathsinput", "p8scoreeng", "p8scoremath", "p8scoreebac", "p8scoreopen"
+    "tabsetpanels", "readinginput", "mathsinput", "p8scoreeng", "p8scoremath", "p8scoreebac", "p8scoreopen",
+    "tabsetpanels", "readinginputebac", "mathsinputebac", "ebacscoresci", "ebacscorehum", "ebacscorelan"
   ),
   value = c(
     "dashboard2",
-    "Progress 8", "120", "120", "18", "18", "27", "27"
+    "Progress 8", "120", "120", "18", "18", "27", "27",
+    "EBacc subject area", "120", "120", "9", "9", "9"
   )
 )
 run_set_shinytests(dfTestInputs, "KS4rRR", "")
