@@ -117,21 +117,29 @@ dashboard_panel <- function() {
                     accept = c('text/csv','text/comma-separated-values','.csv')),
           br(),
           DT::dataTableOutput("user_view"),
+          selectInput("p8elementinput",
+                      label = "Please select the progress measure for which you would like to calculate a school VA score.",
+                      choices = c('Progress 8', 'Progress 8 - English element', 'Progress 8 - maths element', 'Progress 8 - EBacc element', 'Progress 8 - open element'),
+                      selected = "Progress 8"
+          ),
           valueBoxOutput("boxavgschoolp8score", width = 6),
           valueBoxOutput("boxpupilnumberp8score", width = 6),
+          p("The width of the confidence interval is determined by both the national standard deviation in the progress measure in question and the number of pupils in the school in the VA calculation. Smaller schools have wider confidence intervals because their VA score is based on a smaller number of pupils, so there is less evidence on which to judge the school’s effectiveness."),
+          gov_row(
           valueBoxOutput("boxconfintp8score", width = 6),
           valueBoxOutput("boxuppconflimp8score", width = 6),
           valueBoxOutput("boxlowconflimp8score", width = 6),
-          valueBoxOutput("boxp8scorenatcomp", width = 6),
+          valueBoxOutput("boxp8scorenatcomp", width = 6)),
+          p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
+          p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
+          p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
           column(
             width = 12,
-            plotlyOutput("errorbarchart")),
+            plotlyOutput("errorbarchart"))
 #          h2("Select KS2 scaled score for READING"),
 #          valueBoxOutput("boxavgRevBal", width = 6),
 #          valueBoxOutput("boxpcRevBal", width = 6),
-          box(
-            width=12,
-          plotlyOutput("lineRevBal")))
+          )
         )
         ),
         tabPanel(
@@ -144,42 +152,55 @@ dashboard_panel <- function() {
                         multiple = FALSE,
                         accept = c('text/csv','text/comma-separated-values','.csv')),
               br(),
+              br(),
               DT::dataTableOutput("user_view_ebac"),
-          h2("Outputs 2 (h2)"),
-          p("This is the standard paragraph style for adding guiding info around data content."),
-          column(
-            width=6,
-            box(
-              width=12,
-              plotlyOutput("colBenchmark")
-            )
-          ),
-          column(
-            width=6,
-            div(
-              class = "well",
-              style = "min-height: 100%; height: 100%; overflow-y: visible",
-              fluidRow(
-                # column(
-                #   width=12,
-                #   selectizeInput("selectBenchLAs",
-                #                  "Select benchamrk LAs",
-                #                  choices = choicesLAs$area_name,
-                #                  multiple=TRUE,
-                #                  options = list(maxItems = 3)
-                #   )
-                # )
-                  )
+              selectInput("ebacelementinput",
+                          label = "Please select the EBacc subject area measure for which you would like to calculate a school VA score.",
+                          choices = c('KS2-4 English Baccalaureate - science subject area', 'KS2-4 English Baccalaureate - humanities subject area', 'KS2-4 English Baccalaureate - languages subject area'),
+                          selected = "KS2-4 English Baccalaureate - science subject area"
               ),
-                dataTableOutput("tabBenchmark")
-          ))
-        ))
+              valueBoxOutput("boxavgschoolebacscore", width = 6),
+              valueBoxOutput("boxpupilnumberebacscore", width = 6),
+              p("The width of the confidence interval is determined by both the national standard deviation in the progress measure in question and the number of pupils in the school in the VA calculation. Smaller schools have wider confidence intervals because their VA score is based on a smaller number of pupils, so there is less evidence on which to judge the school’s effectiveness."),
+              gov_row(
+                valueBoxOutput("boxconfintebacscore", width = 6),
+                valueBoxOutput("boxuppconflimebacscore", width = 6),
+                valueBoxOutput("boxlowconflimebacscore", width = 6),
+                valueBoxOutput("boxebacscorenatcomp", width = 6)),
+              p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
+              p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
+              p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
+              column(
+                width = 12,
+                plotlyOutput("ebacerrorbarchart"))
+              
+            )
+          )
+        #   column(
+        #     width=6,
+        #     div(
+        #       class = "well",
+        #       style = "min-height: 100%; height: 100%; overflow-y: visible",
+        #       fluidRow(
+        #         # column(
+        #         #   width=12,
+        #         #   selectizeInput("selectBenchLAs",
+        #         #                  "Select benchamrk LAs",
+        #         #                  choices = choicesLAs$area_name,
+        #         #                  multiple=TRUE,
+        #         #                  options = list(maxItems = 3)
+        #         #   )
+        #         # )
+        #           )
+        #       ),
+        #         dataTableOutput("tabBenchmark")
+        #   ))
+        # ))
               )
         )
-        # add box to show user input
 )
           )
-  )
+  ))
 }
 
 dashboard2_panel <- function() {
