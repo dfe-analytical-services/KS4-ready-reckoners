@@ -643,15 +643,17 @@ server <- function(input, output, session) {
    data <- user_VA_data()
    upperlim <- mean(data$p8score)+((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score))))
    lowlim <- mean(data$p8score)-((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score))))
-    valueBox((if (reactiveconfidenceintervalsp8() > 0) {
+    valueBox(
+      if(is.null(data) == FALSE){
+      (if (reactiveconfidenceintervalsp8() > 0) {
       paste("Significantly above")
     } else if (reactiveconfidenceintervalsp8() < 0) {
       paste("Significantly below")
     } else if (upperlim > 0 & lowerlim < 0) {
       paste("Not significantly different")
-    } else {
+    })} else {
       paste("NA")
-    }),
+    },
     subtitle = "Your school's Progress 8 score compared to the national average",
     color = "blue"
     )
