@@ -28,7 +28,7 @@ dfTestInputs <- data.frame(
     "tabsetpanels", "readinginput", "mathsinput", "p8scoreeng", "p8scoremath", "p8scoreebac", "p8scoreopen"
   ),
   value = c(
-    "Pupil ready reckoner",
+    "dashboard2",
     "Progress 8", "120", "120", "18", "18", "27", "27"
   )
 )

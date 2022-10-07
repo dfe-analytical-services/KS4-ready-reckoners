@@ -1,0 +1,947 @@
+{
+  "input": {
+    "chartbutton": "Science",
+    "ebacscorehum": 0,
+    "ebacscorelan": 0,
+    "ebacscoresci": 0,
+    "mathsinput": "Grade = N",
+    "mathsinputebac": "Grade = N",
+    "navlistPanel": "dashboard2",
+    "p8score": 0,
+    "p8scoreebac": 0,
+    "p8scoreeng": 0,
+    "p8scoremath": 0,
+    "p8scoreopen": 0,
+    "readinginput": "Grade = N",
+    "readinginputebac": "Grade = N",
+    "tabsetpanels": "Progress 8"
+  },
+  "output": {
+    "boxavgreadmaths": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>79<\/h3>\n    <p>Pupil's KS2 average point score<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "estimatedscorebox": {
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <h3>20.72<\/h3>\n    <p>Estimated key stage 4 score<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "estimatedscoreboxebac": {
+      "html": "<div class=\"small-box bg-aqua\">\n  <div class=\"inner\">\n    <h3>5.58<\/h3>\n    <p>Estimated key stage 4 score - EBacc element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "estimatedscoreboxeng": {
+      "html": "<div class=\"small-box bg-purple\">\n  <div class=\"inner\">\n    <h3>4.63<\/h3>\n    <p>Estimated key stage 4 score - English element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "estimatedscoreboxmath": {
+      "html": "<div class=\"small-box bg-orange\">\n  <div class=\"inner\">\n    <h3>3.22<\/h3>\n    <p>Estimated key stage 4 score - maths element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "estimatedscoreboxopen": {
+      "html": "<div class=\"small-box bg-fuchsia\">\n  <div class=\"inner\">\n    <h3>7.37<\/h3>\n    <p>Estimated key stage 4 score - open element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "estvsactual": {
+      "x": {
+        "data": [
+          {
+            "x": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66,
+              67,
+              68,
+              69,
+              70,
+              71,
+              72,
+              73,
+              74,
+              75,
+              76,
+              77,
+              78,
+              79,
+              80,
+              81,
+              82,
+              83,
+              84,
+              85,
+              86,
+              87,
+              88,
+              89,
+              90
+            ],
+            "y": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66,
+              67,
+              68,
+              69,
+              70,
+              71,
+              72,
+              73,
+              74,
+              75,
+              76,
+              77,
+              78,
+              79,
+              80,
+              81,
+              82,
+              83,
+              84,
+              85,
+              86,
+              87,
+              88,
+              89,
+              90
+            ],
+            "text": [
+              "x:  0<br />y:  0",
+              "x:  1<br />y:  1",
+              "x:  2<br />y:  2",
+              "x:  3<br />y:  3",
+              "x:  4<br />y:  4",
+              "x:  5<br />y:  5",
+              "x:  6<br />y:  6",
+              "x:  7<br />y:  7",
+              "x:  8<br />y:  8",
+              "x:  9<br />y:  9",
+              "x: 10<br />y: 10",
+              "x: 11<br />y: 11",
+              "x: 12<br />y: 12",
+              "x: 13<br />y: 13",
+              "x: 14<br />y: 14",
+              "x: 15<br />y: 15",
+              "x: 16<br />y: 16",
+              "x: 17<br />y: 17",
+              "x: 18<br />y: 18",
+              "x: 19<br />y: 19",
+              "x: 20<br />y: 20",
+              "x: 21<br />y: 21",
+              "x: 22<br />y: 22",
+              "x: 23<br />y: 23",
+              "x: 24<br />y: 24",
+              "x: 25<br />y: 25",
+              "x: 26<br />y: 26",
+              "x: 27<br />y: 27",
+              "x: 28<br />y: 28",
+              "x: 29<br />y: 29",
+              "x: 30<br />y: 30",
+              "x: 31<br />y: 31",
+              "x: 32<br />y: 32",
+              "x: 33<br />y: 33",
+              "x: 34<br />y: 34",
+              "x: 35<br />y: 35",
+              "x: 36<br />y: 36",
+              "x: 37<br />y: 37",
+              "x: 38<br />y: 38",
+              "x: 39<br />y: 39",
+              "x: 40<br />y: 40",
+              "x: 41<br />y: 41",
+              "x: 42<br />y: 42",
+              "x: 43<br />y: 43",
+              "x: 44<br />y: 44",
+              "x: 45<br />y: 45",
+              "x: 46<br />y: 46",
+              "x: 47<br />y: 47",
+              "x: 48<br />y: 48",
+              "x: 49<br />y: 49",
+              "x: 50<br />y: 50",
+              "x: 51<br />y: 51",
+              "x: 52<br />y: 52",
+              "x: 53<br />y: 53",
+              "x: 54<br />y: 54",
+              "x: 55<br />y: 55",
+              "x: 56<br />y: 56",
+              "x: 57<br />y: 57",
+              "x: 58<br />y: 58",
+              "x: 59<br />y: 59",
+              "x: 60<br />y: 60",
+              "x: 61<br />y: 61",
+              "x: 62<br />y: 62",
+              "x: 63<br />y: 63",
+              "x: 64<br />y: 64",
+              "x: 65<br />y: 65",
+              "x: 66<br />y: 66",
+              "x: 67<br />y: 67",
+              "x: 68<br />y: 68",
+              "x: 69<br />y: 69",
+              "x: 70<br />y: 70",
+              "x: 71<br />y: 71",
+              "x: 72<br />y: 72",
+              "x: 73<br />y: 73",
+              "x: 74<br />y: 74",
+              "x: 75<br />y: 75",
+              "x: 76<br />y: 76",
+              "x: 77<br />y: 77",
+              "x: 78<br />y: 78",
+              "x: 79<br />y: 79",
+              "x: 80<br />y: 80",
+              "x: 81<br />y: 81",
+              "x: 82<br />y: 82",
+              "x: 83<br />y: 83",
+              "x: 84<br />y: 84",
+              "x: 85<br />y: 85",
+              "x: 86<br />y: 86",
+              "x: 87<br />y: 87",
+              "x: 88<br />y: 88",
+              "x: 89<br />y: 89",
+              "x: 90<br />y: 90"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 1.88976377952756,
+              "color": "rgba(0,0,0,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "showlegend": false,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "x": [
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72,
+              20.72
+            ],
+            "y": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "text": "x: 20.72<br />y: 0",
+            "type": "scatter",
+            "mode": "markers",
+            "marker": {
+              "autocolorscale": false,
+              "color": "rgba(255,0,127,1)",
+              "opacity": 1,
+              "size": 7.55905511811024,
+              "symbol": "circle",
+              "line": {
+                "width": 1.88976377952756,
+                "color": "rgba(255,0,127,1)"
+              }
+            },
+            "hoveron": "points",
+            "showlegend": false,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          }
+        ],
+        "layout": {
+          "margin": {
+            "t": 44.3381762833818,
+            "r": 7.30593607305936,
+            "b": 38.3672339836723,
+            "l": 35.9319219593192
+          },
+          "plot_bgcolor": "rgba(235,235,235,1)",
+          "paper_bgcolor": "rgba(255,255,255,1)",
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 14.6118721461187
+          },
+          "title": {
+            "text": "<b> Estimated against actual KS4 outcome <\/b>",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 18.5969281859693
+            },
+            "x": 0,
+            "xref": "paper"
+          },
+          "xaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              -4.5,
+              94.5
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "0",
+              "25",
+              "50",
+              "75"
+            ],
+            "tickvals": [
+              0,
+              25,
+              50,
+              75
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "0",
+              "25",
+              "50",
+              "75"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.65296803652968,
+            "tickwidth": 0.66417600664176,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 11.689497716895
+            },
+            "tickangle": 0,
+            "showline": false,
+            "linecolor": null,
+            "linewidth": 0,
+            "showgrid": true,
+            "gridcolor": "rgba(255,255,255,1)",
+            "gridwidth": 0.66417600664176,
+            "zeroline": false,
+            "anchor": "y",
+            "title": {
+              "text": "Estimated KS4 outcome",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 13.2835201328352
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "yaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              -4.5,
+              94.5
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "0",
+              "25",
+              "50",
+              "75"
+            ],
+            "tickvals": [
+              0,
+              25,
+              50,
+              75
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "0",
+              "25",
+              "50",
+              "75"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.65296803652968,
+            "tickwidth": 0.66417600664176,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 11.689497716895
+            },
+            "tickangle": 0,
+            "showline": false,
+            "linecolor": null,
+            "linewidth": 0,
+            "showgrid": true,
+            "gridcolor": "rgba(255,255,255,1)",
+            "gridwidth": 0.66417600664176,
+            "zeroline": false,
+            "anchor": "x",
+            "title": {
+              "text": "Actual KS4 outcome",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 13.2835201328352
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "shapes": [
+            {
+              "type": "rect",
+              "fillcolor": null,
+              "line": {
+                "color": null,
+                "width": 0,
+                "linetype": [
+
+                ]
+              },
+              "yref": "paper",
+              "xref": "paper",
+              "x0": 0,
+              "x1": 1,
+              "y0": 0,
+              "y1": 1
+            }
+          ],
+          "showlegend": false,
+          "legend": {
+            "bgcolor": "rgba(255,255,255,1)",
+            "bordercolor": "transparent",
+            "borderwidth": 1.88976377952756,
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 11.689497716895
+            }
+          },
+          "hovermode": "closest",
+          "barmode": "relative"
+        },
+        "config": {
+          "doubleClick": "reset",
+          "modeBarButtonsToAdd": [
+            "hoverclosest",
+            "hovercompare"
+          ],
+          "showSendToCloud": false
+        },
+        "source": "A",
+        "highlight": {
+          "on": "plotly_click",
+          "persistent": false,
+          "dynamic": false,
+          "selectize": false,
+          "opacityDim": 0.2,
+          "selected": {
+            "opacity": 1
+          },
+          "debounce": 0
+        },
+        "shinyEvents": [
+          "plotly_hover",
+          "plotly_click",
+          "plotly_selected",
+          "plotly_relayout",
+          "plotly_brushed",
+          "plotly_brushing",
+          "plotly_clickannotation",
+          "plotly_doubleclick",
+          "plotly_deselect",
+          "plotly_afterplot",
+          "plotly_sunburstclick"
+        ],
+        "base_url": "https://plot.ly"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "setprototypeof",
+          "version": "0.1",
+          "src": {
+            "href": "setprototypeof-0.1"
+          },
+          "meta": null,
+          "script": "setprototypeof.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "typedarray",
+          "version": "0.1",
+          "src": {
+            "href": "typedarray-0.1"
+          },
+          "meta": null,
+          "script": "typedarray.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "jquery",
+          "version": "3.5.1",
+          "src": {
+            "href": "jquery-3.5.1"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.2.0",
+          "src": {
+            "href": "crosstalk-1.2.0"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "plotly-htmlwidgets-css",
+          "version": "2.5.1",
+          "src": {
+            "href": "plotly-htmlwidgets-css-2.5.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "plotly-htmlwidgets.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "plotly-main",
+          "version": "2.5.1",
+          "src": {
+            "href": "plotly-main-2.5.1"
+          },
+          "meta": null,
+          "script": "plotly-latest.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        }
+      ]
+    },
+    "p8scoreinputbox": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"p8score-label\" for=\"p8score\">\n    <p>Enter the pupil's key stage 4 attainment score:<\/p>\n  <\/label>\n  <input id=\"p8score\" type=\"number\" class=\"form-control\" value=\"0\" min=\"0\" max=\"95\" step=\"0.01\"/>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "PAGbox": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>1<\/h3>\n    <p>Prior attainment group categorisation<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "PAGcatbox": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>Below standard<\/h3>\n    <p>Prior attainment group categorisation<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreavbox": {
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <h3>-2.07<\/h3>\n    <p>Pupil value added average score<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreavboxebac": {
+      "html": "<div class=\"small-box bg-aqua\">\n  <div class=\"inner\">\n    <h3>-1.86<\/h3>\n    <p>Pupil value added average score - EBacc element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreavboxeng": {
+      "html": "<div class=\"small-box bg-purple\">\n  <div class=\"inner\">\n    <h3>-2.32<\/h3>\n    <p>Pupil value added average score - English element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreavboxmath": {
+      "html": "<div class=\"small-box bg-orange\">\n  <div class=\"inner\">\n    <h3>-1.61<\/h3>\n    <p>Pupil value added average score - maths element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreavboxopen": {
+      "html": "<div class=\"small-box bg-fuchsia\">\n  <div class=\"inner\">\n    <h3>-2.46<\/h3>\n    <p>Pupil value added average score - open element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscorebox": {
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <h3>-20.72<\/h3>\n    <p>Pupil value added score<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreboxebac": {
+      "html": "<div class=\"small-box bg-aqua\">\n  <div class=\"inner\">\n    <h3>-5.58<\/h3>\n    <p>Pupil value added score - EBacc element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreboxeng": {
+      "html": "<div class=\"small-box bg-purple\">\n  <div class=\"inner\">\n    <h3>-4.63<\/h3>\n    <p>Pupil value added score - English element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreboxmath": {
+      "html": "<div class=\"small-box bg-orange\">\n  <div class=\"inner\">\n    <h3>-3.22<\/h3>\n    <p>Pupil value added score - maths element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreboxopen": {
+      "html": "<div class=\"small-box bg-fuchsia\">\n  <div class=\"inner\">\n    <h3>-7.37<\/h3>\n    <p>Pupil value added score - open element<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
