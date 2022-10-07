@@ -243,70 +243,20 @@ server <- function(input, output, session) {
   
   reactiveconfidenceintervalsp8 <- reactive({
     data <- user_VA_data()
-    round(mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2)
+    round(mean(data$p8score)-((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score)))),2) 
   })  
+  
+  reactiveconfidenceintervalsebac <- reactive({
+    data <- user_VA_data_ebac()
+    round(mean(data$p8score)-((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score)))),2) 
+  })
 
 
 output$p8scoreinputbox <- renderUI({
   numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
 })
 
-  # # Define server logic required to draw a histogram
-  # output$lineRevBal <- renderPlotly({
-  #   ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
-  #     config(displayModeBar = F) %>%
-  #     layout(legend = list(orientation = "h", x = 0, y = -0.2))
-  # })
-  # 
-  # reactiveBenchmark <- reactive({
-  #   dfRevBal %>%
-  #     filter(
-  #       area_name %in% c(input$selectArea, input$selectBenchLAs),
-  #       school_phase == input$selectPhase,
-  #       year == max(year)
-  #     )
-  # })
-  # 
-  # output$colBenchmark <- renderPlotly({
-  #   ggplotly(plotAvgRevBenchmark(reactiveBenchmark()) %>%
-  #     config(displayModeBar = F),
-  #   height = 420
-  #   )
-  # })
-  # 
-  # output$tabBenchmark <- renderDataTable({
-  #   datatable(reactiveBenchmark() %>%
-  #     select(
-  #       Area = area_name,
-  #       `Average Revenue Balance (£)` = average_revenue_balance,
-  #       `Total Revenue Balance (£m)` = total_revenue_balance_million
-  #     ),
-  #   options = list(
-  #     scrollX = TRUE,
-  #     paging = FALSE
-  #   )
-  #   )
-  # })
 
-  # Define server logic to create a box
-
-  # output$boxavgRevBal <- renderValueBox({
-  # 
-  #   # Put value into box to plug into app
-  #   valueBox(
-  #     # take input number
-  #     paste0("£", format((reactiveRevBal() %>% filter(
-  #       year == max(year),
-  #       area_name == input$selectArea,
-  #       school_phase == input$selectPhase
-  #     ))$average_revenue_balance,
-  #     big.mark = ","
-  #     )),
-  #     # add subtitle to explain what it's hsowing
-  #     paste0("This is the latest value for the selected inputs"),
-  #     color = "blue"
-  #   )
-  # })
 
   output$boxavgreadmaths <- renderValueBox({
     valueBox(reactivemean(),
@@ -593,13 +543,43 @@ output$p8scoreinputbox <- renderUI({
       )
   })
   
+##############################  
   #Schools tab
+  
+  reactivep8elstdev <- reactive({
+    if(input$p8elementinput == 'Progress 8'){
+      p8stdev$p8stdev}
+    else if(input$p8elementinput == 'Progress 8 - English element'){
+      p8stdev$p8engstdev}
+    else if(input$p8elementinput == 'Progress 8 - maths element'){
+      p8stdev$p8matstdev}
+    else if(input$p8elementinput == 'Progress 8 - EBacc element'){
+      p8stdev$p8ebacstdev}
+    else if(input$p8elementinput == 'Progress 8 - open element'){
+      p8stdev$p8openstdev}
+    })
+  
+  reactiveebacelstdev <- reactive({
+    if(input$ebacelementinput == 'KS2-4 English Baccalaureate - science subject area'){
+      ebacstdev$scivastdev}
+    else if(input$p8elementinput == 'KS2-4 English Baccalaureate - humanities subject area'){
+      ebacstdev$humvastdev}
+    else if(input$p8elementinput == 'KS2-4 English Baccalaureate - languages subject area'){
+      ebacstdev$lanvastdev}
+  })
   
   output$boxavgschoolp8score <- renderValueBox({
     data <- user_VA_data()
     valueBox(round(mean(data$p8score),2),
              "Final school  score (average of pupils' scores)",
              color = "blue")
+  })
+  
+  output$boxavgschoolebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score),2),   #AB is this correct?
+             "Final school  score (average of pupils' scores)",
+             color = "green")
   })
   
   output$boxpupilnumberp8score <- renderValueBox({
@@ -609,25 +589,53 @@ output$p8scoreinputbox <- renderUI({
              color = "blue")
   })
   
+  output$boxpupilnumberebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(length(data$p8score),
+             "Number of pupils included in P8 calculation",
+             color = "green")
+  })
+  
   output$boxconfintp8score <- renderValueBox({
     data <- user_VA_data()
-  valueBox(round((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))),2),
-           subtitle = "P8 confidence interval",
+  valueBox(round((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score))),2), 
+           subtitle = "Confidence interval",
            color = "blue")
+  })
+  
+  output$boxconfintebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score))),2), 
+             subtitle = "Confidence interval",
+             color = "green")
   })
   
   output$boxuppconflimp8score <- renderValueBox({
     data <- user_VA_data()
-    valueBox(round(mean(data$p8score)+((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2),
+    valueBox(round(mean(data$p8score)+((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score)))),2), 
              subtitle = "Upper confidence limit",
              color = "blue")
   })
   
+  output$boxuppconflimebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score)+((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score)))),2), 
+             subtitle = "Upper confidence limit",
+             color = "green")
+  })
+  
   output$boxlowconflimp8score <- renderValueBox({
     data <- user_VA_data()
-    valueBox(round(mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score)))),2),
+    valueBox(round(mean(data$p8score)-((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score)))),2),
              subtitle = "Lower confidence limit",
              color = "blue")
+  })
+  
+  output$boxlowconflimebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score)-((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score)))),2),
+             subtitle = "Lower confidence limit",
+             color = "green")
   })
   
  output$boxp8scorenatcomp <- renderValueBox({
@@ -642,6 +650,19 @@ output$p8scoreinputbox <- renderUI({
     color = "blue"
     )
   })
+ 
+ output$boxebacscorenatcomp <- renderValueBox({
+   valueBox((if (reactiveconfidenceintervalsebac() > 0) {
+     paste("Significantly above")
+   } else if (reactiveconfidenceintervalsebac() < 0) {
+     paste("Significantly below")
+   } else {
+     paste("Not significantly different")
+   }),
+   subtitle = "Your school's VA score compared to the national average",
+   color = "green"
+   )
+ })
   
   user_VA_data <- reactive({
     csv_filename <- input$user_input_VA
@@ -667,8 +688,8 @@ output$p8scoreinputbox <- renderUI({
   
   output$errorbarchart <- renderPlotly({
     data <- user_VA_data()
-    upperlimit <- mean(data$p8score)+((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
-    lowerlimit<- mean(data$p8score)-((1.96*(p8stdev$p8stdev))/(sqrt(length(data$p8score))))
+    upperlimit <- mean(data$p8score)+((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score)))) 
+    lowerlimit<- mean(data$p8score)-((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score)))) 
     
     ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score",
                      )) +
@@ -678,6 +699,21 @@ output$p8scoreinputbox <- renderUI({
                       ymax=upperlimit, 
                       x = 1),
                   width=.2)
+  })
+  
+  output$ebacerrorbarchart <- renderPlotly({
+    data <- user_VA_data_ebac()
+    upperlimit <- mean(data$p8score)+((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score)))) 
+    lowerlimit<- mean(data$p8score)-((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score)))) 
+    
+    ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score",
+    )) +
+      #      errorbarchart.update_yaxes(range=[-10,10]) +
+      #   geom_bar(stat = "identity")+
+      geom_errorbar(aes(ymin=lowerlimit,
+                        ymax=upperlimit, 
+                        x = 1),
+                    width=.2)
   })
   
   observeEvent(input$link_to_app_content_tab, {

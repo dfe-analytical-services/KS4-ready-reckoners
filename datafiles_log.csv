@@ -7,3 +7,4 @@ data/p8_pupil_coefficients_dummy.csv,reference
 data/p8_pupil_coefficients_dummy.xlsx,reference
 data/ebac_pupil_modelvalues_dummy.csv,reference
 data/p8_stdev_dummy.csv,reference
+data/ebac_stdev_dummy.csv,reference
