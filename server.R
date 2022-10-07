@@ -562,9 +562,9 @@ output$p8scoreinputbox <- renderUI({
   reactiveebacelstdev <- reactive({
     if(input$ebacelementinput == 'KS2-4 English Baccalaureate - science subject area'){
       ebacstdev$scivastdev}
-    else if(input$p8elementinput == 'KS2-4 English Baccalaureate - humanities subject area'){
+    else if(input$ebacelementinput == 'KS2-4 English Baccalaureate - humanities subject area'){
       ebacstdev$humvastdev}
-    else if(input$p8elementinput == 'KS2-4 English Baccalaureate - languages subject area'){
+    else if(input$ebacelementinput == 'KS2-4 English Baccalaureate - languages subject area'){
       ebacstdev$lanvastdev}
   })
   
