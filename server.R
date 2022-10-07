@@ -639,19 +639,24 @@ output$p8scoreinputbox <- renderUI({
   })
   
  output$boxp8scorenatcomp <- renderValueBox({
+   data <- user_VA_data()
+   upperlim <- mean(data$p8score)+((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score))))
+   lowlim <- mean(data$p8score)-((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score))))
     valueBox((if (reactiveconfidenceintervalsp8() > 0) {
       paste("Significantly above")
     } else if (reactiveconfidenceintervalsp8() < 0) {
       paste("Significantly below")
-    } else {
+    } else if (upperlim > 0 & lowerlim < 0) {
       paste("Not significantly different")
+    } else {
+      paste("NA")
     }),
     subtitle = "Your school's Progress 8 score compared to the national average",
     color = "blue"
     )
   })
  
- output$boxebacscorenatcomp <- renderValueBox({
+ output$boxebacscorenatcomp <- renderValueBox({   #AB this needs to be brought in line with the code block above when it's fixed
    valueBox((if (reactiveconfidenceintervalsebac() > 0) {
      paste("Significantly above")
    } else if (reactiveconfidenceintervalsebac() < 0) {
