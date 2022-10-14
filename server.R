@@ -676,11 +676,11 @@ server <- function(input, output, session) {
     lowlim <- mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score))))
     valueBox(
       if (is.null(data) == FALSE) {
-        (if (reactiveconfidenceintervalsp8() > 0) {
+        (if (lowlim > 0) {
           paste("Significantly above")
-        } else if (reactiveconfidenceintervalsp8() < 0) {
+        } else if (upperlim < 0) {
           paste("Significantly below")
-        } else if (upperlim > 0 & lowerlim < 0) {
+        } else if (upperlim > 0 & lowlim < 0) {
           paste("Not significantly different")
         })
       } else {
@@ -697,11 +697,11 @@ server <- function(input, output, session) {
     lowlim <- mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))))
     valueBox(
       if (is.null(data) == FALSE) {
-        (if (reactiveconfidenceintervalsebac() > 0) {
+        (if (lowlim > 0) {
           paste("Significantly above")
-        } else if (reactiveconfidenceintervalsebac() < 0) {
+        } else if (upperlim < 0) {
           paste("Significantly below")
-        } else if (upperlim > 0 & lowerlim < 0) {
+        } else if (upperlim > 0 & lowlim < 0) {
           paste("Not significantly different")
         })
       } else {
