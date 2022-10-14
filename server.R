@@ -28,12 +28,16 @@ server <- function(input, output, session) {
   show("app-content")
 
   # Simple server stuff goes here ------------------------------------------------------------
-  reactiveRevBal <- reactive({
-    dfRevBal %>% filter(
-      area_name == input$selectArea | area_name == "England",
-      school_phase == input$selectPhase
-    )
-  })
+  # reactiveRevBal <- reactive({
+  #   dfRevBal %>% filter(
+  #     area_name == input$selectArea | area_name == "England",
+  #     school_phase == input$selectPhase
+  #   )
+  # })
+
+
+
+  #  ---------------------
 
   reactivemean <- reactive({
     average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))
@@ -237,9 +241,9 @@ server <- function(input, output, session) {
       select(languages_score))
   })
 
-  output$p8scoreinputbox <- renderUI({
-    sumscore <- sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen)
-    numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sumscore, min = 0, max = 95, step = 0.01)
+  reactiveconfidenceintervalsp8 <- reactive({
+    data <- user_VA_data()
+    round(mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score)))), 2)
   })
 
   # Numeric input warnings --------------------------------------------------
@@ -263,55 +267,16 @@ server <- function(input, output, session) {
       layout(legend = list(orientation = "h", x = 0, y = -0.2))
   })
 
-  reactiveBenchmark <- reactive({
-    dfRevBal %>%
-      filter(
-        area_name %in% c(input$selectArea, input$selectBenchLAs),
-        school_phase == input$selectPhase,
-        year == max(year)
-      )
+  reactiveconfidenceintervalsebac <- reactive({
+    data <- user_VA_data_ebac()
+    round(mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score)))), 2)
   })
 
-  output$colBenchmark <- renderPlotly({
-    ggplotly(plotAvgRevBenchmark(reactiveBenchmark()) %>%
-      config(displayModeBar = F),
-    height = 420
-    )
+
+  output$p8scoreinputbox <- renderUI({
+    numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
   })
 
-  output$tabBenchmark <- renderDataTable({
-    datatable(reactiveBenchmark() %>%
-      select(
-        Area = area_name,
-        `Average Revenue Balance (£)` = average_revenue_balance,
-        `Total Revenue Balance (£m)` = total_revenue_balance_million
-      ),
-    options = list(
-      scrollX = TRUE,
-      paging = FALSE
-    )
-    )
-  })
-
-  # Define server logic to create a box
-
-  output$boxavgRevBal <- renderValueBox({
-
-    # Put value into box to plug into app
-    valueBox(
-      # take input number
-      paste0("£", format((reactiveRevBal() %>% filter(
-        year == max(year),
-        area_name == input$selectArea,
-        school_phase == input$selectPhase
-      ))$average_revenue_balance,
-      big.mark = ","
-      )),
-      # add subtitle to explain what it's hsowing
-      paste0("This is the latest value for the selected inputs"),
-      color = "blue"
-    )
-  })
 
   output$boxavgreadmaths <- renderValueBox({
     valueBox(reactivemean(),
@@ -598,7 +563,210 @@ server <- function(input, output, session) {
       )
   })
 
+  ##############################
+  # Schools tab
 
+  reactivep8elstdev <- reactive({
+    if (input$p8elementinput == "Progress 8") {
+      p8stdev$p8stdev
+    } else if (input$p8elementinput == "Progress 8 - English element") {
+      p8stdev$p8engstdev
+    } else if (input$p8elementinput == "Progress 8 - maths element") {
+      p8stdev$p8matstdev
+    } else if (input$p8elementinput == "Progress 8 - EBacc element") {
+      p8stdev$p8ebacstdev
+    } else if (input$p8elementinput == "Progress 8 - open element") {
+      p8stdev$p8openstdev
+    }
+  })
+
+  reactiveebacelstdev <- reactive({
+    if (input$ebacelementinput == "KS2-4 English Baccalaureate - science subject area") {
+      ebacstdev$scivastdev
+    } else if (input$ebacelementinput == "KS2-4 English Baccalaureate - humanities subject area") {
+      ebacstdev$humvastdev
+    } else if (input$ebacelementinput == "KS2-4 English Baccalaureate - languages subject area") {
+      ebacstdev$lanvastdev
+    }
+  })
+
+  output$boxavgschoolp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round(mean(data$p8score), 2),
+      "Final school  score (average of pupils' scores)",
+      color = "blue"
+    )
+  })
+
+  output$boxavgschoolebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score), 2), # AB is this correct?
+      "Final school  score (average of pupils' scores)",
+      color = "green"
+    )
+  })
+
+  output$boxpupilnumberp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(length(data$p8score),
+      "Number of pupils included in P8 calculation",
+      color = "blue"
+    )
+  })
+
+  output$boxpupilnumberebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(length(data$p8score),
+      "Number of pupils included in P8 calculation",
+      color = "green"
+    )
+  })
+
+  output$boxconfintp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score))), 2),
+      subtitle = "Confidence interval",
+      color = "blue"
+    )
+  })
+
+  output$boxconfintebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))), 2),
+      subtitle = "Confidence interval",
+      color = "green"
+    )
+  })
+
+  output$boxuppconflimp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round(mean(data$p8score) + ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score)))), 2),
+      subtitle = "Upper confidence limit",
+      color = "blue"
+    )
+  })
+
+  output$boxuppconflimebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score) + ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score)))), 2),
+      subtitle = "Upper confidence limit",
+      color = "green"
+    )
+  })
+
+  output$boxlowconflimp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round(mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score)))), 2),
+      subtitle = "Lower confidence limit",
+      color = "blue"
+    )
+  })
+
+  output$boxlowconflimebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score)))), 2),
+      subtitle = "Lower confidence limit",
+      color = "green"
+    )
+  })
+
+  output$boxp8scorenatcomp <- renderValueBox({
+    data <- user_VA_data()
+    upperlim <- mean(data$p8score) + ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score))))
+    lowlim <- mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score))))
+    valueBox(
+      if (is.null(data) == FALSE) {
+        (if (reactiveconfidenceintervalsp8() > 0) {
+          paste("Significantly above")
+        } else if (reactiveconfidenceintervalsp8() < 0) {
+          paste("Significantly below")
+        } else if (upperlim > 0 & lowerlim < 0) {
+          paste("Not significantly different")
+        })
+      } else {
+        paste("NA")
+      },
+      subtitle = "Your school's Progress 8 score compared to the national average",
+      color = "blue"
+    )
+  })
+
+  output$boxebacscorenatcomp <- renderValueBox({
+    data <- user_VA_data_ebac()
+    upperlim <- mean(data$p8score) + ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))))
+    lowlim <- mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))))
+    valueBox(
+      if (is.null(data) == FALSE) {
+        (if (reactiveconfidenceintervalsebac() > 0) {
+          paste("Significantly above")
+        } else if (reactiveconfidenceintervalsebac() < 0) {
+          paste("Significantly below")
+        } else if (upperlim > 0 & lowerlim < 0) {
+          paste("Not significantly different")
+        })
+      } else {
+        paste("NA")
+      },
+      subtitle = "Your school's VA score compared to the national average",
+      color = "green"
+    )
+  })
+
+  user_VA_data <- reactive({
+    csv_filename <- input$user_input_VA
+    if (is.null(csv_filename)) {
+      return(NULL)
+    }
+    data <- read.csv(csv_filename$datapath, header = TRUE)
+    return(data)
+  })
+
+  output$user_view <- DT::renderDataTable({
+    DT::datatable(user_VA_data())
+  })
+
+  user_VA_data_ebac <- reactive({
+    csv_filename <- input$user_input_VA_ebac
+    if (is.null(csv_filename)) {
+      return(NULL)
+    }
+    data <- read.csv(csv_filename$datapath, header = TRUE)
+    return(data)
+  })
+
+  output$user_view_ebac <- DT::renderDataTable({
+    DT::datatable(user_VA_data_ebac())
+  })
+
+  output$errorbarchart <- renderPlotly({
+    data <- user_VA_data()
+    point <- round(mean(data$p8score), 2)
+    df <- data.frame(x = c(-7.5:7.5), y = c(-7.5:7.5))
+    upperlimit <- mean(data$p8score) + ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
+    lowerlimit <- mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
+
+    # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
+    ggplot(df, aes(x = x, y = 0)) +
+      geom_line() +
+      geom_text(aes(label = "National average", x = -0.45, y = 0.5, hjust = 0)) +
+      # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
+      geom_point(aes(x = 0, y = point), colour = "blue", size = 2) +
+      ylim(c(-7.5, 7.5)) +
+      xlim(c(-0.5, 0.5)) +
+      xlab("Comparison to national average") +
+      ylab("Value added score") +
+      geom_errorbar(aes(
+        ymin = lowerlimit,
+        ymax = upperlimit,
+        x = 0
+      ),
+      width = 0.05
+      ) +
+      theme(
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()
+      )
+  })
 
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
