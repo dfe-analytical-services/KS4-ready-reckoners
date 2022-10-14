@@ -58,10 +58,25 @@
 
 ui <- function(input, output, session) {
   fluidPage(
+    #use_tota11y(),
     title = tags$head(tags$link(
       rel = "shortcut icon",
       href = "dfefavicon.png"
-    )),
+    ),
+    # Add title for browser tabs
+    tags$title("KS4 Ready Reckoner")),
+    tags$html(lang = "en"),
+    # Add meta description for search engines
+    meta() %>%
+      meta_general(
+        application_name = "KS4 Ready Reckoner",
+        description = "KS4 Ready Reckoner",
+        robots = "index,follow",
+        generator = "R-Shiny",
+        rating = "General",
+        referrer = "no-referrer"
+      ),
+    
     shinyjs::useShinyjs(),
     useShinydashboard(),
     tags$head(includeHTML(("google-analytics.html"))),
