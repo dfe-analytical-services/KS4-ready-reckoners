@@ -1,19 +1,5 @@
 {
   "input": {
-    ".clientValue-default-plotlyCrosstalkOpts": {
-      "on": "plotly_click",
-      "persistent": false,
-      "dynamic": false,
-      "selectize": false,
-      "opacityDim": 0.2,
-      "selected": {
-        "opacity": 1
-      },
-      "debounce": 0,
-      "color": [
-
-      ]
-    },
     "chartbutton": "Science",
     "ebacscorehum": 0,
     "ebacscorelan": 0,
@@ -26,7 +12,6 @@
     "p8scoreeng": 0,
     "p8scoremath": 0,
     "p8scoreopen": 0,
-    "plotly_afterplot-A": "\"estvsactual\"",
     "readinginput": "Grade = N",
     "readinginputebac": "Grade = N",
     "tabsetpanels": "Progress 8"
