@@ -244,6 +244,7 @@ server <- function(input, output, session) {
   reactiveconfidenceintervalsp8 <- reactive({
     data <- user_VA_data()
     round(mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score)))), 2)
+  })
 
   # Numeric input warnings --------------------------------------------------
 
