@@ -25,7 +25,6 @@ homepage_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  title = "This section is useful if you want to understand how well different industries retain graduates.",
                   h3("Introduction"),
                   p("There are four key stage 2 to 4 ready reckoners:"),
                   strong("The Progress 8 element breakdown pupil ready reckoner."),
