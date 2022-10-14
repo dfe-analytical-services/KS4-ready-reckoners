@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.3",
+    "Version": "4.2.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -940,6 +940,19 @@
         "testthat",
         "webdriver",
         "withr"
+      ]
+    },
+    "shinyvalidate": {
+      "Package": "shinyvalidate",
+      "Version": "0.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4ce7aa115e26a4eefbecab1b27bc3ada",
+      "Requirements": [
+        "glue",
+        "htmltools",
+        "rlang",
+        "shiny"
       ]
     },
     "showimage": {

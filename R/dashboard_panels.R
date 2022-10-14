@@ -242,6 +242,7 @@ dashboard2_panel <- function() {
                             valueBoxOutput("boxavgreadmaths", width = 6),
                             valueBoxOutput("PAGcatbox", width = 6),
                             valueBoxOutput("PAGbox", width = 6)),
+                            gov_row(
                             column(width = 6, 
                                     numericInput("p8scoreeng", p("Enter the pupil's key stage 4 attainment score for their P8 English element:"), 0, min = 0, max = 18, step = 0.01),
                                    numericInput("p8scoremath", p("Enter the pupil's key stage 4 attainment score for their P8 maths element:"), 0, min = 0, max = 18, step = 0.01)),
@@ -251,7 +252,7 @@ dashboard2_panel <- function() {
                             
                             #numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum("input.p8scoreeng"), min = 0, max = 95, step = 0.01),
                             column(width = 12, 
-                                   uiOutput('p8scoreinputbox')),
+                                   uiOutput('p8scoreinputbox'))),
                             gov_row(
                             h3("Progress 8 element"),
                             valueBoxOutput("estimatedscorebox", width = 6),
