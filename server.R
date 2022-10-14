@@ -20,25 +20,29 @@
 
 
 server <- function(input, output, session) {
-
+  
   # Loading screen ---------------------------------------------------------------------------
   # Call initial loading screen
-
+  
   hide(id = "loading-content", anim = TRUE, animType = "fade")
   show("app-content")
-
+  
   # Simple server stuff goes here ------------------------------------------------------------
-  reactiveRevBal <- reactive({
-    dfRevBal %>% filter(
-      area_name == input$selectArea | area_name == "England",
-      school_phase == input$selectPhase
-    )
-  })
-
+  # reactiveRevBal <- reactive({
+  #   dfRevBal %>% filter(
+  #     area_name == input$selectArea | area_name == "England",
+  #     school_phase == input$selectPhase
+  #   )
+  # })
+  
+  
+  
+  #  ---------------------
+  
   reactivemean <- reactive({
     average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))
   })
-
+  
   reactiveKS2 <- reactive({
     if (reactivemean() <= 82) {
       paste(1)
@@ -110,12 +114,12 @@ server <- function(input, output, session) {
       paste(34)
     }
   })
-
-
+  
+  
   reactivemeanebac <- reactive({
     average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinputebac], choicesPupil$value[choicesPupil$label == input$readinginputebac]))
   })
-
+  
   reactiveKS2ebac <- reactive({
     if (reactivemeanebac() <= 82) {
       paste(1)
@@ -187,139 +191,79 @@ server <- function(input, output, session) {
       paste(34)
     }
   })
-
-
+  
+  
   reactiveestimated <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score)
   })
-
+  
   reactiveestimatedeng <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_eng)
   })
-
+  
   reactiveestimatedmath <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_mat)
   })
-
+  
   reactiveestimatedebac <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_ebac)
   })
-
+  
   reactiveestimatedopen <- reactive({
     pupil_coefficients %>%
       filter(ks2emss == reactiveKS2()) %>%
       select(p8score_open)
   })
-
+  
   reactiveestimatedebacsci <- reactive({
     as.numeric(pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2ebac()) %>%
-      select(science_score))
+                 filter(ks2emss == reactiveKS2ebac()) %>%
+                 select(science_score))
   })
-
+  
   reactiveestimatedebachum <- reactive({
     as.numeric(pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2ebac()) %>%
-      select(humanities_score))
+                 filter(ks2emss == reactiveKS2ebac()) %>%
+                 select(humanities_score))
   })
-
+  
   reactiveestimatedebaclan <- reactive({
     as.numeric(pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2ebac()) %>%
-      select(languages_score))
+                 filter(ks2emss == reactiveKS2ebac()) %>%
+                 select(languages_score))
   })
-
+  
+  reactiveconfidenceintervalsp8 <- reactive({
+    data <- user_VA_data()
+    round(mean(data$p8score)-((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score)))),2) 
+  })  
+  
+  reactiveconfidenceintervalsebac <- reactive({
+    data <- user_VA_data_ebac()
+    round(mean(data$p8score)-((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score)))),2) 
+  })
+  
+  
   output$p8scoreinputbox <- renderUI({
-    sumscore <- sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen)
-    numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sumscore, min = 0, max = 95, step = 0.01)
+    numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
   })
-
-  # Numeric input warnings --------------------------------------------------
-
-  iv <- InputValidator$new()
-  iv$add_rule("p8scoreeng", sv_between(0, 18))
-  iv$add_rule("p8scoremath", sv_between(0, 18))
-  iv$add_rule("p8scoreebac", sv_between(0, 27))
-  iv$add_rule("p8scoreopen", sv_between(0, 27))
-  iv$add_rule("p8score", sv_between(0, 95))
-  iv$add_rule("ebacscoresci", sv_between(0, 9))
-  iv$add_rule("ebacscorehum", sv_between(0, 9))
-  iv$add_rule("ebacscorelan", sv_between(0, 9))
-  iv$enable()
-
-
-  # Define server logic required to draw a histogram
-  output$lineRevBal <- renderPlotly({
-    ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
-      config(displayModeBar = F) %>%
-      layout(legend = list(orientation = "h", x = 0, y = -0.2))
-  })
-
-  reactiveBenchmark <- reactive({
-    dfRevBal %>%
-      filter(
-        area_name %in% c(input$selectArea, input$selectBenchLAs),
-        school_phase == input$selectPhase,
-        year == max(year)
-      )
-  })
-
-  output$colBenchmark <- renderPlotly({
-    ggplotly(plotAvgRevBenchmark(reactiveBenchmark()) %>%
-      config(displayModeBar = F),
-    height = 420
-    )
-  })
-
-  output$tabBenchmark <- renderDataTable({
-    datatable(reactiveBenchmark() %>%
-      select(
-        Area = area_name,
-        `Average Revenue Balance (£)` = average_revenue_balance,
-        `Total Revenue Balance (£m)` = total_revenue_balance_million
-      ),
-    options = list(
-      scrollX = TRUE,
-      paging = FALSE
-    )
-    )
-  })
-
-  # Define server logic to create a box
-
-  output$boxavgRevBal <- renderValueBox({
-
-    # Put value into box to plug into app
-    valueBox(
-      # take input number
-      paste0("£", format((reactiveRevBal() %>% filter(
-        year == max(year),
-        area_name == input$selectArea,
-        school_phase == input$selectPhase
-      ))$average_revenue_balance,
-      big.mark = ","
-      )),
-      # add subtitle to explain what it's hsowing
-      paste0("This is the latest value for the selected inputs"),
-      color = "blue"
-    )
-  })
-
+  
+  
   output$boxavgreadmaths <- renderValueBox({
     valueBox(reactivemean(),
-      "Pupil's KS2 average point score",
-      color = "blue"
+             "Pupil's KS2 average point score",
+             color = "blue"
     )
   })
-
+  
   # feel free to change the name to be more descriptive!!!
   output$PAGcatbox <- renderValueBox({
     valueBox((if (reactivemean() < 100) {
@@ -333,38 +277,38 @@ server <- function(input, output, session) {
     color = "blue"
     )
   })
-
+  
   output$PAGbox <- renderValueBox({
     valueBox(reactiveKS2(),
-      subtitle = "Prior attainment group categorisation",
-      color = "blue"
+             subtitle = "Prior attainment group categorisation",
+             color = "blue"
     )
   })
-
+  
   output$estimatedscorebox <- renderValueBox({
-
+    
     # make it use PAG score to look up p8score from coefficient table as estimated score
-
+    
     valueBox(reactiveestimated(),
-      subtitle = "Estimated key stage 4 score",
-      color = "green"
+             subtitle = "Estimated key stage 4 score",
+             color = "green"
     )
   })
-
+  
   output$VAscorebox <- renderValueBox({
-    valueBox(ifelse(input$p8score <= 95, input$p8score - reactiveestimated(), NA),
-      subtitle = "Pupil value added score",
-      color = "green"
+    valueBox(input$p8score - reactiveestimated(),
+             subtitle = "Pupil value added score",
+             color = "green"
     )
   })
-
+  
   output$VAscoreavbox <- renderValueBox({
-    valueBox(ifelse(input$p8score <= 95, round(((input$p8score - reactiveestimated()) / 10), 2), NA),
-      subtitle = "Pupil value added average score",
-      color = "green"
+    valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
+             subtitle = "Pupil value added average score",
+             color = "green"
     )
   })
-
+  
   output$estvsactual <- renderPlotly({
     ggplot(df, aes(x = x, y = y)) +
       geom_line() +
@@ -378,101 +322,101 @@ server <- function(input, output, session) {
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
   })
-
+  
   output$estimatedscoreboxeng <- renderValueBox({
     valueBox(reactiveestimatedeng(),
-      subtitle = "Estimated key stage 4 score - English element",
-      color = "purple"
+             subtitle = "Estimated key stage 4 score - English element",
+             color = "purple"
     )
   })
-
+  
   output$VAscoreboxeng <- renderValueBox({
-    valueBox(ifelse(input$p8scoreeng <= 18, input$p8scoreeng - reactiveestimatedeng(), NA),
-      subtitle = "Pupil value added score - English element",
-      color = "purple"
+    valueBox(input$p8scoreeng - reactiveestimatedeng(),
+             subtitle = "Pupil value added score - English element",
+             color = "purple"
     )
   })
-
+  
   output$VAscoreavboxeng <- renderValueBox({
-    valueBox(ifelse(input$p8scoreeng <= 18, round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2), NA),
-      subtitle = "Pupil value added average score - English element",
-      color = "purple"
+    valueBox(round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2),
+             subtitle = "Pupil value added average score - English element",
+             color = "purple"
     )
   })
-
+  
   output$estimatedscoreboxmath <- renderValueBox({
     valueBox(reactiveestimatedmath(),
-      subtitle = "Estimated key stage 4 score - maths element",
-      color = "orange"
+             subtitle = "Estimated key stage 4 score - maths element",
+             color = "orange"
     )
   })
-
+  
   output$VAscoreboxmath <- renderValueBox({
-    valueBox(ifelse(input$p8scoremath <= 18, input$p8scoremath - reactiveestimatedmath(), NA),
-      subtitle = "Pupil value added score - maths element",
-      color = "orange"
+    valueBox(input$p8scoremath - reactiveestimatedmath(),
+             subtitle = "Pupil value added score - maths element",
+             color = "orange"
     )
   })
-
+  
   output$VAscoreavboxmath <- renderValueBox({
-    valueBox(ifelse(input$p8scoremath <= 18, round(((input$p8scoremath - reactiveestimatedmath()) / 2), 2), NA),
-      subtitle = "Pupil value added average score - maths element",
-      color = "orange"
+    valueBox(round(((input$p8scoremath - reactiveestimatedmath()) / 2), 2),
+             subtitle = "Pupil value added average score - maths element",
+             color = "orange"
     )
   })
-
+  
   output$estimatedscoreboxebac <- renderValueBox({
     valueBox(reactiveestimatedebac(),
-      subtitle = "Estimated key stage 4 score - EBacc element",
-      color = "aqua"
+             subtitle = "Estimated key stage 4 score - EBacc element",
+             color = "aqua"
     )
   })
-
+  
   output$VAscoreboxebac <- renderValueBox({
-    valueBox(ifelse(input$p8scoreebac <= 27, input$p8scoreebac - reactiveestimatedebac(), NA),
-      subtitle = "Pupil value added score - EBacc element",
-      color = "aqua"
+    valueBox(input$p8scoreebac - reactiveestimatedebac(),
+             subtitle = "Pupil value added score - EBacc element",
+             color = "aqua"
     )
   })
-
+  
   output$VAscoreavboxebac <- renderValueBox({
-    valueBox(ifelse(input$p8scoreebac <= 27, round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2), NA),
-      subtitle = "Pupil value added average score - EBacc element",
-      color = "aqua"
+    valueBox(round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2),
+             subtitle = "Pupil value added average score - EBacc element",
+             color = "aqua"
     )
   })
-
+  
   output$estimatedscoreboxopen <- renderValueBox({
     valueBox(reactiveestimatedopen(),
-      subtitle = "Estimated key stage 4 score - open element",
-      color = "fuchsia"
+             subtitle = "Estimated key stage 4 score - open element",
+             color = "fuchsia"
     )
   })
-
+  
   output$VAscoreboxopen <- renderValueBox({
-    valueBox(ifelse(input$p8scoreopen <= 27, input$p8scoreopen - reactiveestimatedopen(), NA),
-      subtitle = "Pupil value added score - open element",
-      color = "fuchsia"
+    valueBox(input$p8scoreopen - reactiveestimatedopen(),
+             subtitle = "Pupil value added score - open element",
+             color = "fuchsia"
     )
   })
-
+  
   output$VAscoreavboxopen <- renderValueBox({
-    valueBox(ifelse(input$p8scoreopen <= 27, round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2), NA),
-      subtitle = "Pupil value added average score - open element",
-      color = "fuchsia"
+    valueBox(round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2),
+             subtitle = "Pupil value added average score - open element",
+             color = "fuchsia"
     )
   })
-
+  
   # --------------------------------------------------------------------end of P8 tab
-
+  
   output$boxavgreadmathsebac <- renderValueBox({
     valueBox(reactivemeanebac(),
-      "Pupil's KS2 average point score",
-      color = "blue"
+             "Pupil's KS2 average point score",
+             color = "blue"
     )
   })
-
-
+  
+  
   output$PAGcatboxebac <- renderValueBox({
     valueBox((if (reactivemeanebac() < 100) {
       paste("Below standard")
@@ -485,35 +429,35 @@ server <- function(input, output, session) {
     color = "blue"
     )
   })
-
+  
   output$PAGboxebac <- renderValueBox({
     valueBox(reactiveKS2ebac(),
-      subtitle = "Prior attainment group categorisation",
-      color = "blue"
+             subtitle = "Prior attainment group categorisation",
+             color = "blue"
     )
   })
-
+  
   output$estimatedscoreboxebacsci <- renderValueBox({
     valueBox(reactiveestimatedebacsci(),
-      subtitle = "Estimated Ebacc score - science subject area",
-      color = "green"
+             subtitle = "Estimated Ebacc score - science subject area",
+             color = "green"
     )
   })
-
+  
   output$VAscoreboxebacsci <- renderValueBox({
-    valueBox(ifelse(input$ebacscoresci <= 9, input$ebacscoresci - reactiveestimatedebacsci(), NA),
-      subtitle = "Pupil value added score",
-      color = "green"
+    valueBox(input$ebacscoresci - reactiveestimatedebacsci(),
+             subtitle = "Pupil value added score",
+             color = "green"
     )
   })
-
+  
   # output$VAscoreavbox <- renderValueBox({
   #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
   #            subtitle = "Pupil value added score",
   #            color = "green"
   #   )
   # })
-
+  
   output$estvsactualebacsci <- renderPlotly({
     ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
@@ -527,28 +471,28 @@ server <- function(input, output, session) {
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
   })
-
+  
   output$estimatedscoreboxebachum <- renderValueBox({
     valueBox(reactiveestimatedebachum(),
-      subtitle = "Estimated Ebacc score - humanities subject area",
-      color = "orange"
+             subtitle = "Estimated Ebacc score - humanities subject area",
+             color = "orange"
     )
   })
-
+  
   output$VAscoreboxebachum <- renderValueBox({
-    valueBox(ifelse(input$ebacscorehum <= 9, input$ebacscorehum - reactiveestimatedebachum(), NA),
-      subtitle = "Pupil value added score",
-      color = "orange"
+    valueBox(input$ebacscorehum - reactiveestimatedebachum(),
+             subtitle = "Pupil value added score",
+             color = "orange"
     )
   })
-
+  
   # output$VAscoreavbox <- renderValueBox({
   #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
   #            subtitle = "Pupil value added score",
   #            color = "green"
   #   )
   # })
-
+  
   output$estvsactualebachum <- renderPlotly({
     ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
@@ -562,28 +506,28 @@ server <- function(input, output, session) {
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
   })
-
+  
   output$estimatedscoreboxebaclan <- renderValueBox({
     valueBox(reactiveestimatedebaclan(),
-      subtitle = "Estimated Ebacc score - languages subject area",
-      color = "blue"
+             subtitle = "Estimated Ebacc score - languages subject area",
+             color = "blue"
     )
   })
-
+  
   output$VAscoreboxebaclan <- renderValueBox({
-    valueBox(ifelse(input$ebacscorelan <= 9, input$ebacscorelan - reactiveestimatedebaclan(), NA),
-      subtitle = "Pupil value added score",
-      color = "blue"
+    valueBox(input$ebacscorelan - reactiveestimatedebaclan(),
+             subtitle = "Pupil value added score",
+             color = "blue"
     )
   })
-
+  
   # output$VAscoreavbox <- renderValueBox({
   #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
   #            subtitle = "Pupil value added score",
   #            color = "green"
   #   )
   # })
-
+  
   output$estvsactualebaclan <- renderPlotly({
     ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
@@ -597,15 +541,206 @@ server <- function(input, output, session) {
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
   })
-
-
-
+  
+  ##############################  
+  #Schools tab
+  
+  reactivep8elstdev <- reactive({
+    if(input$p8elementinput == 'Progress 8'){
+      p8stdev$p8stdev}
+    else if(input$p8elementinput == 'Progress 8 - English element'){
+      p8stdev$p8engstdev}
+    else if(input$p8elementinput == 'Progress 8 - maths element'){
+      p8stdev$p8matstdev}
+    else if(input$p8elementinput == 'Progress 8 - EBacc element'){
+      p8stdev$p8ebacstdev}
+    else if(input$p8elementinput == 'Progress 8 - open element'){
+      p8stdev$p8openstdev}
+  })
+  
+  reactiveebacelstdev <- reactive({
+    if(input$ebacelementinput == 'KS2-4 English Baccalaureate - science subject area'){
+      ebacstdev$scivastdev}
+    else if(input$ebacelementinput == 'KS2-4 English Baccalaureate - humanities subject area'){
+      ebacstdev$humvastdev}
+    else if(input$ebacelementinput == 'KS2-4 English Baccalaureate - languages subject area'){
+      ebacstdev$lanvastdev}
+  })
+  
+  output$boxavgschoolp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round(mean(data$p8score), 2),
+             "Final school  score (average of pupils' scores)",
+             color = "blue"
+    )
+  })
+  
+  output$boxavgschoolebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score),2),   #AB is this correct?
+             "Final school  score (average of pupils' scores)",
+             color = "green")
+  })
+  
+  output$boxpupilnumberp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(length(data$p8score),
+             "Number of pupils included in P8 calculation",
+             color = "blue"
+    )
+  })
+  
+  output$boxpupilnumberebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(length(data$p8score),
+             "Number of pupils included in P8 calculation",
+             color = "green")
+  })
+  
+  output$boxconfintp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score))),2), 
+             subtitle = "Confidence interval",
+             color = "blue")
+  })
+  
+  output$boxconfintebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score))),2), 
+             subtitle = "Confidence interval",
+             color = "green")
+  })
+  
+  output$boxuppconflimp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round(mean(data$p8score)+((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score)))),2), 
+             subtitle = "Upper confidence limit",
+             color = "blue")
+  })
+  
+  output$boxuppconflimebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score)+((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score)))),2), 
+             subtitle = "Upper confidence limit",
+             color = "green")
+  })
+  
+  output$boxlowconflimp8score <- renderValueBox({
+    data <- user_VA_data()
+    valueBox(round(mean(data$p8score)-((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score)))),2),
+             subtitle = "Lower confidence limit",
+             color = "blue")
+  })
+  
+  output$boxlowconflimebacscore <- renderValueBox({
+    data <- user_VA_data_ebac()
+    valueBox(round(mean(data$p8score)-((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score)))),2),
+             subtitle = "Lower confidence limit",
+             color = "green")
+  })
+  
+  output$boxp8scorenatcomp <- renderValueBox({
+    data <- user_VA_data()
+    upperlim <- mean(data$p8score)+((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score))))
+    lowlim <- mean(data$p8score)-((1.96*(reactivep8elstdev()))/(sqrt(length(data$p8score))))
+    valueBox(
+      if(is.null(data) == FALSE){
+        (if (reactiveconfidenceintervalsp8() > 0) {
+          paste("Significantly above")
+        } else if (reactiveconfidenceintervalsp8() < 0) {
+          paste("Significantly below")
+        } else if (upperlim > 0 & lowerlim < 0) {
+          paste("Not significantly different")
+        })} else {
+          paste("NA")
+        },
+      subtitle = "Your school's Progress 8 score compared to the national average",
+      color = "blue"
+    )
+  })
+  
+  output$boxebacscorenatcomp <- renderValueBox({   
+    data <- user_VA_data_ebac()
+    upperlim <- mean(data$p8score)+((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score))))
+    lowlim <- mean(data$p8score)-((1.96*(reactiveebacelstdev()))/(sqrt(length(data$p8score))))
+    valueBox(
+      if(is.null(data) == FALSE){
+        (if (reactiveconfidenceintervalsebac() > 0) {
+          paste("Significantly above")
+        } else if (reactiveconfidenceintervalsebac() < 0) {
+          paste("Significantly below")
+        } else if (upperlim > 0 & lowerlim < 0) {
+          paste("Not significantly different")
+        })} else {
+          paste("NA")
+        },
+      subtitle = "Your school's VA score compared to the national average",
+      color = "green"
+    )
+  })
+  
+  user_VA_data <- reactive({
+    csv_filename <- input$user_input_VA
+    if (is.null(csv_filename)) {
+      return(NULL)
+    }
+    data <- read.csv(csv_filename$datapath, header = TRUE)
+    return(data)
+  })
+  
+  output$user_view <- DT::renderDataTable({
+    DT::datatable(user_VA_data())
+  })
+  
+  user_VA_data_ebac <- reactive({
+    csv_filename <- input$user_input_VA_ebac
+    if (is.null(csv_filename)) {
+      return(NULL)
+    }
+    data <- read.csv(csv_filename$datapath, header = TRUE)
+    return(data)
+  })
+  
+  output$user_view_ebac <- DT::renderDataTable({
+    DT::datatable(user_VA_data_ebac())
+  })
+  
+  output$errorbarchart <- renderPlotly({
+    data <- user_VA_data()
+    point <- round(mean(data$p8score), 2)
+    df <- data.frame(x = c(-7.5:7.5), y = c(-7.5:7.5))
+    upperlimit <- mean(data$p8score) + ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
+    lowerlimit <- mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
+    
+    # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
+    ggplot(df, aes(x = x, y = 0)) +
+      geom_line() +
+      geom_text(aes(label = "National average", x = -0.45, y = 0.5, hjust = 0)) +
+      # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
+      geom_point(aes(x = 0, y = point), colour = "blue", size = 2) +
+      ylim(c(-7.5, 7.5)) +
+      xlim(c(-0.5, 0.5)) +
+      xlab("Comparison to national average") +
+      ylab("Value added score") +
+      geom_errorbar(aes(
+        ymin = lowerlimit,
+        ymax = upperlimit,
+        x = 0
+      ),
+      width = 0.05
+      ) +
+      theme(
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()
+      )
+  })
+  
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
   })
-
+  
   # Stop app ---------------------------------------------------------------------------------
-
+  
   session$onSessionEnded(function() {
     stopApp()
   })
