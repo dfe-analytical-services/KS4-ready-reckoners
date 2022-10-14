@@ -185,6 +185,10 @@ a:active {
      color: #ffffff;
 }
 
+.small-box h3{
+  white-space: pre-wrap;
+}
+
 
 #ss-connect-dialog { display: none !important; }
 #shiny-disconnected-overlay { display: none !important; }
