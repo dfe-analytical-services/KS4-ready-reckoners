@@ -331,7 +331,7 @@ server <- function(input, output, session) {
   })
 
   output$estvsactual <- renderPlotly({
-    ggplot(df, aes(x = x, y = y)) +
+    estvsactual <- ggplot(df, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimated()), y = input$p8score, size = 2, colour = "#FF007F") +
       ggtitle("Estimated against actual KS4 outcome") +
@@ -342,6 +342,9 @@ server <- function(input, output, session) {
         axis.title.x = element_text(color = "black", size = 10, face = "plain"),
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
+
+    ggplotly(estvsactual) %>%
+      config(displayModeBar = F)
   })
 
   output$estimatedscoreboxeng <- renderValueBox({
@@ -480,7 +483,7 @@ server <- function(input, output, session) {
   # })
 
   output$estvsactualebacsci <- renderPlotly({
-    ggplot(df2, aes(x = x, y = y)) +
+    estvsactualebacsci <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "green") +
       ggtitle("Estimated against actual KS4 outcome") +
@@ -491,6 +494,9 @@ server <- function(input, output, session) {
         axis.title.x = element_text(color = "black", size = 10, face = "plain"),
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
+
+    ggplotly(estvsactualebacsci) %>%
+      config(displayModeBar = F)
   })
 
   output$estimatedscoreboxebachum <- renderValueBox({
@@ -515,7 +521,7 @@ server <- function(input, output, session) {
   # })
 
   output$estvsactualebachum <- renderPlotly({
-    ggplot(df2, aes(x = x, y = y)) +
+    estvsactualebachum <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "orange") +
       ggtitle("Estimated against actual KS4 outcome") +
@@ -526,6 +532,9 @@ server <- function(input, output, session) {
         axis.title.x = element_text(color = "black", size = 10, face = "plain"),
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
+
+    ggplotly(estvsactualebachum) %>%
+      config(displayModeBar = F)
   })
 
   output$estimatedscoreboxebaclan <- renderValueBox({
@@ -550,7 +559,7 @@ server <- function(input, output, session) {
   # })
 
   output$estvsactualebaclan <- renderPlotly({
-    ggplot(df2, aes(x = x, y = y)) +
+    estvsactualebaclan <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "blue") +
       ggtitle("Estimated against actual KS4 outcome") +
@@ -561,6 +570,9 @@ server <- function(input, output, session) {
         axis.title.x = element_text(color = "black", size = 10, face = "plain"),
         axis.title.y = element_text(color = "black", size = 10, face = "plain")
       )
+
+    ggplotly(estvsactualebaclan) %>%
+      config(displayModeBar = F)
   })
 
   ##############################
@@ -746,7 +758,7 @@ server <- function(input, output, session) {
     lowerlimit <- mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
 
     # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
-    ggplot(df, aes(x = x, y = 0)) +
+    errorbar <- ggplot(df, aes(x = x, y = 0)) +
       geom_line() +
       geom_text(aes(label = "National average", x = -0.45, y = 0.5, hjust = 0)) +
       # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
@@ -766,6 +778,9 @@ server <- function(input, output, session) {
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank()
       )
+
+    ggplotly(errorbar) %>%
+      config(displayModeBar = F)
   })
 
   observeEvent(input$link_to_app_content_tab, {
