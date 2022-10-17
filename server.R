@@ -477,7 +477,7 @@ server <- function(input, output, session) {
   output$estvsactualebacsci <- renderPlotly({
     estvsactualebacsci <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
-      geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "green") +
+      geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "#00703c") +
       #ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
@@ -515,7 +515,7 @@ server <- function(input, output, session) {
   output$estvsactualebachum <- renderPlotly({
     estvsactualebachum <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
-      geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "orange") +
+      geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "#F46A25") +
       #ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
@@ -553,7 +553,7 @@ server <- function(input, output, session) {
   output$estvsactualebaclan <- renderPlotly({
     estvsactualebaclan <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
-      geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "blue") +
+      geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "#1d70b8") +
       #ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
@@ -754,7 +754,7 @@ server <- function(input, output, session) {
       geom_line() +
       geom_text(aes(label = "National average", x = -0.5, y = 0.5)) +
       # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
-      geom_point(aes(x = 0, y = point), colour = "blue", size = 2) +
+      geom_point(aes(x = 0, y = point), colour = "#1d70b8", size = 2) +
       ylim(c(-7.5, 7.5)) +
       xlim(c(-0.5, 0.5)) +
       xlab("Comparison to national average") +
