@@ -259,14 +259,6 @@ server <- function(input, output, session) {
   iv$add_rule("ebacscorelan", sv_between(0, 9))
   iv$enable()
 
-
-  # Define server logic required to draw a histogram
-  output$lineRevBal <- renderPlotly({
-    ggplotly(createAvgRevTimeSeries(reactiveRevBal(), input$selectArea)) %>%
-      config(displayModeBar = F) %>%
-      layout(legend = list(orientation = "h", x = 0, y = -0.2))
-  })
-
   reactiveconfidenceintervalsebac <- reactive({
     data <- user_VA_data_ebac()
     round(mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score)))), 2)
@@ -334,7 +326,7 @@ server <- function(input, output, session) {
     estvsactual <- ggplot(df, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimated()), y = input$p8score, size = 2, colour = "#FF007F") +
-      ggtitle("Estimated against actual KS4 outcome") +
+      #ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
       theme(
@@ -486,7 +478,7 @@ server <- function(input, output, session) {
     estvsactualebacsci <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "green") +
-      ggtitle("Estimated against actual KS4 outcome") +
+      #ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
       theme(
@@ -524,7 +516,7 @@ server <- function(input, output, session) {
     estvsactualebachum <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "orange") +
-      ggtitle("Estimated against actual KS4 outcome") +
+      #ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
       theme(
@@ -562,7 +554,7 @@ server <- function(input, output, session) {
     estvsactualebaclan <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "blue") +
-      ggtitle("Estimated against actual KS4 outcome") +
+      #ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
       theme(
