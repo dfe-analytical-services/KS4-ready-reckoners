@@ -15,12 +15,14 @@
       ]
     },
     "chartbutton": "Science",
+    "ebacelementinput": "KS2-4 English Baccalaureate - science subject area",
     "ebacscorehum": 0,
     "ebacscorelan": 0,
     "ebacscoresci": 0,
     "mathsinput": "120",
     "mathsinputebac": "Grade = N",
     "navlistPanel": "dashboard2",
+    "p8elementinput": "Progress 8",
     "p8score": 90,
     "p8scoreebac": 27,
     "p8scoreeng": 18,
@@ -29,7 +31,9 @@
     "plotly_afterplot-A": "\"estvsactual\"",
     "readinginput": "120",
     "readinginputebac": "Grade = N",
-    "tabsetpanels": "EBacc subject area"
+    "tabsetpanels": "EBacc subject area",
+    "user_input_VA": null,
+    "user_input_VA_ebac": null
   },
   "output": {
     "boxavgreadmaths": {
