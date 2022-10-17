@@ -189,6 +189,9 @@ a:active {
   white-space: pre-wrap;
 }
 
+.small-box p {
+    font-size: 21px;
+}
 
 #ss-connect-dialog { display: none !important; }
 #shiny-disconnected-overlay { display: none !important; }
