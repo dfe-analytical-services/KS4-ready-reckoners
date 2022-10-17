@@ -694,7 +694,7 @@ server <- function(input, output, session) {
           paste("Significantly above")
         } else if (upperlim < 0) {
           paste("Significantly below")
-        } else if (upperlim > 0 & lowlim < 0) 
+        } else if (upperlim > 0 & lowlim < 0) {
           paste("Not significantly different")
         })
       } else {
