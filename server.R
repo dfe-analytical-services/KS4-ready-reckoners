@@ -246,6 +246,19 @@ server <- function(input, output, session) {
     round(mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score)))), 2)
   })
 
+  # Numeric input warnings --------------------------------------------------
+
+  iv <- InputValidator$new()
+  iv$add_rule("p8scoreeng", sv_between(0, 18))
+  iv$add_rule("p8scoremath", sv_between(0, 18))
+  iv$add_rule("p8scoreebac", sv_between(0, 27))
+  iv$add_rule("p8scoreopen", sv_between(0, 27))
+  iv$add_rule("p8score", sv_between(0, 95))
+  iv$add_rule("ebacscoresci", sv_between(0, 9))
+  iv$add_rule("ebacscorehum", sv_between(0, 9))
+  iv$add_rule("ebacscorelan", sv_between(0, 9))
+  iv$enable()
+  
   reactiveconfidenceintervalsebac <- reactive({
     data <- user_VA_data_ebac()
     round(mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score)))), 2)
@@ -296,14 +309,14 @@ server <- function(input, output, session) {
   })
 
   output$VAscorebox <- renderValueBox({
-    valueBox(input$p8score - reactiveestimated(),
+    valueBox(ifelse(input$p8score <= 95, input$p8score - reactiveestimated(), NA),
       subtitle = "Pupil value added score",
       color = "green"
     )
   })
 
   output$VAscoreavbox <- renderValueBox({
-    valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
+    valueBox(ifelse(input$p8score <= 95, round(((input$p8score - reactiveestimated()) / 10), 2), NA),
       subtitle = "Pupil value added average score",
       color = "green"
     )
@@ -331,14 +344,14 @@ server <- function(input, output, session) {
   })
 
   output$VAscoreboxeng <- renderValueBox({
-    valueBox(input$p8scoreeng - reactiveestimatedeng(),
+    valueBox(ifelse(input$p8scoreeng <= 18, input$p8scoreeng - reactiveestimatedeng(), NA),
       subtitle = "Pupil value added score - English element",
       color = "purple"
     )
   })
 
   output$VAscoreavboxeng <- renderValueBox({
-    valueBox(round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2),
+    valueBox(ifelse(input$p8scoreeng <= 18, round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2), NA),
       subtitle = "Pupil value added average score - English element",
       color = "purple"
     )
@@ -352,14 +365,14 @@ server <- function(input, output, session) {
   })
 
   output$VAscoreboxmath <- renderValueBox({
-    valueBox(input$p8scoremath - reactiveestimatedmath(),
+    valueBox(ifelse(input$p8scoremath <= 18, input$p8scoremath - reactiveestimatedmath(), NA),
       subtitle = "Pupil value added score - maths element",
       color = "orange"
     )
   })
 
   output$VAscoreavboxmath <- renderValueBox({
-    valueBox(round(((input$p8scoremath - reactiveestimatedmath()) / 2), 2),
+    valueBox(ifelse(input$p8scoremath <= 18, round(((input$p8scoremath - reactiveestimatedmath()) / 2), 2), NA),
       subtitle = "Pupil value added average score - maths element",
       color = "orange"
     )
@@ -373,14 +386,14 @@ server <- function(input, output, session) {
   })
 
   output$VAscoreboxebac <- renderValueBox({
-    valueBox(input$p8scoreebac - reactiveestimatedebac(),
+    valueBox(ifelse(input$p8scoreebac <= 27, input$p8scoreebac - reactiveestimatedebac(), NA),
       subtitle = "Pupil value added score - EBacc element",
       color = "aqua"
     )
   })
 
   output$VAscoreavboxebac <- renderValueBox({
-    valueBox(round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2),
+    valueBox(ifelse(input$p8scoreebac <= 27, round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2), NA),
       subtitle = "Pupil value added average score - EBacc element",
       color = "aqua"
     )
@@ -394,14 +407,14 @@ server <- function(input, output, session) {
   })
 
   output$VAscoreboxopen <- renderValueBox({
-    valueBox(input$p8scoreopen - reactiveestimatedopen(),
+    valueBox(ifelse(input$p8scoreopen <= 27, input$p8scoreopen - reactiveestimatedopen(), NA),
       subtitle = "Pupil value added score - open element",
       color = "fuchsia"
     )
   })
 
   output$VAscoreavboxopen <- renderValueBox({
-    valueBox(round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2),
+    valueBox(ifelse(input$p8scoreopen <= 27, round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2), NA),
       subtitle = "Pupil value added average score - open element",
       color = "fuchsia"
     )
@@ -445,7 +458,7 @@ server <- function(input, output, session) {
   })
 
   output$VAscoreboxebacsci <- renderValueBox({
-    valueBox(input$ebacscoresci - reactiveestimatedebacsci(),
+    valueBox(ifelse(input$ebacscoresci <= 9, input$ebacscoresci - reactiveestimatedebacsci(), NA),
       subtitle = "Pupil value added score",
       color = "green"
     )
@@ -480,7 +493,7 @@ server <- function(input, output, session) {
   })
 
   output$VAscoreboxebachum <- renderValueBox({
-    valueBox(input$ebacscorehum - reactiveestimatedebachum(),
+    valueBox(ifelse(input$ebacscorehum <= 9, input$ebacscorehum - reactiveestimatedebachum(), NA),
       subtitle = "Pupil value added score",
       color = "orange"
     )
@@ -515,7 +528,7 @@ server <- function(input, output, session) {
   })
 
   output$VAscoreboxebaclan <- renderValueBox({
-    valueBox(input$ebacscorelan - reactiveestimatedebaclan(),
+    valueBox(ifelse(input$ebacscorelan <= 9, input$ebacscorelan - reactiveestimatedebaclan(), NA),
       subtitle = "Pupil value added score",
       color = "blue"
     )
@@ -653,13 +666,14 @@ server <- function(input, output, session) {
     data <- user_VA_data()
     upperlim <- mean(data$p8score) + ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score))))
     lowlim <- mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score))))
+
     valueBox(
       if (is.null(data) == FALSE) {
-        (if (reactiveconfidenceintervalsp8() > 0) {
+        (if (lowlim > 0) {
           paste("Significantly above")
-        } else if (reactiveconfidenceintervalsp8() < 0) {
+        } else if (upperlim < 0) {
           paste("Significantly below")
-        } else if (upperlim > 0 & lowerlim < 0) {
+        } else if (upperlim > 0 & lowlim < 0) {
           paste("Not significantly different")
         })
       } else {
@@ -676,11 +690,11 @@ server <- function(input, output, session) {
     lowlim <- mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))))
     valueBox(
       if (is.null(data) == FALSE) {
-        (if (reactiveconfidenceintervalsebac() > 0) {
+        (if (lowlim > 0) {
           paste("Significantly above")
-        } else if (reactiveconfidenceintervalsebac() < 0) {
+        } else if (upperlim < 0) {
           paste("Significantly below")
-        } else if (upperlim > 0 & lowerlim < 0) {
+        } else if (upperlim > 0 & lowlim < 0) 
           paste("Not significantly different")
         })
       } else {

@@ -220,7 +220,7 @@ dashboard2_panel <- function() {
         
         column(
           width=12,
-          tabsetPanel(id = "tabsetpanels",
+          tabsetPanel(id = "tabsetpanels2",
                       tabPanel(
                         "Progress 8",
                         fluidRow(
