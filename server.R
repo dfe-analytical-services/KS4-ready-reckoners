@@ -342,84 +342,84 @@ server <- function(input, output, session) {
   output$estimatedscoreboxeng <- renderValueBox({
     valueBox(reactiveestimatedeng(),
       subtitle = "Estimated key stage 4 score - English element",
-      color = "purple"
+      color = "green"
     )
   })
 
   output$VAscoreboxeng <- renderValueBox({
     valueBox(ifelse(input$p8scoreeng <= 18, input$p8scoreeng - reactiveestimatedeng(), NA),
       subtitle = "Pupil value added score - English element",
-      color = "purple"
+      color = "green"
     )
   })
 
   output$VAscoreavboxeng <- renderValueBox({
     valueBox(ifelse(input$p8scoreeng <= 18, round(((input$p8scoreeng - reactiveestimatedeng()) / 2), 2), NA),
       subtitle = "Pupil value added average score - English element",
-      color = "purple"
+      color = "green"
     )
   })
 
   output$estimatedscoreboxmath <- renderValueBox({
     valueBox(reactiveestimatedmath(),
       subtitle = "Estimated key stage 4 score - maths element",
-      color = "orange"
+      color = "green"
     )
   })
 
   output$VAscoreboxmath <- renderValueBox({
     valueBox(ifelse(input$p8scoremath <= 18, input$p8scoremath - reactiveestimatedmath(), NA),
       subtitle = "Pupil value added score - maths element",
-      color = "orange"
+      color = "green"
     )
   })
 
   output$VAscoreavboxmath <- renderValueBox({
     valueBox(ifelse(input$p8scoremath <= 18, round(((input$p8scoremath - reactiveestimatedmath()) / 2), 2), NA),
       subtitle = "Pupil value added average score - maths element",
-      color = "orange"
+      color = "green"
     )
   })
 
   output$estimatedscoreboxebac <- renderValueBox({
     valueBox(reactiveestimatedebac(),
       subtitle = "Estimated key stage 4 score - EBacc element",
-      color = "aqua"
+      color = "green"
     )
   })
 
   output$VAscoreboxebac <- renderValueBox({
     valueBox(ifelse(input$p8scoreebac <= 27, input$p8scoreebac - reactiveestimatedebac(), NA),
       subtitle = "Pupil value added score - EBacc element",
-      color = "aqua"
+      color = "green"
     )
   })
 
   output$VAscoreavboxebac <- renderValueBox({
     valueBox(ifelse(input$p8scoreebac <= 27, round(((input$p8scoreebac - reactiveestimatedebac()) / 3), 2), NA),
       subtitle = "Pupil value added average score - EBacc element",
-      color = "aqua"
+      color = "green"
     )
   })
 
   output$estimatedscoreboxopen <- renderValueBox({
     valueBox(reactiveestimatedopen(),
       subtitle = "Estimated key stage 4 score - open element",
-      color = "fuchsia"
+      color = "green"
     )
   })
 
   output$VAscoreboxopen <- renderValueBox({
     valueBox(ifelse(input$p8scoreopen <= 27, input$p8scoreopen - reactiveestimatedopen(), NA),
       subtitle = "Pupil value added score - open element",
-      color = "fuchsia"
+      color = "green"
     )
   })
 
   output$VAscoreavboxopen <- renderValueBox({
     valueBox(ifelse(input$p8scoreopen <= 27, round(((input$p8scoreopen - reactiveestimatedopen()) / 3), 2), NA),
       subtitle = "Pupil value added average score - open element",
-      color = "fuchsia"
+      color = "green"
     )
   })
 
