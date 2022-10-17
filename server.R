@@ -752,7 +752,7 @@ server <- function(input, output, session) {
     # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
     errorbar <- ggplot(df, aes(x = x, y = 0)) +
       geom_line() +
-      geom_text(aes(label = "National average", x = -0.45, y = 0.5, hjust = 0)) +
+      geom_text(aes(label = "National average", x = -0.5, y = 0.5)) +
       # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
       geom_point(aes(x = 0, y = point), colour = "blue", size = 2) +
       ylim(c(-7.5, 7.5)) +
@@ -772,7 +772,8 @@ server <- function(input, output, session) {
       )
 
     ggplotly(errorbar) %>%
-      config(displayModeBar = F)
+      config(displayModeBar = F) %>% 
+      style(textposition = "right")
   })
 
   observeEvent(input$link_to_app_content_tab, {
