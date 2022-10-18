@@ -171,6 +171,7 @@ dashboard_panel <- function() {
               p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
               column(
                 width = 12,
+                htmlOutput("ebacerrorbarchart_title"),
                 plotlyOutput("ebacerrorbarchart"))
               
             )

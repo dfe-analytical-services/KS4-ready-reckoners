@@ -809,6 +809,10 @@ server <- function(input, output, session) {
       config(displayModeBar = F) %>% 
       style(textposition = "right")
   })
+  
+  output$ebacerrorbarchart_title <- renderText({
+    paste("<h4> Comparison of value added score to the national average score - ", input$ebacelementinput, "</h4>")
+  })
 
   observeEvent(input$link_to_app_content_tab, {
     updateTabsetPanel(session, "navlistPanel", selected = "dashboard")
