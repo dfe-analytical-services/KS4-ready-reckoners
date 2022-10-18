@@ -258,7 +258,7 @@ server <- function(input, output, session) {
   iv$add_rule("ebacscorehum", sv_between(0, 9))
   iv$add_rule("ebacscorelan", sv_between(0, 9))
   iv$enable()
-  
+
   reactiveconfidenceintervalsebac <- reactive({
     data <- user_VA_data_ebac()
     round(mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score)))), 2)
