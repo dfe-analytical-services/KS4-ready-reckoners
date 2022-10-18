@@ -326,7 +326,7 @@ server <- function(input, output, session) {
     estvsactual <- ggplot(df, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimated()), y = input$p8score, size = 2, colour = "#FF007F") +
-      #ggtitle("Estimated against actual KS4 outcome") +
+      # ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
       theme(
@@ -478,7 +478,7 @@ server <- function(input, output, session) {
     estvsactualebacsci <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "#00703c") +
-      #ggtitle("Estimated against actual KS4 outcome") +
+      # ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
       theme(
@@ -516,7 +516,7 @@ server <- function(input, output, session) {
     estvsactualebachum <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "#F46A25") +
-      #ggtitle("Estimated against actual KS4 outcome") +
+      # ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
       theme(
@@ -554,7 +554,7 @@ server <- function(input, output, session) {
     estvsactualebaclan <- ggplot(df2, aes(x = x, y = y)) +
       geom_line() +
       geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "#1d70b8") +
-      #ggtitle("Estimated against actual KS4 outcome") +
+      # ggtitle("Estimated against actual KS4 outcome") +
       xlab("Estimated KS4 outcome") +
       ylab("Actual KS4 outcome") +
       theme(
@@ -772,17 +772,17 @@ server <- function(input, output, session) {
       )
 
     ggplotly(errorbar) %>%
-      config(displayModeBar = F) %>% 
+      config(displayModeBar = F) %>%
       style(textposition = "right")
   })
-  
+
   output$ebacerrorbarchart <- renderPlotly({
     data <- user_VA_data_ebac()
     point <- round(mean(data$p8score), 2)
     df <- data.frame(x = c(-7.5:7.5), y = c(-7.5:7.5))
     upperlim <- mean(data$p8score) + ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))))
     lowlim <- mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))))
-    
+
     # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
     errorbar <- ggplot(df, aes(x = x, y = 0)) +
       geom_line() +
@@ -804,12 +804,12 @@ server <- function(input, output, session) {
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank()
       )
-    
+
     ggplotly(errorbar) %>%
-      config(displayModeBar = F) %>% 
+      config(displayModeBar = F) %>%
       style(textposition = "right")
   })
-  
+
   output$ebacerrorbarchart_title <- renderText({
     paste("<h4> Comparison of value added score to the national average score - ", input$ebacelementinput, "</h4>")
   })
