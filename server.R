@@ -788,7 +788,7 @@ server <- function(input, output, session) {
       geom_line() +
       geom_text(aes(label = "National average", x = -0.5, y = 0.5)) +
       # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
-      geom_point(aes(x = 0, y = point), colour = "#1d70b8", size = 2) +
+      geom_point(aes(x = 0, y = point), colour = "#00703c", size = 2) +
       ylim(c(-7.5, 7.5)) +
       xlim(c(-0.5, 0.5)) +
       xlab("Comparison to national average") +
