@@ -25,7 +25,6 @@ homepage_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  title = "This section is useful if you want to understand how well different industries retain graduates.",
                   h3("Introduction"),
                   p("There are four key stage 2 to 4 ready reckoners:"),
                   strong("The Progress 8 element breakdown pupil ready reckoner."),
@@ -133,13 +132,13 @@ dashboard_panel <- function() {
           p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
           p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
           p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
-          column(
-            width = 12,
+          
+            h4("Comparison of value added score to the national average score"),
             plotlyOutput("errorbarchart"))
 #          h2("Select KS2 scaled score for READING"),
 #          valueBoxOutput("boxavgRevBal", width = 6),
 #          valueBoxOutput("boxpcRevBal", width = 6),
-          )
+          
         )
         ),
         tabPanel(
@@ -172,6 +171,7 @@ dashboard_panel <- function() {
               p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
               column(
                 width = 12,
+                htmlOutput("ebacerrorbarchart_title"),
                 plotlyOutput("ebacerrorbarchart"))
               
             )
@@ -280,6 +280,7 @@ dashboard2_panel <- function() {
                         valueBoxOutput("VAscoreavboxopen", width = 6)),
                         column(
                           width = 12,
+                          h4("Estimated against actual KS4 outcome"),
                           plotlyOutput("estvsactual")))))
 #                            )
                         
@@ -326,6 +327,7 @@ dashboard2_panel <- function() {
                      radioGroupButtons('chartbutton', 
                                        label = "Choose which metric you would like to view:",
                                        choices = c('Science', 'Humanities', 'Languages')),
+                     h4("Estimated against actual KS4 outcome"),
                      conditionalPanel("input.chartbutton == 'Science'",
                        plotlyOutput("estvsactualebacsci")),
                      conditionalPanel("input.chartbutton == 'Humanities'",
