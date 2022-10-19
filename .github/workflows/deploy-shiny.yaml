@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - accessibility_checks
 
 name: deploy-shiny
 
@@ -65,5 +65,4 @@ jobs:
         run: >
           Rscript
           -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')"
-          -e "rsconnect::deployApp(appName='KS4-ready-reckoners')"
-#          -e "rsconnect::deployApp(appName='KS4-ready-reckoners-overflow')"
+          -e "rsconnect::deployApp(appName='KS4-ready-reckoners_preprod')"
