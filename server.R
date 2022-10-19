@@ -678,6 +678,7 @@ server <- function(input, output, session) {
     data <- user_VA_data()
     upperlim <- mean(data$p8score) + ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score))))
     lowlim <- mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score))))
+
     valueBox(
       if (is.null(data) == FALSE) {
         (if (lowlim > 0) {
