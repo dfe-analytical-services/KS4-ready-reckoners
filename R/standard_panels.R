@@ -44,12 +44,7 @@ support_links <- function() {
         gov_row(
           column(width=12,
     h2("Give us feedback"),
-    "This dashboard is a new service that we are developing. If you have any feedback or suggestions for improvements, please submit them using our ",
-    a(
-      href = "https://forms.office.com",
-      "feedback form", .noWS = c("after")
-    ), ".", br(),
-    "If you spot any errors or bugs while using this dashboard, please screenshot and email them to ",
+    "This dashboard is a new service that we are developing. If you have any feedback or suggestions for improvements, or if you spot any errors or bugs while using it, please email (with screenshots if errors) ",
     a(href = "mailto:attainment.statistics@education.gov.uk", "attainment.statistics@education.gov.uk", .noWS = c("after")), ".",
     br(),
     h2("Find more information on the data"),
