@@ -58,10 +58,26 @@
 
 ui <- function(input, output, session) {
   fluidPage(
-    title = tags$head(tags$link(
-      rel = "shortcut icon",
-      href = "dfefavicon.png"
-    )),
+    # use_tota11y(),
+    title = tags$head(
+      tags$link(
+        rel = "shortcut icon",
+        href = "dfefavicon.png"
+      ),
+      # Add title for browser tabs
+      tags$title("KS4 Ready Reckoner")
+    ),
+    tags$html(lang = "en"),
+    # Add meta description for search engines
+    meta() %>%
+      meta_general(
+        application_name = "KS4 Ready Reckoner",
+        description = "KS4 Ready Reckoner",
+        robots = "index,follow",
+        generator = "R-Shiny",
+        rating = "General",
+        referrer = "no-referrer"
+      ),
     shinyjs::useShinyjs(),
     useShinydashboard(),
     tags$head(includeHTML(("google-analytics.html"))),
@@ -82,10 +98,7 @@ ui <- function(input, output, session) {
       "beta banner",
       "beta",
       paste0(
-        "This Dashboard is in beta phase and we are still reviewing performance and reliability. ",
-        "In case of slowdown or connection issues due to high demand, we have produced two instances of this site which can be accessed at the following links: ",
-        "<a href=", site_primary, " id='link_site_1'>Site 1</a> and ",
-        "<a href=", site_overflow, " id='link_site_2'>Site 2</a>."
+        "This Dashboard is in beta phase and we are still reviewing performance and reliability."
       )
     ),
     shiny::navlistPanel(
