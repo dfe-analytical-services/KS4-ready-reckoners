@@ -55,7 +55,7 @@ support_links <- function() {
     a(href = "mailto:attainment.statistics@education.gov.uk", "attainment.statistics@education.gov.uk", .noWS = c("after")), br(),
     h2("See the source code"),
     "The source code for this dashboard is available in our ",
-    a(href = "https://github.com/dfe-analytical-services/shiny-template", "GitHub repository", .noWS = c("after")),
+    a(href = "https://github.com/dfe-analytical-services/KS4-ready-reckoners", "GitHub repository", .noWS = c("after")),
     ".",
     br(),
     br(),
