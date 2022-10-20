@@ -730,12 +730,13 @@ server <- function(input, output, session) {
   })
 
   output$user_view <- DT::renderDataTable({
-    if(is.null(user_VA_data())) {
-      DT::datatable(data.frame(`Adjusted progress 8 score` = c('Please upload data')))
+    if (is.null(user_VA_data())) {
+      DT::datatable(data.frame(`Adjusted progress 8 score` = c("Please upload data")))
     } else {
-    tabledata <- user_VA_data() %>%
-      select(`Adjusted progress 8 score` = p8score)
-    DT::datatable(tabledata)}
+      tabledata <- user_VA_data() %>%
+        select(`Adjusted progress 8 score` = p8score)
+      DT::datatable(tabledata)
+    }
   })
 
   user_VA_data_ebac <- reactive({
@@ -751,12 +752,13 @@ server <- function(input, output, session) {
   })
 
   output$user_view_ebac <- DT::renderDataTable({
-    if(is.null(user_VA_data_ebac())) {
-      DT::datatable(data.frame(`Adjusted progress 8 score` = c('Please upload data')))
+    if (is.null(user_VA_data_ebac())) {
+      DT::datatable(data.frame(`Adjusted progress 8 score` = c("Please upload data")))
     } else {
-    tabledata <- user_VA_data_ebac() %>%
-      select(`Adjusted progress 8 score` = p8score)
-    DT::datatable(tabledata)}
+      tabledata <- user_VA_data_ebac() %>%
+        select(`Adjusted progress 8 score` = p8score)
+      DT::datatable(tabledata)
+    }
   })
 
   output$errorbarchart <- renderPlotly({
