@@ -722,11 +722,20 @@ server <- function(input, output, session) {
       return(NULL)
     }
     data <- read.csv(csv_filename$datapath, header = TRUE)
+    print(colnames(data))
+    data <- data %>%
+      filter(`Pupil.included.in.progress.8.calculations` == 1) %>%
+      select(p8score = Pupil.s.adjusted.progress.8.score)
     return(data)
   })
 
   output$user_view <- DT::renderDataTable({
-    DT::datatable(user_VA_data())
+    if(is.null(user_VA_data())) {
+      DT::datatable(data.frame(`Adjusted progress 8 score` = c('Please upload data')))
+    } else {
+    tabledata <- user_VA_data() %>%
+      select(`Adjusted progress 8 score` = p8score)
+    DT::datatable(tabledata)}
   })
 
   user_VA_data_ebac <- reactive({
@@ -735,16 +744,24 @@ server <- function(input, output, session) {
       return(NULL)
     }
     data <- read.csv(csv_filename$datapath, header = TRUE)
+    data <- data %>%
+      filter(`Pupil.included.in.progress.8.calculations` == 1) %>%
+      select(p8score = Pupil.s.adjusted.progress.8.score)
     return(data)
   })
 
   output$user_view_ebac <- DT::renderDataTable({
-    DT::datatable(user_VA_data_ebac())
+    if(is.null(user_VA_data_ebac())) {
+      DT::datatable(data.frame(`Adjusted progress 8 score` = c('Please upload data')))
+    } else {
+    tabledata <- user_VA_data_ebac() %>%
+      select(`Adjusted progress 8 score` = p8score)
+    DT::datatable(tabledata)}
   })
 
   output$errorbarchart <- renderPlotly({
     data <- user_VA_data()
-    point <- round(mean(data$p8score), 2)
+    point <- round(mean(data$`Pupil's adjusted progress 8 score`), 2)
     df <- data.frame(x = c(-4:4), y = c(-4:4))
     upperlimit <- mean(data$p8score) + ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
     lowerlimit <- mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
