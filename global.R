@@ -82,11 +82,11 @@ site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-templa
 source("R/support_links.R")
 source("R/read_data.R")
 
-pupil_coefficients <- read.csv("data/p8_pupil_coefficients_dummy.csv")
-pupil_modelvalues <- read.csv("data/ebac_pupil_modelvalues_dummy.csv")
+pupil_coefficients <- read.csv("data/p8_pupil_coefficients_file.csv")
+pupil_modelvalues <- read.csv("data/ebac_pupil_modelvalues_file.csv")
 pupil_modelvalues$ks2emss <- as.numeric(pupil_modelvalues$ks2emss)
-p8stdev <- read.csv("data/p8_stdev_dummy.csv")
-ebacstdev <- read.csv("data/ebac_stdev_dummy.csv")
+p8stdev <- read.csv("data/p8_stdev_file.csv")
+ebacstdev <- read.csv("data/ebac_stdev_file.csv")
 p8stdev$p8stdev <- as.numeric(p8stdev$p8stdev)
 
 df <- data.frame(

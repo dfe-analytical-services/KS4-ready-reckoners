@@ -195,50 +195,50 @@ server <- function(input, output, session) {
 
   reactiveestimated <- reactive({
     pupil_coefficients %>%
-      filter(ks2emss == reactiveKS2()) %>%
-      select(p8score)
+      filter(ks2emss_grp == reactiveKS2()) %>%
+      select(p8est)
   })
 
   reactiveestimatedeng <- reactive({
     pupil_coefficients %>%
-      filter(ks2emss == reactiveKS2()) %>%
-      select(p8score_eng)
+      filter(ks2emss_grp == reactiveKS2()) %>%
+      select(p8esteng)
   })
 
   reactiveestimatedmath <- reactive({
     pupil_coefficients %>%
-      filter(ks2emss == reactiveKS2()) %>%
-      select(p8score_mat)
+      filter(ks2emss_grp == reactiveKS2()) %>%
+      select(p8estmat)
   })
 
   reactiveestimatedebac <- reactive({
     pupil_coefficients %>%
-      filter(ks2emss == reactiveKS2()) %>%
-      select(p8score_ebac)
+      filter(ks2emss_grp == reactiveKS2()) %>%
+      select(p8estebac)
   })
 
   reactiveestimatedopen <- reactive({
     pupil_coefficients %>%
-      filter(ks2emss == reactiveKS2()) %>%
-      select(p8score_open)
+      filter(ks2emss_grp == reactiveKS2()) %>%
+      select(p8estopen)
   })
 
   reactiveestimatedebacsci <- reactive({
     as.numeric(pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2ebac()) %>%
-      select(science_score))
+      filter(ks2emss_grp == reactiveKS2ebac()) %>%
+      select(sciest))
   })
 
   reactiveestimatedebachum <- reactive({
     as.numeric(pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2ebac()) %>%
-      select(humanities_score))
+      filter(ks2emss_grp == reactiveKS2ebac()) %>%
+      select(humest))
   })
 
   reactiveestimatedebaclan <- reactive({
     as.numeric(pupil_modelvalues %>%
-      filter(ks2emss == reactiveKS2ebac()) %>%
-      select(languages_score))
+      filter(ks2emss_grp == reactiveKS2ebac()) %>%
+      select(lanest))
   })
 
   reactiveconfidenceintervalsp8 <- reactive({
@@ -745,9 +745,10 @@ server <- function(input, output, session) {
   output$errorbarchart <- renderPlotly({
     data <- user_VA_data()
     point <- round(mean(data$p8score), 2)
-    df <- data.frame(x = c(-7.5:7.5), y = c(-7.5:7.5))
+    df <- data.frame(x = c(-4:4), y = c(-4:4))
     upperlimit <- mean(data$p8score) + ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
     lowerlimit <- mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
+
 
     # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
     errorbar <- ggplot(df, aes(x = x, y = 0)) +
