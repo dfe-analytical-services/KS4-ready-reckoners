@@ -47,7 +47,7 @@ support_links <- function() {
     br(),
     h2("Find more information on the data"),
     "The data used to produce the dashboard, along with methodological information can be found on ",
-    a(href = "https://explore-education-statistics.service.gov.uk/", "Explore Education Statistics", .noWS = c("after")),
+    a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance-revised", "Explore Education Statistics", .noWS = c("after")),
     ".",
     br(),
     h2("Contact us"),
