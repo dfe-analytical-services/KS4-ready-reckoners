@@ -110,8 +110,12 @@ dashboard_panel <- function() {
                    fluidRow(
                      column(
                        width=12,
+                       br(),
+                       strong("Please download a csv file your school's pupil scores from "),
+                       a(href = "https://tableschecking.education.gov.uk/", "https://tableschecking.education.gov.uk/", .noWS = c("after")), 
+                       strong(" and upload the file here:"),
           fileInput("user_input_VA",
-                    "Please download a csv file your school's pupil scores from https://tableschecking.education.gov.uk/ and upload the file here:",
+                    label = NULL,
                     #(a(href="https://tableschecking.education.gov.uk/",  "https://tableschecking.education.gov.uk/ and upload the file here:")),
                     multiple = FALSE,
                     accept = c('text/csv','text/comma-separated-values','.csv')),
@@ -147,8 +151,12 @@ dashboard_panel <- function() {
           fluidRow(
             column(
               width=12,
+              br(),
+              strong("Please download a csv file your school's pupil scores from "),
+              a(href = "https://tableschecking.education.gov.uk/", "https://tableschecking.education.gov.uk/", .noWS = c("after")), 
+              strong(" and upload the file here:"),
               fileInput("user_input_VA_ebac",
-                        "Please download a csv file your school's pupil scores from https://tableschecking.education.gov.uk/ and upload the file here:",
+                        label = NULL,
                         multiple = FALSE,
                         accept = c('text/csv','text/comma-separated-values','.csv')),
               br(),
