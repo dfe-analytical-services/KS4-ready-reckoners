@@ -384,15 +384,34 @@ dashboard3_panel <- function() {
               div(
                 class = "panel-heading",
                 style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
-                h2("Guidance")
+                h2("PAGs, Attainment 8 splits and standard deviations")
               ),
               div(
                 class = "panel-body",
                 tags$div(
-                  h3("Introduction"),
+                  p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in 
+                  state-funded mainstream schools within the same prior attainment group at KS2. The 
+                  following table shows the provisional Attainment 8 averages for each KS2 prior 
+                  attainment group, based on the 2022 cohort averages."), 
+                  p("Changes to national subject entry patterns and performance, as well as changes to the 
+                  methodology and grading as a result of COVID-19 this year will cause these averages to 
+                  change in future years."),
+                  p("Schools may change their curriculum offer in response to the 
+                  Progress 8 measure and to the Government’s EBacc ambition, so any modelling based 
+                  on current national results could be misleading."), 
+                  h3("Progress 8 PAGs and Attainment 8 splits"),
                   datatable(p8att8splits),
+                  h3("EBacc subject area PAGs and Attainment 8 splits"),
                   datatable(ebacatt8splits),
+                  br(),
+                  br(),
+                  br(),
+                  br(),
+                  p("The below standard deviations are based on the Progress 8 scores of all eligible pupils at 
+                  mainstream schools and are the national figures used in confidence interval calculations."),
+                  h3("Progress 8 standard deviations"),
                   datatable(p8stdevnamed),
+                  h3("EBacc subject area standard deviations"),
                   datatable(ebacstdevnamed)
                 )
               )
