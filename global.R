@@ -88,6 +88,10 @@ pupil_modelvalues$ks2emss <- as.numeric(pupil_modelvalues$ks2emss)
 p8stdev <- read.csv("data/p8_stdev_file.csv")
 ebacstdev <- read.csv("data/ebac_stdev_file.csv")
 p8stdev$p8stdev <- as.numeric(p8stdev$p8stdev)
+p8att8splits <- read.csv("data/p8_att8_splits.csv")
+ebacatt8splits <- read.csv("data/ebac_att8_splits.csv")
+p8stdevnamed <- read.csv("data/p8_stdev_file_named.csv")
+ebacstdevnamed <- read.csv("data/ebac_stdev_file_named.csv")
 
 df <- data.frame(
   x = c(0:90),

@@ -54,30 +54,7 @@ homepage_panel <- function() {
               )
             )
           )
-        )#,
-        
-       # Right panel ------------------------------------------------------
-        
-      # column(
-      #     1,
-      #     div(
-      #       div(
-      #         class = "panel panel-info",
-      #         div(
-#               class = "panel-heading",
-#                style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
-#               h2("How to use")
-#              ),
-#              div(
-#                class = "panel-body",
-#                strong("1) Select the 'School' or 'Pupil ready reckoner' tab from the left side bar."),
-#                br(),
-#                br(),
-#                strong("2) Follow the instructions steps within.")
-#             )
-#            )
-#          )
-#        )
+        )
       )
     )
   )
@@ -130,7 +107,7 @@ dashboard_panel <- function() {
           valueBoxOutput("boxpupilnumberp8score", width = 6),
           p("The width of the confidence interval is determined by both the national standard deviation in the progress measure in question and the number of pupils in the school in the VA calculation. Smaller schools have wider confidence intervals because their VA score is based on a smaller number of pupils, so there is less evidence on which to judge the school’s effectiveness."),
           gov_row(
-          valueBoxOutput("boxconfintp8score", width = 6),
+          #valueBoxOutput("boxconfintp8score", width = 6),
           valueBoxOutput("boxuppconflimp8score", width = 6),
           valueBoxOutput("boxlowconflimp8score", width = 6),
           valueBoxOutput("boxp8scorenatcomp", width = 6)),
@@ -171,7 +148,7 @@ dashboard_panel <- function() {
               valueBoxOutput("boxpupilnumberebacscore", width = 6),
               p("The width of the confidence interval is determined by both the national standard deviation in the progress measure in question and the number of pupils in the school in the VA calculation. Smaller schools have wider confidence intervals because their VA score is based on a smaller number of pupils, so there is less evidence on which to judge the school’s effectiveness."),
               gov_row(
-                valueBoxOutput("boxconfintebacscore", width = 6),
+                #valueBoxOutput("boxconfintebacscore", width = 6),
                 valueBoxOutput("boxuppconflimebacscore", width = 6),
                 valueBoxOutput("boxlowconflimebacscore", width = 6),
                 valueBoxOutput("boxebacscorenatcomp", width = 6)),
@@ -185,26 +162,7 @@ dashboard_panel <- function() {
               
             )
           )
-        #   column(
-        #     width=6,
-        #     div(
-        #       class = "well",
-        #       style = "min-height: 100%; height: 100%; overflow-y: visible",
-        #       fluidRow(
-        #         # column(
-        #         #   width=12,
-        #         #   selectizeInput("selectBenchLAs",
-        #         #                  "Select benchamrk LAs",
-        #         #                  choices = choicesLAs$area_name,
-        #         #                  multiple=TRUE,
-        #         #                  options = list(maxItems = 3)
-        #         #   )
-        #         # )
-        #           )
-        #       ),
-        #         dataTableOutput("tabBenchmark")
-        #   ))
-        # ))
+
               )
         )
 )
@@ -365,7 +323,41 @@ dashboard2_panel <- function() {
                             )
                         ))
           ))
-        )))
-        # add box to show user input
-  
+          )) }
+ ## work from here
+
+dashboard3_panel <- function() {
+  tabPanel(
+    "Model values",
+    gov_main_layout(
+      gov_row(
+        column(
+          12,
+          h1("Model values"),
+          br(),
+          br()
+        ),
+        
+        column(
+          12, #6,--AB trial
+          div(
+            div(
+              class = "panel panel-info",
+              div(
+                class = "panel-heading",
+                style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
+                h2("Guidance")
+              ),
+              div(
+                class = "panel-body",
+                tags$div(
+                  h3("Introduction"),
+                  datatable(p8att8splits),
+                  datatable(ebacatt8splits),
+                  datatable(p8stdevnamed),
+                  datatable(ebacstdevnamed)
+              )
+            )
+          )
+        )
 }
