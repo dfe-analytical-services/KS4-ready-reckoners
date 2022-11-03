@@ -9,11 +9,11 @@ homepage_panel <- function() {
           br(),
           br()
         ),
-        
+
         ## Left panel -------------------------------------------------------
-        
+
         column(
-          12, #6,--AB trial
+          12, # 6,--AB trial
           div(
             div(
               class = "panel panel-info",
@@ -33,7 +33,7 @@ homepage_panel <- function() {
                   br(),
                   strong("The Progress 8 element breakdown school ready reckoner."),
                   ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in Progress 8 or any of its elements, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-                  (a(href="https://tableschecking.education.gov.uk/", "checking site")),
+                  (a(href = "https://tableschecking.education.gov.uk/", "checking site")),
                   br(),
                   br(),
                   strong("The EBacc subject pupil ready reckoner."),
@@ -42,7 +42,7 @@ homepage_panel <- function() {
                   br(),
                   strong("The EBacc subject school ready reckoner."),
                   ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in any of the three subject areas in the English Baccalaureate, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-                  (a(href="https://tableschecking.education.gov.uk/", "checking site.")),
+                  (a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
                   br(),
                   br(),
                   br(),
@@ -58,7 +58,6 @@ homepage_panel <- function() {
       )
     )
   )
-  
 }
 
 
@@ -66,265 +65,305 @@ dashboard_panel <- function() {
   tabPanel(
     value = "dashboard",
     "School ready reckoner",
-    
+
     # Define UI for application that draws a histogram
-    
-    
-    
+
+
+
     # Sidebar with a slider input for number of bins
     gov_main_layout(
       gov_row(
         column(
-          width=12,
-        h1("School level ready reckoner")
+          width = 12,
+          h1("School level ready reckoner")
         ),
-        
         column(
-          width=12,
-               tabsetPanel(id = "tabsetpanels",
-                 tabPanel(
-                   "Progress 8",
-                   fluidRow(
-                     column(
-                       width=12,
-                       br(),
-                       strong("Please download a csv file your school's pupil scores from "),
-                       a(href = "https://tableschecking.education.gov.uk/", "https://tableschecking.education.gov.uk/", .noWS = c("after")), 
-                       strong(" and upload the file here:"),
-          fileInput("user_input_VA",
+          width = 12,
+          tabsetPanel(
+            id = "tabsetpanels",
+            tabPanel(
+              "Progress 8",
+              fluidRow(
+                column(
+                  width = 12,
+                  br(),
+                  strong("Please download a csv file your school's pupil scores from "),
+                  a(href = "https://tableschecking.education.gov.uk/", "https://tableschecking.education.gov.uk/", .noWS = c("after")),
+                  strong(" and upload the file here:"),
+                  fileInput("user_input_VA",
                     label = NULL,
-                    #(a(href="https://tableschecking.education.gov.uk/",  "https://tableschecking.education.gov.uk/ and upload the file here:")),
+                    # (a(href="https://tableschecking.education.gov.uk/",  "https://tableschecking.education.gov.uk/ and upload the file here:")),
                     multiple = FALSE,
-                    accept = c('text/csv','text/comma-separated-values','.csv')),
-          br(),
-          DT::dataTableOutput("user_view"),
-          selectInput("p8elementinput",
-                      label = "Please select the progress measure for which you would like to calculate a school VA score.",
-                      choices = c('Progress 8', 'Progress 8 - English element', 'Progress 8 - maths element', 'Progress 8 - EBacc element', 'Progress 8 - open element'),
-                      selected = "Progress 8"
-          ),
-          valueBoxOutput("boxavgschoolp8score", width = 6),
-          valueBoxOutput("boxpupilnumberp8score", width = 6),
-          p("The width of the confidence interval is determined by both the national standard deviation in the progress measure in question and the number of pupils in the school in the VA calculation. Smaller schools have wider confidence intervals because their VA score is based on a smaller number of pupils, so there is less evidence on which to judge the school’s effectiveness."),
-          gov_row(
-          #valueBoxOutput("boxconfintp8score", width = 6),
-          valueBoxOutput("boxuppconflimp8score", width = 6),
-          valueBoxOutput("boxlowconflimp8score", width = 6),
-          valueBoxOutput("boxp8scorenatcomp", width = 6)),
-          p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
-          p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
-          p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
-          
-            h4("Comparison of value added score to the national average score"),
-            plotlyOutput("errorbarchart"))
-#          h2("Select KS2 scaled score for READING"),
-#          valueBoxOutput("boxavgRevBal", width = 6),
-#          valueBoxOutput("boxpcRevBal", width = 6),
-          
-        )
-        ),
-        tabPanel(
-          "EBacc subject area",
-          fluidRow(
-            column(
-              width=12,
-              br(),
-              strong("Please download a csv file your school's pupil scores from "),
-              a(href = "https://tableschecking.education.gov.uk/", "https://tableschecking.education.gov.uk/", .noWS = c("after")), 
-              strong(" and upload the file here:"),
-              fileInput("user_input_VA_ebac",
-                        label = NULL,
-                        multiple = FALSE,
-                        accept = c('text/csv','text/comma-separated-values','.csv')),
-              br(),
-              br(),
-              DT::dataTableOutput("user_view_ebac"),
-              selectInput("ebacelementinput",
-                          label = "Please select the EBacc subject area measure for which you would like to calculate a school VA score.",
-                          choices = c('KS2-4 English Baccalaureate - science subject area', 'KS2-4 English Baccalaureate - humanities subject area', 'KS2-4 English Baccalaureate - languages subject area'),
-                          selected = "KS2-4 English Baccalaureate - science subject area"
-              ),
-              valueBoxOutput("boxavgschoolebacscore", width = 6),
-              valueBoxOutput("boxpupilnumberebacscore", width = 6),
-              p("The width of the confidence interval is determined by both the national standard deviation in the progress measure in question and the number of pupils in the school in the VA calculation. Smaller schools have wider confidence intervals because their VA score is based on a smaller number of pupils, so there is less evidence on which to judge the school’s effectiveness."),
-              gov_row(
-                #valueBoxOutput("boxconfintebacscore", width = 6),
-                valueBoxOutput("boxuppconflimebacscore", width = 6),
-                valueBoxOutput("boxlowconflimebacscore", width = 6),
-                valueBoxOutput("boxebacscorenatcomp", width = 6)),
-              p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
-              p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
-              p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
-              column(
-                width = 12,
-                htmlOutput("ebacerrorbarchart_title"),
-                plotlyOutput("ebacerrorbarchart"))
-              
+                    accept = c("text/csv", "text/comma-separated-values", ".csv")
+                  ),
+                  br(),
+                  DT::dataTableOutput("user_view"),
+                  selectInput("p8elementinput",
+                    label = "Please select the progress measure for which you would like to calculate a school VA score.",
+                    choices = c("Progress 8", "Progress 8 - English element", "Progress 8 - maths element", "Progress 8 - EBacc element", "Progress 8 - open element"),
+                    selected = "Progress 8"
+                  ),
+                  valueBoxOutput("boxavgschoolp8score", width = 6),
+                  valueBoxOutput("boxpupilnumberp8score", width = 6),
+                  p("The width of the confidence interval is determined by both the national standard deviation in the progress measure in question and the number of pupils in the school in the VA calculation. Smaller schools have wider confidence intervals because their VA score is based on a smaller number of pupils, so there is less evidence on which to judge the school’s effectiveness."),
+                  gov_row(
+                    # valueBoxOutput("boxconfintp8score", width = 6),
+                    valueBoxOutput("boxuppconflimp8score", width = 6),
+                    valueBoxOutput("boxlowconflimp8score", width = 6),
+                    valueBoxOutput("boxp8scorenatcomp", width = 6)
+                  ),
+                  p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
+                  p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
+                  p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
+                  h4("Comparison of value added score to the national average score"),
+                  plotlyOutput("errorbarchart")
+                )
+                #          h2("Select KS2 scaled score for READING"),
+                #          valueBoxOutput("boxavgRevBal", width = 6),
+                #          valueBoxOutput("boxpcRevBal", width = 6),
+              )
+            ),
+            tabPanel(
+              "EBacc subject area",
+              fluidRow(
+                column(
+                  width = 12,
+                  br(),
+                  strong("Please download a csv file your school's pupil scores from "),
+                  a(href = "https://tableschecking.education.gov.uk/", "https://tableschecking.education.gov.uk/", .noWS = c("after")),
+                  strong(" and upload the file here:"),
+                  fileInput("user_input_VA_ebac",
+                    label = NULL,
+                    multiple = FALSE,
+                    accept = c("text/csv", "text/comma-separated-values", ".csv")
+                  ),
+                  br(),
+                  br(),
+                  DT::dataTableOutput("user_view_ebac"),
+                  selectInput("ebacelementinput",
+                    label = "Please select the EBacc subject area measure for which you would like to calculate a school VA score.",
+                    choices = c("KS2-4 English Baccalaureate - science subject area", "KS2-4 English Baccalaureate - humanities subject area", "KS2-4 English Baccalaureate - languages subject area"),
+                    selected = "KS2-4 English Baccalaureate - science subject area"
+                  ),
+                  valueBoxOutput("boxavgschoolebacscore", width = 6),
+                  valueBoxOutput("boxpupilnumberebacscore", width = 6),
+                  p("The width of the confidence interval is determined by both the national standard deviation in the progress measure in question and the number of pupils in the school in the VA calculation. Smaller schools have wider confidence intervals because their VA score is based on a smaller number of pupils, so there is less evidence on which to judge the school’s effectiveness."),
+                  gov_row(
+                    # valueBoxOutput("boxconfintebacscore", width = 6),
+                    valueBoxOutput("boxuppconflimebacscore", width = 6),
+                    valueBoxOutput("boxlowconflimebacscore", width = 6),
+                    valueBoxOutput("boxebacscorenatcomp", width = 6)
+                  ),
+                  p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
+                  p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
+                  p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
+                  column(
+                    width = 12,
+                    htmlOutput("ebacerrorbarchart_title"),
+                    plotlyOutput("ebacerrorbarchart")
+                  )
+                )
+              )
             )
           )
-
-              )
         )
-)
-          )
-  ))
+      )
+    )
+  )
 }
 
 dashboard2_panel <- function() {
   tabPanel(
     value = "dashboard2",
     "Pupil ready reckoner",
-    
+
     # Define UI for application that draws a histogram
-    
+
     # Sidebar with a slider input for number of bins
     gov_main_layout(
       gov_row(
         column(
-          width=12,
+          width = 12,
           h1("Pupil level ready reckoner")
         ),
-        
         column(
-          width=12,
-          tabsetPanel(id = "tabsetpanels2",
-                      tabPanel(
-                        "Progress 8",
-                        fluidRow(
-                          column(
-                            width=12,
-                            h3("Select the pupil's key stage 2 scaled score for READING"),
-                            selectInput("readinginput",
-                                        label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
-                                        choices = choicesPupil$label,
-                                        selected = "Grade = N"
-                            ),
-                            h3("Select the pupil's key stage 2 scaled score for MATHEMATICS"),
-                            selectInput("mathsinput",
-                                        label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
-                                        choices = choicesPupil$label,
-                                        selected = "Grade = N"
-                            ),
-                            gov_row(
-                            valueBoxOutput("boxavgreadmaths", width = 6),
-                            valueBoxOutput("PAGcatbox", width = 6),
-                            valueBoxOutput("PAGbox", width = 6)),
-                            gov_row(
-                            column(width = 6, 
-                                    numericInput("p8scoreeng", p("Enter the pupil's key stage 4 attainment score for their P8 English element:"), 0, min = 0, max = 18, step = 0.01),
-                                   numericInput("p8scoremath", p("Enter the pupil's key stage 4 attainment score for their P8 maths element:"), 0, min = 0, max = 18, step = 0.01)),
-                            column(width = 6, 
-                            numericInput("p8scoreebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 0, min = 0, max = 27, step = 0.01),
-                            numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 0, min = 0, max = 27, step = 0.01)),
-                            
-                            #numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum("input.p8scoreeng"), min = 0, max = 95, step = 0.01),
-                            column(width = 12, 
-                                   uiOutput('p8scoreinputbox'))),
-                            gov_row(
-                            h3("Progress 8 element"),
-                            valueBoxOutput("estimatedscorebox", width = 6),
-                            valueBoxOutput("VAscorebox", width = 6),
-                            valueBoxOutput("VAscoreavbox", width = 6)),
-                            gov_row(
-                            h3("Progress 8 - English element"),
-                            valueBoxOutput("estimatedscoreboxeng", width = 6),
-                            valueBoxOutput("VAscoreboxeng", width = 6),
-                            valueBoxOutput("VAscoreavboxeng", width = 6)),
-                            gov_row(
-                            h3("Progress 8 - maths element"),
-                            valueBoxOutput("estimatedscoreboxmath", width = 6),
-                            valueBoxOutput("VAscoreboxmath", width = 6),
-                            valueBoxOutput("VAscoreavboxmath", width = 6)),
-                        gov_row(
-                        h3("Progress 8 - EBacc element"),
-                        valueBoxOutput("estimatedscoreboxebac", width = 6),
-                        valueBoxOutput("VAscoreboxebac", width = 6),
-                        valueBoxOutput("VAscoreavboxebac", width = 6)),
-                        gov_row(
-                        h3("Progress 8 - open element"),
-                        valueBoxOutput("estimatedscoreboxopen", width = 6),
-                        valueBoxOutput("VAscoreboxopen", width = 6),
-                        valueBoxOutput("VAscoreavboxopen", width = 6)),
-                        column(
-                          width = 12,
-                          h4("Estimated against actual KS4 outcome"),
-                          plotlyOutput("estvsactual")))))
-#                            )
-                        
-                      ,
-                      tabPanel(
-                        "EBacc subject area",
-                        fluidRow(
-                          column(
-                            width=12,
-                            h3("Select the pupil's key stage 2 scaled score for READING"),
-                            selectInput("readinginputebac",
-                                        label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
-                                        choices = choicesPupil$label,
-                                        selected = "Grade = N"
-                            ),
-                            h3("Select the pupil's key stage 2 scaled score for MATHEMATICS"),
-                            selectInput("mathsinputebac",
-                                        label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
-                                        choices = choicesPupil$label,
-                                        selected = "Grade = N"
-                            ),gov_row(
-                            valueBoxOutput("boxavgreadmathsebac", width = 6),
-                            valueBoxOutput("PAGcatboxebac", width = 6),
-                            valueBoxOutput("PAGboxebac", width = 6)),
-                         #   h3("English Baccalaureate - science subject area"),
-                            br(),gov_row(
-                         column(width = 4,
-                            numericInput("ebacscoresci", p("Enter the pupil's score in the science EBacc element:"), 0, min = 0, max = 9, step = 0.01)),
-                         column(width = 4,
-                            numericInput("ebacscorehum", p("Enter the pupil's score in the humanities EBacc element:"), 0, min = 0, max = 9, step = 0.01)),
-                         column(width = 4,
-                            numericInput("ebacscorelan", p("Enter the pupil's score in the languages EBacc element:"), 0, min = 0, max = 9, step = 0.01))),
-                            valueBoxOutput("estimatedscoreboxebacsci", width = 6),
-                            valueBoxOutput("VAscoreboxebacsci", width = 6),
-                            #valueBoxOutput("VAscoreavbox", width = 6)),
-                        #  h3("English Baccalaureate - humanities subject area"),
-                          valueBoxOutput("estimatedscoreboxebachum", width = 6),
-                          valueBoxOutput("VAscoreboxebachum", width = 6),
-                          #valueBoxOutput("VAscoreavboxeng", width = 6),
-                       #   h3("English Baccalaureate - languages subject area"),
-                          valueBoxOutput("estimatedscoreboxebaclan", width = 6),
-                          valueBoxOutput("VAscoreboxebaclan", width = 6),
-                     #     valueBoxOutput("VAscoreavboxebaclan", width = 6)),
-                     radioGroupButtons('chartbutton', 
-                                       label = "Choose which metric you would like to view:",
-                                       choices = c('Science', 'Humanities', 'Languages')),
-                     h4("Estimated against actual KS4 outcome"),
-                     conditionalPanel("input.chartbutton == 'Science'",
-                       plotlyOutput("estvsactualebacsci")),
-                     conditionalPanel("input.chartbutton == 'Humanities'",
-                       plotlyOutput("estvsactualebachum")),
-                     conditionalPanel("input.chartbutton == 'Languages'",
-                          plotlyOutput("estvsactualebaclan"))
-                     # ,
-                     #    br(),
-                     #    br(),
-                     #    br(),
-                     #    h3("Progress 8 - EBacc element"),
-                     #    br(),
-                     #    numericInput("p8scoreebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 0, min = 0, max = 27, step = 0.01),
-                     #    valueBoxOutput("estimatedscoreboxebac", width = 6),
-                     #    valueBoxOutput("VAscoreboxebac", width = 6),
-                     #    valueBoxOutput("VAscoreavboxebac", width = 6),
-                     #    br(),
-                     #    br(),
-                     #    br(),
-                     #    h3("Progress 8 - open element"),
-                     #    br(),
-                     #    numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 0, min = 0, max = 27, step = 0.01),
-                     #    valueBoxOutput("estimatedscoreboxopen", width = 6),
-                     #    valueBoxOutput("VAscoreboxopen", width = 6),
-                     #    valueBoxOutput("VAscoreavboxopen", width = 6)
-                            )
-                        ))
-          ))
-          )) }
- ## work from here
+          width = 12,
+          tabsetPanel(
+            id = "tabsetpanels2",
+            tabPanel(
+              "Progress 8",
+              fluidRow(
+                column(
+                  width = 12,
+                  h3("Select the pupil's key stage 2 scaled score for READING"),
+                  selectInput("readinginput",
+                    label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
+                    choices = choicesPupil$label,
+                    selected = "Grade = N"
+                  ),
+                  h3("Select the pupil's key stage 2 scaled score for MATHEMATICS"),
+                  selectInput("mathsinput",
+                    label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
+                    choices = choicesPupil$label,
+                    selected = "Grade = N"
+                  ),
+                  gov_row(
+                    valueBoxOutput("boxavgreadmaths", width = 6),
+                    valueBoxOutput("PAGcatbox", width = 6),
+                    valueBoxOutput("PAGbox", width = 6)
+                  ),
+                  gov_row(
+                    column(
+                      width = 6,
+                      numericInput("p8scoreeng", p("Enter the pupil's key stage 4 attainment score for their P8 English element:"), 0, min = 0, max = 18, step = 0.01),
+                      numericInput("p8scoremath", p("Enter the pupil's key stage 4 attainment score for their P8 maths element:"), 0, min = 0, max = 18, step = 0.01)
+                    ),
+                    column(
+                      width = 6,
+                      numericInput("p8scoreebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 0, min = 0, max = 27, step = 0.01),
+                      numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 0, min = 0, max = 27, step = 0.01)
+                    ),
+
+                    # numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum("input.p8scoreeng"), min = 0, max = 95, step = 0.01),
+                    column(
+                      width = 12,
+                      uiOutput("p8scoreinputbox")
+                    )
+                  ),
+                  gov_row(
+                    h3("Progress 8 element"),
+                    valueBoxOutput("estimatedscorebox", width = 6),
+                    valueBoxOutput("VAscorebox", width = 6),
+                    valueBoxOutput("VAscoreavbox", width = 6)
+                  ),
+                  gov_row(
+                    h3("Progress 8 - English element"),
+                    valueBoxOutput("estimatedscoreboxeng", width = 6),
+                    valueBoxOutput("VAscoreboxeng", width = 6),
+                    valueBoxOutput("VAscoreavboxeng", width = 6)
+                  ),
+                  gov_row(
+                    h3("Progress 8 - maths element"),
+                    valueBoxOutput("estimatedscoreboxmath", width = 6),
+                    valueBoxOutput("VAscoreboxmath", width = 6),
+                    valueBoxOutput("VAscoreavboxmath", width = 6)
+                  ),
+                  gov_row(
+                    h3("Progress 8 - EBacc element"),
+                    valueBoxOutput("estimatedscoreboxebac", width = 6),
+                    valueBoxOutput("VAscoreboxebac", width = 6),
+                    valueBoxOutput("VAscoreavboxebac", width = 6)
+                  ),
+                  gov_row(
+                    h3("Progress 8 - open element"),
+                    valueBoxOutput("estimatedscoreboxopen", width = 6),
+                    valueBoxOutput("VAscoreboxopen", width = 6),
+                    valueBoxOutput("VAscoreavboxopen", width = 6)
+                  ),
+                  column(
+                    width = 12,
+                    h4("Estimated against actual KS4 outcome"),
+                    plotlyOutput("estvsactual")
+                  )
+                )
+              )
+            )
+            #                            )
+
+            ,
+            tabPanel(
+              "EBacc subject area",
+              fluidRow(
+                column(
+                  width = 12,
+                  h3("Select the pupil's key stage 2 scaled score for READING"),
+                  selectInput("readinginputebac",
+                    label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
+                    choices = choicesPupil$label,
+                    selected = "Grade = N"
+                  ),
+                  h3("Select the pupil's key stage 2 scaled score for MATHEMATICS"),
+                  selectInput("mathsinputebac",
+                    label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
+                    choices = choicesPupil$label,
+                    selected = "Grade = N"
+                  ), gov_row(
+                    valueBoxOutput("boxavgreadmathsebac", width = 6),
+                    valueBoxOutput("PAGcatboxebac", width = 6),
+                    valueBoxOutput("PAGboxebac", width = 6)
+                  ),
+                  #   h3("English Baccalaureate - science subject area"),
+                  br(), gov_row(
+                    column(
+                      width = 4,
+                      numericInput("ebacscoresci", p("Enter the pupil's score in the science EBacc element:"), 0, min = 0, max = 9, step = 0.01)
+                    ),
+                    column(
+                      width = 4,
+                      numericInput("ebacscorehum", p("Enter the pupil's score in the humanities EBacc element:"), 0, min = 0, max = 9, step = 0.01)
+                    ),
+                    column(
+                      width = 4,
+                      numericInput("ebacscorelan", p("Enter the pupil's score in the languages EBacc element:"), 0, min = 0, max = 9, step = 0.01)
+                    )
+                  ),
+                  valueBoxOutput("estimatedscoreboxebacsci", width = 6),
+                  valueBoxOutput("VAscoreboxebacsci", width = 6),
+                  # valueBoxOutput("VAscoreavbox", width = 6)),
+                  #  h3("English Baccalaureate - humanities subject area"),
+                  valueBoxOutput("estimatedscoreboxebachum", width = 6),
+                  valueBoxOutput("VAscoreboxebachum", width = 6),
+                  # valueBoxOutput("VAscoreavboxeng", width = 6),
+                  #   h3("English Baccalaureate - languages subject area"),
+                  valueBoxOutput("estimatedscoreboxebaclan", width = 6),
+                  valueBoxOutput("VAscoreboxebaclan", width = 6),
+                  #     valueBoxOutput("VAscoreavboxebaclan", width = 6)),
+                  radioGroupButtons("chartbutton",
+                    label = "Choose which metric you would like to view:",
+                    choices = c("Science", "Humanities", "Languages")
+                  ),
+                  h4("Estimated against actual KS4 outcome"),
+                  conditionalPanel(
+                    "input.chartbutton == 'Science'",
+                    plotlyOutput("estvsactualebacsci")
+                  ),
+                  conditionalPanel(
+                    "input.chartbutton == 'Humanities'",
+                    plotlyOutput("estvsactualebachum")
+                  ),
+                  conditionalPanel(
+                    "input.chartbutton == 'Languages'",
+                    plotlyOutput("estvsactualebaclan")
+                  )
+                  # ,
+                  #    br(),
+                  #    br(),
+                  #    br(),
+                  #    h3("Progress 8 - EBacc element"),
+                  #    br(),
+                  #    numericInput("p8scoreebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 0, min = 0, max = 27, step = 0.01),
+                  #    valueBoxOutput("estimatedscoreboxebac", width = 6),
+                  #    valueBoxOutput("VAscoreboxebac", width = 6),
+                  #    valueBoxOutput("VAscoreavboxebac", width = 6),
+                  #    br(),
+                  #    br(),
+                  #    br(),
+                  #    h3("Progress 8 - open element"),
+                  #    br(),
+                  #    numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 0, min = 0, max = 27, step = 0.01),
+                  #    valueBoxOutput("estimatedscoreboxopen", width = 6),
+                  #    valueBoxOutput("VAscoreboxopen", width = 6),
+                  #    valueBoxOutput("VAscoreavboxopen", width = 6)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+}
+## work from here
 
 dashboard3_panel <- function() {
   tabPanel(
@@ -337,9 +376,8 @@ dashboard3_panel <- function() {
           br(),
           br()
         ),
-        
         column(
-          12, #6,--AB trial
+          12, # 6,--AB trial
           div(
             div(
               class = "panel panel-info",
@@ -356,8 +394,12 @@ dashboard3_panel <- function() {
                   datatable(ebacatt8splits),
                   datatable(p8stdevnamed),
                   datatable(ebacstdevnamed)
+                )
               )
             )
           )
         )
+      )
+    )
+  )
 }
