@@ -412,7 +412,9 @@ dashboard3_panel <- function() {
                   h3("Progress 8 standard deviations"),
                   datatable(p8stdevnamed),
                   h3("EBacc subject area standard deviations"),
-                  datatable(ebacstdevnamed)
+                  datatable(ebacstdevnamed),
+                  p("For more information on these tables, please click here for the "),
+                  (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1112046/Secondary_accountability_measures_2022_guide.pdf", "Secondary Accountability measures document"))
                 )
               )
             )
