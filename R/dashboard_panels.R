@@ -389,8 +389,7 @@ dashboard3_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  p("To download all of the tables on this page, click the button below"),
-                  downloadButton("model_values_download", label = "Download (Model values)"),
+                  p("An Excel file containing all of the tables on this page can be downloaded from this page."),
                   br(),
                   p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in 
                   state-funded mainstream schools within the same prior attainment group at KS2. The 
