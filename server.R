@@ -729,6 +729,10 @@ server <- function(input, output, session) {
     return(data)
   })
 
+  output$modelvalues <- downloadHandler(
+    filename = "model_values.xlsx",    content = function(file) {      write.xlsx(model_values, file, row.names = FALSE)    }  )
+  
+  
   output$user_view <- DT::renderDataTable({
     if (is.null(user_VA_data())) {
       DT::datatable(data.frame(`Adjusted progress 8 score` = c("Please upload data")))

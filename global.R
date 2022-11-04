@@ -95,11 +95,13 @@ p8att8splits <- read.csv("data/p8_att8_splits.csv")
 ebacatt8splits <- read.csv("data/ebac_att8_splits.csv")
 p8stdevnamed <- read.csv("data/p8_stdev_file_named.csv")
 ebacstdevnamed <- read.csv("data/ebac_stdev_file_named.csv")
+modelvalues <- read_xlsx("data/model_values.xlsx")
 
 names(p8att8splits) <- c("KS2 prior attainment group", "KS2 average scaled score range", "Attainment 8 average", "English average", "Maths average", "EBacc average", "Open average")
 names(ebacatt8splits) <- c("KS2 prior attainment group", "KS2 average scaled score range", "Science average", "Humanities average", "Languages average")
 names(p8stdevnamed) <- c("Progress 8", "Progress 8 English element", "Progress 8 Maths element", "Progress 8 Open element", "Progress 8 EBacc element")
 names(ebacstdevnamed) <- c("Science VA", "Humanities VA", "Languages VA")
+
 
 df <- data.frame(
   x = c(0:90),

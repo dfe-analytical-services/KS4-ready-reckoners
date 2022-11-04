@@ -389,6 +389,9 @@ dashboard3_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
+                  p("To download all of the tables on this page, click the button below"),
+                  downloadButton("model_values_download", label = "Download (Model values)"),
+                  br(),
                   p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in 
                   state-funded mainstream schools within the same prior attainment group at KS2. The 
                   following table shows the provisional Attainment 8 averages for each KS2 prior 

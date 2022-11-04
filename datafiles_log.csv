@@ -12,3 +12,4 @@ data/p8_stdev_file_named.csv,reference
 data/ebac_stdev_file_named.csv,reference
 data/p8_att8_splits.csv,reference
 data/ebac_att8_splits.csv,reference
+data/model_values.xlsx,reference
