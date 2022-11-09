@@ -389,7 +389,9 @@ dashboard3_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  p("An Excel file containing all of the tables on this page can be downloaded from this page."),
+                  ("An Excel file containing all of the tables on this page can be downloaded " ),
+                  (a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/f27addae-752f-478c-b142-663f12aea8e1/files/1726d8ac-3e93-4a89-3692-08dabce881f8", "by clicking here.")),
+                  br(),
                   br(),
                   p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in 
                   state-funded mainstream schools within the same prior attainment group at KS2. The 
@@ -417,8 +419,8 @@ dashboard3_panel <- function() {
                   reactable(ebacstdevnamed),
                   br(),
                   br(),
-                  p("For more information on these tables, please click here for the "),
-                  (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1112046/Secondary_accountability_measures_2022_guide.pdf", "Secondary Accountability measures document"))
+                  ("For more information on these tables, please click here for the "),
+                  (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1112046/Secondary_accountability_measures_2022_guide.pdf", "Secondary Accountability measures document."))
                 )
               )
             )
