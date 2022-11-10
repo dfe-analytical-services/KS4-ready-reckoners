@@ -8,3 +8,8 @@ data/p8_pupil_coefficients_file.csv,reference
 data/ebac_pupil_modelvalues_file.csv,reference
 data/p8_stdev_file.csv,reference
 data/ebac_stdev_file.csv,reference
+data/p8_stdev_file_named.csv,reference
+data/ebac_stdev_file_named.csv,reference
+data/p8_att8_splits.csv,reference
+data/ebac_att8_splits.csv,reference
+data/model_values.xlsx,reference

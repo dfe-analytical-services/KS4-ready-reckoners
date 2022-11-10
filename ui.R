@@ -109,6 +109,7 @@ ui <- function(input, output, session) {
       homepage_panel(),
       dashboard_panel(),
       dashboard2_panel(),
+      dashboard3_panel(),
       a11y_panel(),
       support_links()
     ),

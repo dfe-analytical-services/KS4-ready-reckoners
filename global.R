@@ -24,6 +24,7 @@ shhh(library(plotly))
 shhh(library(DT))
 shhh(library(shinyvalidate))
 shhh(library(metathis))
+shhh(library(reactable))
 
 # Functions ---------------------------------------------------------------------------------
 
@@ -44,10 +45,13 @@ tidy_code_function <- function() {
   message("App scripts")
   message("----------------------------------------")
   app_scripts <- eval(styler::style_dir(recursive = FALSE)$changed)
+  message("R scripts")
+  message("----------------------------------------")
+  r_scripts <- eval(styler::style_dir("R/")$changed)
   message("Test scripts")
   message("----------------------------------------")
   test_scripts <- eval(styler::style_dir("tests/", filetype = "r")$changed)
-  script_changes <- c(app_scripts, test_scripts)
+  script_changes <- c(app_scripts, r_scripts, test_scripts)
   return(script_changes)
 }
 
@@ -88,6 +92,17 @@ pupil_modelvalues$ks2emss <- as.numeric(pupil_modelvalues$ks2emss)
 p8stdev <- read.csv("data/p8_stdev_file.csv")
 ebacstdev <- read.csv("data/ebac_stdev_file.csv")
 p8stdev$p8stdev <- as.numeric(p8stdev$p8stdev)
+p8att8splits <- read.csv("data/p8_att8_splits.csv")
+ebacatt8splits <- read.csv("data/ebac_att8_splits.csv")
+p8stdevnamed <- read.csv("data/p8_stdev_file_named.csv")
+ebacstdevnamed <- read.csv("data/ebac_stdev_file_named.csv")
+
+
+names(p8att8splits) <- c("KS2 prior attainment group", "KS2 average scaled score range", "Attainment 8 average", "English average", "Maths average", "EBacc average", "Open average")
+names(ebacatt8splits) <- c("KS2 prior attainment group", "KS2 average scaled score range", "Science average", "Humanities average", "Languages average")
+names(p8stdevnamed) <- c("Progress 8", "Progress 8 English element", "Progress 8 Maths element", "Progress 8 Open element", "Progress 8 EBacc element")
+names(ebacstdevnamed) <- c("Science VA", "Humanities VA", "Languages VA")
+
 
 df <- data.frame(
   x = c(0:90),
