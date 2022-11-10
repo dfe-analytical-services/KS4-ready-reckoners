@@ -389,20 +389,20 @@ dashboard3_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  ("You can download an Excel file containing all of the " ),
+                  ("You can download an Excel file containing all of the "),
                   (a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/f27addae-752f-478c-b142-663f12aea8e1/files/1726d8ac-3e93-4a89-3692-08dabce881f8", "model values tables here.")),
                   br(),
                   br(),
-                  p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in 
-                  state-funded mainstream schools within the same prior attainment group at KS2. The 
-                  following table shows the provisional Attainment 8 averages for each KS2 prior 
-                  attainment group, based on the 2022 cohort averages."), 
-                  p("Changes to national subject entry patterns and performance, as well as changes to the 
-                  methodology and grading as a result of COVID-19 this year will cause these averages to 
+                  p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in
+                  state-funded mainstream schools within the same prior attainment group at KS2. The
+                  following table shows the provisional Attainment 8 averages for each KS2 prior
+                  attainment group, based on the 2022 cohort averages."),
+                  p("Changes to national subject entry patterns and performance, as well as changes to the
+                  methodology and grading as a result of COVID-19 this year will cause these averages to
                   change in future years."),
-                  p("Schools may change their curriculum offer in response to the 
-                  Progress 8 measure and to the Government’s EBacc ambition, so any modelling based 
-                  on current national results could be misleading."), 
+                  p("Schools may change their curriculum offer in response to the
+                  Progress 8 measure and to the Government’s EBacc ambition, so any modelling based
+                  on current national results could be misleading."),
                   h3("Progress 8 PAGs and Attainment 8 splits"),
                   reactable(p8att8splits),
                   h3("EBacc subject area PAGs and Attainment 8 splits"),
@@ -411,7 +411,7 @@ dashboard3_panel <- function() {
                   br(),
                   br(),
                   br(),
-                  p("The below standard deviations are based on the Progress 8 scores of all eligible pupils at 
+                  p("The below standard deviations are based on the Progress 8 scores of all eligible pupils at
                   mainstream schools and are the national figures used in confidence interval calculations."),
                   h3("Progress 8 standard deviations"),
                   reactable(p8stdevnamed),

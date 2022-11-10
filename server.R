@@ -730,7 +730,7 @@ server <- function(input, output, session) {
   })
 
 
-  
+
   output$user_view <- DT::renderDataTable({
     if (is.null(user_VA_data())) {
       DT::datatable(data.frame(`Adjusted progress 8 score` = c("Please upload data")))
