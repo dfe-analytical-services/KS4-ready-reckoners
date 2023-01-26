@@ -1,9 +1,4 @@
 filename,status
-data/la_maintained_schools_revenue_reserve_final.csv,published
-data/date_format.csv,published
-data/date_format.meta.csv,published
-data/some_unpublished_data.csv,unpublished
-data/p8_pupil_coefficients_dummy.csv,
 data/p8_pupil_coefficients_file.csv,reference
 data/ebac_pupil_modelvalues_file.csv,reference
 data/p8_stdev_file.csv,reference
