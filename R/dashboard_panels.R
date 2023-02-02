@@ -25,6 +25,10 @@ homepage_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
+                  br(),
+                  strong("UPDATE: 2nd February 2023 - The KS4 Ready Reckoners have been updated with revised data, in line with the revised key stage 4 performance release"),
+                  br(),
+                  br(),
                   h3("Introduction"),
                   p("There are four key stage 2 to 4 ready reckoners:"),
                   strong("The Progress 8 element breakdown pupil ready reckoner."),
@@ -33,7 +37,7 @@ homepage_panel <- function() {
                   br(),
                   strong("The Progress 8 element breakdown school ready reckoner."),
                   ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in Progress 8 or any of its elements, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-                  (a(href = "https://tableschecking.education.gov.uk/", "checking site")),
+                  (a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
                   br(),
                   br(),
                   strong("The EBacc subject pupil ready reckoner."),
