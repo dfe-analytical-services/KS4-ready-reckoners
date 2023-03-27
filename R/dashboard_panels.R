@@ -394,7 +394,7 @@ dashboard3_panel <- function() {
                 class = "panel-body",
                 tags$div(
                   ("You can download an Excel file containing all of the "),
-                  (a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/f27addae-752f-478c-b142-663f12aea8e1/files/1726d8ac-3e93-4a89-3692-08dabce881f8", "model values tables here.")),
+                  (a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/557c22cb-360b-4bc1-a480-f23afe6cce20/files/c5c28b00-5266-49de-5254-08dafad050ee", "model values tables here.")),
                   br(),
                   br(),
                   p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in
