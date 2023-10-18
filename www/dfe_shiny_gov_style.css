@@ -19,6 +19,10 @@
   font-display:fallback
 }
 
+.bg-primary {
+    background-color: #1d70b8!important;
+}
+
 html {
   background-color: #f3f2f1;
 }
@@ -353,3 +357,4 @@ template. 80% works well here to reduce white space on the right hand side.*/
   font-weight: bold;
   font-size: 28px;
 }
+
