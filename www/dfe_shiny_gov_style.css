@@ -188,6 +188,10 @@ template. 80% works well here to reduce white space on the right hand side.*/
     overflow: hidden;
 }
 
+.small-box {
+     padding: 12px;
+     margin:10px;
+}
 
 .small-box.bg-purple {
     background-color: 	#801650 !important;
