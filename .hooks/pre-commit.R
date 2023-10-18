@@ -40,7 +40,11 @@ if (error_flag) {
   cat("Warning, aborting commit. Unrecognised data files found, please update .gitignore or datafiles_log.csv.\n")
   quit(save = "no", status = 1, runLast = FALSE)
 } else {
-  tidy_code()
+  tidy_output <- tidy_code()
+  if(any(tidy_output)){
+    add()
+    commit(message='Auto-ran tidy_code')
+  }
 }
 
 # End of hooks
