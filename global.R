@@ -10,12 +10,14 @@
 
 # Library calls ---------------------------------------------------------------------------------
 shhh <- suppressPackageStartupMessages # It's a library, so shhh!
+shhh(library(git2r))
 shhh(library(shiny))
 shhh(library(shinyjs))
 shhh(library(tools))
 shhh(library(testthat))
 shhh(library(shinytest))
 shhh(library(shinyWidgets))
+shhh(library(shinydashboard))
 shhh(library(shinyGovstyle))
 shhh(library(dplyr))
 shhh(library(ggplot2))

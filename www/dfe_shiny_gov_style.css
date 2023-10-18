@@ -196,6 +196,10 @@ template. 80% works well here to reduce white space on the right hand side.*/
     overflow: hidden;
 }
 
+.small-box {
+     padding: 12px;
+     margin:10px;
+}
 
 .small-box {
      padding: 12px;
@@ -349,4 +353,3 @@ template. 80% works well here to reduce white space on the right hand side.*/
   font-weight: bold;
   font-size: 28px;
 }
-

@@ -5,11 +5,11 @@
 valueBox <- function(value, subtitle, icon = NULL,
                      color = "blue", width = 4,
                      href = NULL, fontsize = "medium")
-  # fontsize: can be small, medium or large
+# fontsize: can be small, medium or large
 {
   validateColor(color)
   if (!is.null(icon)) tagAssert(icon, type = "i")
-  
+
   boxContent <- div(
     class = paste0("small-box bg-", color),
     div(
@@ -19,11 +19,11 @@ valueBox <- function(value, subtitle, icon = NULL,
     ),
     if (!is.null(icon)) div(class = "icon-large", icon)
   )
-  
+
   if (!is.null(href)) {
     boxContent <- a(href = href, boxContent)
   }
-  
+
   div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     boxContent
