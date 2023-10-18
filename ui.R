@@ -88,10 +88,12 @@ ui <- function(input, output, session) {
       )
     ),
     shinyGovstyle::header(
-      main_text = "DfE",
+      main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "KS4 Ready Reckoner app",
-      logo = "images/DfE_logo.png"
+      secondary_text = "Key Stage 4 Ready Reckoner Tool",
+      logo = "images/DfE_logo_landscape.png",
+      logo_width = 150,
+      logo_height = 32
     ),
     shinyGovstyle::banner(
       "beta banner",
