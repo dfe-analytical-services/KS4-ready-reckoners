@@ -794,6 +794,9 @@ server <- function(input, output, session) {
         axis.ticks.x = element_blank()
       )
 
+    validate(
+      need(data, "Upload school data in order to create plot"),
+    )
     ggplotly(errorbar) %>%
       config(displayModeBar = F) %>%
       style(textposition = "right")
