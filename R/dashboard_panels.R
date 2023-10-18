@@ -234,35 +234,45 @@ dashboard2_panel <- function() {
                       uiOutput("p8scoreinputbox")
                     )
                   ),
-                  gov_row(
-                    h3("Progress 8 element"),
-                    valueBoxOutput("estimatedscorebox", width = 6),
-                    valueBoxOutput("VAscorebox", width = 6),
-                    valueBoxOutput("VAscoreavbox", width = 6)
+                  accordion(
+                    accordion_panel(
+                      "Progress 8 element",
+                  layout_columns(
+                    valueBoxOutput("estimatedscorebox", width = 12),
+                    valueBoxOutput("VAscorebox", width = 12),
+                    valueBoxOutput("VAscoreavbox", width = 12)
                   ),
-                  gov_row(
-                    h3("Progress 8 - English element"),
-                    valueBoxOutput("estimatedscoreboxeng", width = 6),
-                    valueBoxOutput("VAscoreboxeng", width = 6),
-                    valueBoxOutput("VAscoreavboxeng", width = 6)
+                  col_widths=c(6,6,6)),
+                  accordion_panel(
+                    "Progress 8 - English element",
+                    layout_columns(
+                      valueBoxOutput("estimatedscoreboxeng", width = 12),
+                    valueBoxOutput("VAscoreboxeng", width = 12),
+                    valueBoxOutput("VAscoreavboxeng", width = 12)
                   ),
-                  gov_row(
-                    h3("Progress 8 - maths element"),
+                  col_widths=c(6,6,6)),
+                  accordion_panel(
+                    "Progress 8 - maths element",
+                    gov_row(
                     valueBoxOutput("estimatedscoreboxmath", width = 6),
                     valueBoxOutput("VAscoreboxmath", width = 6),
                     valueBoxOutput("VAscoreavboxmath", width = 6)
-                  ),
-                  gov_row(
-                    h3("Progress 8 - EBacc element"),
+                  )),
+                  accordion_panel(
+                    "Progress 8 - EBacc element",
+                    gov_row(
                     valueBoxOutput("estimatedscoreboxebac", width = 6),
                     valueBoxOutput("VAscoreboxebac", width = 6),
                     valueBoxOutput("VAscoreavboxebac", width = 6)
-                  ),
-                  gov_row(
-                    h3("Progress 8 - open element"),
+                  )),
+                  accordion_panel(
+                    "Progress 8 - open element",
+                    gov_row(
                     valueBoxOutput("estimatedscoreboxopen", width = 6),
                     valueBoxOutput("VAscoreboxopen", width = 6),
                     valueBoxOutput("VAscoreavboxopen", width = 6)
+                  )
+                  )
                   ),
                   column(
                     width = 12,

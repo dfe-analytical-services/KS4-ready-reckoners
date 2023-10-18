@@ -2,25 +2,28 @@
 # across dashboards. If you want to change anything in this script, please
 # talk to the DfE Statistics Development team first.
 
-valueBox <- function(value, subtitle, icon = NULL, color = "aqua", width = 4,
-                     href = NULL) {
+valueBox <- function(value, subtitle, icon = NULL,
+                     color = "blue", width = 4,
+                     href = NULL, fontsize = "medium")
+  # fontsize: can be small, medium or large
+{
   validateColor(color)
   if (!is.null(icon)) tagAssert(icon, type = "i")
-
+  
   boxContent <- div(
     class = paste0("small-box bg-", color),
     div(
       class = "inner",
-      p(value, id = "vboxhead"),
-      p(subtitle, id = "vboxdetail")
+      p(value, id = paste0("vboxhead-", fontsize)),
+      p(subtitle, id = paste0("vboxdetail-", fontsize))
     ),
     if (!is.null(icon)) div(class = "icon-large", icon)
   )
-
+  
   if (!is.null(href)) {
     boxContent <- a(href = href, boxContent)
   }
-
+  
   div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     boxContent
