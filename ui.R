@@ -79,7 +79,6 @@ ui <- function(input, output, session) {
         referrer = "no-referrer"
       ),
     shinyjs::useShinyjs(),
-    useShinydashboard(),
     tags$head(includeHTML(("google-analytics.html"))),
     tags$head(
       tags$link(

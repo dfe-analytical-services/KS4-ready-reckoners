@@ -42,8 +42,8 @@ if (error_flag) {
 } else {
   tidy_output <- tidy_code()
   if(any(tidy_output)){
-    add()
-    commit(message='Auto-ran tidy_code')
+    git2r::add(path='.')
+    git2r::commit(message='Auto-ran tidy_code')
   }
 }
 
