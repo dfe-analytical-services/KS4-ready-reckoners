@@ -211,79 +211,75 @@ dashboard2_panel <- function() {
                     choices = choicesPupil$label,
                     selected = "Grade = N"
                   ),
-                  gov_row(
-                    valueBoxOutput("boxavgreadmaths", width = 6),
-                    valueBoxOutput("PAGcatbox", width = 6),
-                    valueBoxOutput("PAGbox", width = 6)
+                  layout_columns(
+                    valueBoxOutput("boxavgreadmaths", width = 12),
+                    valueBoxOutput("PAGcatbox", width = 12),
+                    valueBoxOutput("PAGbox", width = 12),
+                    col_widths = c(4, 4, 4)
                   ),
-                  gov_row(
-                    column(
-                      width = 6,
-                      numericInput("p8scoreeng", p("Enter the pupil's key stage 4 attainment score for their P8 English element:"), 0, min = 0, max = 18, step = 0.01),
-                      numericInput("p8scoremath", p("Enter the pupil's key stage 4 attainment score for their P8 maths element:"), 0, min = 0, max = 18, step = 0.01)
-                    ),
-                    column(
-                      width = 6,
-                      numericInput("p8scoreebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 0, min = 0, max = 27, step = 0.01),
-                      numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 0, min = 0, max = 27, step = 0.01)
-                    ),
+                  layout_columns(
+                    numericInput("p8scoreeng", p("Enter the pupil's key stage 4 attainment score for their P8 English element:"), 0, min = 0, max = 18, step = 0.01),
+                    numericInput("p8scoremath", p("Enter the pupil's key stage 4 attainment score for their P8 maths element:"), 0, min = 0, max = 18, step = 0.01),
+                    col_widths = c(6, 6)
+                  ),
+                  layout_columns(
+                    numericInput("p8scoreebac", p("Enter the pupil's key stage 4 attainment score for their P8 EBacc element:"), 0, min = 0, max = 27, step = 0.01),
+                    numericInput("p8scoreopen", p("Enter the pupil's key stage 4 attainment score for their P8 open element:"), 0, min = 0, max = 27, step = 0.01),
+                    col_widths = c(6, 6)
+                  ),
 
-                    # numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum("input.p8scoreeng"), min = 0, max = 95, step = 0.01),
-                    column(
-                      width = 12,
-                      uiOutput("p8scoreinputbox")
+                  # numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum("input.p8scoreeng"), min = 0, max = 95, step = 0.01),
+                  uiOutput("p8scoreinputbox")
+                ),
+                accordion(
+                  accordion_panel(
+                    "Progress 8 element",
+                    layout_columns(
+                      valueBoxOutput("estimatedscorebox", width = 12),
+                      valueBoxOutput("VAscorebox", width = 12),
+                      valueBoxOutput("VAscoreavbox", width = 12),
+                      col_widths = c(4, 4, 4)
                     )
                   ),
-                  accordion(
-                    accordion_panel(
-                      "Progress 8 element",
-                      layout_columns(
-                        valueBoxOutput("estimatedscorebox", width = 12),
-                        valueBoxOutput("VAscorebox", width = 12),
-                        valueBoxOutput("VAscoreavbox", width = 12)
-                      ),
-                      col_widths = c(6, 6, 6)
-                    ),
-                    accordion_panel(
-                      "Progress 8 - English element",
-                      layout_columns(
-                        valueBoxOutput("estimatedscoreboxeng", width = 12),
-                        valueBoxOutput("VAscoreboxeng", width = 12),
-                        valueBoxOutput("VAscoreavboxeng", width = 12)
-                      ),
-                      col_widths = c(6, 6, 6)
-                    ),
-                    accordion_panel(
-                      "Progress 8 - maths element",
-                      gov_row(
-                        valueBoxOutput("estimatedscoreboxmath", width = 6),
-                        valueBoxOutput("VAscoreboxmath", width = 6),
-                        valueBoxOutput("VAscoreavboxmath", width = 6)
-                      )
-                    ),
-                    accordion_panel(
-                      "Progress 8 - EBacc element",
-                      gov_row(
-                        valueBoxOutput("estimatedscoreboxebac", width = 6),
-                        valueBoxOutput("VAscoreboxebac", width = 6),
-                        valueBoxOutput("VAscoreavboxebac", width = 6)
-                      )
-                    ),
-                    accordion_panel(
-                      "Progress 8 - open element",
-                      gov_row(
-                        valueBoxOutput("estimatedscoreboxopen", width = 6),
-                        valueBoxOutput("VAscoreboxopen", width = 6),
-                        valueBoxOutput("VAscoreavboxopen", width = 6)
-                      )
+                  accordion_panel(
+                    "Progress 8 - English element",
+                    layout_columns(
+                      valueBoxOutput("estimatedscoreboxeng", width = 12),
+                      valueBoxOutput("VAscoreboxeng", width = 12),
+                      valueBoxOutput("VAscoreavboxeng", width = 12),
+                      col_widths = c(4, 4, 4)
                     )
                   ),
-                  column(
-                    width = 12,
-                    h4("Estimated against actual KS4 outcome"),
-                    plotlyOutput("estvsactual")
+                  accordion_panel(
+                    "Progress 8 - maths element",
+                    layout_columns(
+                      valueBoxOutput("estimatedscoreboxmath", width = 12),
+                      valueBoxOutput("VAscoreboxmath", width = 12),
+                      valueBoxOutput("VAscoreavboxmath", width = 12),
+                      col_widths = c(4, 4, 4)
+                    )
+                  ),
+                  accordion_panel(
+                    "Progress 8 - EBacc element",
+                    layout_columns(
+                      valueBoxOutput("estimatedscoreboxebac", width = 12),
+                      valueBoxOutput("VAscoreboxebac", width = 12),
+                      valueBoxOutput("VAscoreavboxebac", width = 12),
+                      col_widths = c(4, 4, 4)
+                    )
+                  ),
+                  accordion_panel(
+                    "Progress 8 - open element",
+                    layout_columns(
+                      valueBoxOutput("estimatedscoreboxopen", width = 12),
+                      valueBoxOutput("VAscoreboxopen", width = 12),
+                      valueBoxOutput("VAscoreavboxopen", width = 12),
+                      col_widths = c(4, 4, 4)
+                    )
                   )
-                )
+                ),
+                h4("Estimated against actual KS4 outcome"),
+                plotlyOutput("estvsactual")
               )
             )
             #                            )
@@ -305,10 +301,12 @@ dashboard2_panel <- function() {
                     label = "If the pupil does not have a scaled score but has a grade 'N' or a teacher assessed grade, select 'N' or select their TAOUTCOME code and year.",
                     choices = choicesPupil$label,
                     selected = "Grade = N"
-                  ), gov_row(
-                    valueBoxOutput("boxavgreadmathsebac", width = 6),
-                    valueBoxOutput("PAGcatboxebac", width = 6),
-                    valueBoxOutput("PAGboxebac", width = 6)
+                  ),
+                  layout_columns(
+                    valueBoxOutput("boxavgreadmathsebac", width = 12),
+                    valueBoxOutput("PAGcatboxebac", width = 12),
+                    valueBoxOutput("PAGboxebac", width = 12),
+                    col_widths = c(4, 4, 4)
                   ),
                   #   h3("English Baccalaureate - science subject area"),
                   br(), gov_row(
