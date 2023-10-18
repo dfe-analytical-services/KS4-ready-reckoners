@@ -72,10 +72,9 @@ support_links <- function() {
           a(href = "https://github.com/dfe-analytical-services/KS4-ready-reckoners", "GitHub repository", .noWS = c("after")),
           ".",
           br(),
-          br(),
-          br(),
-          br(),
-          br(),
+          h2("Use of cookies"),
+          textOutput("cookie_status"),
+          actionButton("remove", "Reset cookie consent"),
           br()
         )
       )

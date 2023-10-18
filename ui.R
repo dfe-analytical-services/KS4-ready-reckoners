@@ -54,8 +54,6 @@
 #    https://github.com/moj-analytical-services/shinyGovstyle
 #
 
-
-
 ui <- function(input, output, session) {
   fluidPage(
     # use_tota11y(),
@@ -95,6 +93,7 @@ ui <- function(input, output, session) {
       logo_width = 150,
       logo_height = 32
     ),
+    shinyGovstyle::cookieBanner("DfE Key Stage 4 Ready Reckoner tool"),
     shinyGovstyle::banner(
       "beta banner",
       "beta",
