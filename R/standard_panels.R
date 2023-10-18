@@ -32,7 +32,10 @@ a11y_panel <- function() {
             are known issues that we will continue to monitor and improve:"),
           tags$div(tags$ul(
             tags$li("Keyboard navigation through the interactive charts is currently limited, and some features are unavailable for keyboard only users"),
-            tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
+            tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)"),
+            tags$li("Some elements fail to have the appropriate aria tags"),
+            tags$li("Some table header ids are not assigned correctly"),
+            tags$li("Some image elements do not have an alt attributes (note that where this is the case, those images are primarily for presentation )")
           )),
           h2("Feedback"),
           p(
