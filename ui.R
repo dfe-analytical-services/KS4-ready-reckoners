@@ -54,10 +54,8 @@
 #    https://github.com/moj-analytical-services/shinyGovstyle
 #
 
-
-
 ui <- function(input, output, session) {
-  fluidPage(
+  page(
     # use_tota11y(),
     title = tags$head(
       tags$link(

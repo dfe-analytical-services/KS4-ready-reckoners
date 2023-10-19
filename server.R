@@ -335,7 +335,7 @@ server <- function(input, output, session) {
       )
 
     ggplotly(estvsactual) %>%
-      config(displayModeBar = F)
+      config(displayModeBar = FALSE)
   })
 
   output$estimatedscoreboxeng <- renderValueBox({
@@ -731,14 +731,15 @@ server <- function(input, output, session) {
 
 
 
-  output$user_view <- DT::renderDataTable({
+  output$user_view <- renderReactable({
     if (is.null(user_VA_data())) {
-      DT::datatable(data.frame(`Adjusted progress 8 score` = c("Please upload data")))
+      tabledata <- data.frame(`Adjusted progress 8 score` = c("Please upload data"))
     } else {
       tabledata <- user_VA_data() %>%
         select(`Adjusted progress 8 score` = p8score)
-      DT::datatable(tabledata)
     }
+    names(tabledata) <- names(tabledata) %>% gsub("\\.", " ", .)
+    reactable(tabledata)
   })
 
   user_VA_data_ebac <- reactive({
@@ -753,14 +754,15 @@ server <- function(input, output, session) {
     return(data)
   })
 
-  output$user_view_ebac <- DT::renderDataTable({
+  output$user_view_ebac <- renderReactable({
     if (is.null(user_VA_data_ebac())) {
-      DT::datatable(data.frame(`Adjusted progress 8 score` = c("Please upload data")))
+      tabledata <- data.frame(`Adjusted progress 8 score` = c("Please upload data"))
     } else {
       tabledata <- user_VA_data_ebac() %>%
         select(`Adjusted progress 8 score` = p8score)
-      DT::datatable(tabledata)
     }
+    names(tabledata) <- names(tabledata) %>% gsub("\\.", " ", .)
+    reactable(tabledata)
   })
 
   output$errorbarchart <- renderPlotly({
@@ -832,6 +834,9 @@ server <- function(input, output, session) {
         axis.ticks.x = element_blank()
       )
 
+    validate(
+      need(data, "Upload data in order to create plot"),
+    )
     ggplotly(errorbar) %>%
       config(displayModeBar = F) %>%
       style(textposition = "right")
