@@ -26,9 +26,9 @@ homepage_panel <- function() {
                 class = "panel-body",
                 tags$div(
                   br(),
-                  strong("UPDATE: 2nd February 2023 - The KS4 Ready Reckoners have been updated with revised data, in line with the revised key stage 4 performance release"),
-                  br(),
-                  br(),
+                  # strong("UPDATE: 19th October 2023 - The KS4 Ready Reckoners have been updated with 2023 provisional data, in line with the 2023 provisional key stage 4 performance release"),
+                  # br(),
+                  # br(),
                   h3("Introduction"),
                   p("There are four key stage 2 to 4 ready reckoners:"),
                   strong("The Progress 8 element breakdown pupil ready reckoner."),
@@ -400,8 +400,8 @@ dashboard3_panel <- function() {
                   p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in
                   state-funded mainstream schools within the same prior attainment group at KS2. The
                   following table shows the provisional Attainment 8 averages for each KS2 prior
-                  attainment group, based on the 2022 cohort averages."),
-                  p("Changes to national subject entry patterns and performance, as well as changes to the
+                  attainment group, based on the 2023 cohort averages."),
+                  p("##THIS NEEDS UPDATING## Changes to national subject entry patterns and performance, as well as changes to the
                   methodology and grading as a result of COVID-19 this year will cause these averages to
                   change in future years."),
                   p("Schools may change their curriculum offer in response to the
@@ -423,8 +423,8 @@ dashboard3_panel <- function() {
                   reactable(ebacstdevnamed),
                   br(),
                   br(),
-                  ("For more information on these tables, please click here for the "),
-                  (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1112046/Secondary_accountability_measures_2022_guide.pdf", "Secondary Accountability measures document."))
+                  ("For more information on these tables, please click here for the ##AB"),
+                  (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1187895/Secondary_accountabililty_measures.pdf", "Secondary Accountability measures document."))
                 )
               )
             )
