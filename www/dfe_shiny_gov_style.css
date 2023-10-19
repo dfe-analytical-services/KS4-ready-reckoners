@@ -19,19 +19,6 @@
   font-display:fallback
 }
 
-a {
-  	color: #1d70b8;
-}
-
-a:hover {
-  color:	#003078;
-}
-
-a:visited {
-  color: #4c2c92;
-}
-
-
 html {
   background-color: #f3f2f1;
 }
@@ -56,6 +43,9 @@ a:active {
   text-decoration: underline
 }
 
+/* This line sets the main area width. Originally set to 66.667% in the GDS 
+template. 80% works well here to reduce white space on the right hand side.*/
+.col-sm-8{ width: 80%}
 
 .container-fluid {
   padding: 0px;
@@ -135,6 +125,47 @@ a:active {
     color: #fff;
 }
 
+.govuk-details {
+    padding: 19px;
+    font-family: GDS Transport, arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 25px;
+    background-color: #1d70b8;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 20px;
+    display: block;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}
+
+.govuk-details__summary {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 5px;
+    padding-left: 25px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.govuk-details__summary-text:hover {
+    text-decoration: underline;
+    text-decoration-thickness: max(4px, .1875rem, .12em);
+}
+
+.govuk-details__summary:hover {
+    color: #fff;
+}
+
+.govuk-details__summary:focus {
+    outline: 3px solid rgba(0, 0, 0, 0);
+    /* color: #0b0c0c; */
+    background-color: #fd0;
+    box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+    color: #0b0c0c;
+    text-decoration: none;
+}
+
 
 /* Full screen plots */
 /* Adapted from https://stackoverflow.com/questions/69042546/is-there-a-way-to-create-a-full-screen-popup-window-of-a-plotly-chart-in-r */
@@ -157,6 +188,10 @@ a:active {
     overflow: hidden;
 }
 
+.small-box {
+     padding: 12px;
+     margin:10px;
+}
 
 .small-box.bg-purple {
     background-color: 	#801650 !important;
@@ -272,14 +307,38 @@ a:active {
     }
 }
 
-#vboxhead {
+#vboxhead-small {
+  text-align: left;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+#vboxdetail-small {
+  text-align: left;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#vboxhead-medium {
+  text-align: left;
+  font-weight: bold;
+  font-size: 42px;
+}
+
+#vboxdetail-medium {
+  text-align: left;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+#vboxhead-large {
   text-align: left;
   font-weight: bold;
   font-size: 56px;
 }
 
-#vboxdetail {
+#vboxdetail-large {
   text-align: left;
   font-weight: bold;
-  font-size: 21px;
+  font-size: 28px;
 }

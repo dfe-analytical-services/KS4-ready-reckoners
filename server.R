@@ -20,7 +20,6 @@
 
 
 server <- function(input, output, session) {
-
   # Loading screen ---------------------------------------------------------------------------
   # Call initial loading screen
 
@@ -279,15 +278,16 @@ server <- function(input, output, session) {
 
   # feel free to change the name to be more descriptive!!!
   output$PAGcatbox <- renderValueBox({
-    valueBox((if (reactivemean() < 100) {
-      paste("Below standard")
-    } else if (reactivemean() <= 110) {
-      paste("Achieving standard")
-    } else if (reactivemean() > 110) {
-      paste("Above standard")
-    }),
-    subtitle = "Prior attainment group categorisation",
-    color = "blue"
+    valueBox(
+      (if (reactivemean() < 100) {
+        paste("Below standard")
+      } else if (reactivemean() <= 110) {
+        paste("Achieving standard")
+      } else if (reactivemean() > 110) {
+        paste("Above standard")
+      }),
+      subtitle = "Prior attainment group categorisation",
+      color = "blue"
     )
   })
 
@@ -299,7 +299,6 @@ server <- function(input, output, session) {
   })
 
   output$estimatedscorebox <- renderValueBox({
-
     # make it use PAG score to look up p8score from coefficient table as estimated score
 
     valueBox(reactiveestimated(),
@@ -434,15 +433,16 @@ server <- function(input, output, session) {
 
 
   output$PAGcatboxebac <- renderValueBox({
-    valueBox((if (reactivemeanebac() < 100) {
-      paste("Below standard")
-    } else if (reactivemeanebac() <= 110) {
-      paste("Achieving standard")
-    } else if (reactivemeanebac() > 110) {
-      paste("Above standard")
-    }),
-    subtitle = "Prior attainment group categorisation",
-    color = "blue"
+    valueBox(
+      (if (reactivemeanebac() < 100) {
+        paste("Below standard")
+      } else if (reactivemeanebac() <= 110) {
+        paste("Achieving standard")
+      } else if (reactivemeanebac() > 110) {
+        paste("Above standard")
+      }),
+      subtitle = "Prior attainment group categorisation",
+      color = "blue"
     )
   })
 
@@ -781,18 +781,22 @@ server <- function(input, output, session) {
       xlim(c(-0.5, 0.5)) +
       xlab("Comparison to national average") +
       ylab("Value added score") +
-      geom_errorbar(aes(
-        ymin = lowerlimit,
-        ymax = upperlimit,
-        x = 0
-      ),
-      width = 0.05
+      geom_errorbar(
+        aes(
+          ymin = lowerlimit,
+          ymax = upperlimit,
+          x = 0
+        ),
+        width = 0.05
       ) +
       theme(
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank()
       )
 
+    validate(
+      need(data, "Upload school data in order to create plot"),
+    )
     ggplotly(errorbar) %>%
       config(displayModeBar = F) %>%
       style(textposition = "right")
@@ -815,12 +819,13 @@ server <- function(input, output, session) {
       xlim(c(-0.5, 0.5)) +
       xlab("Comparison to national average") +
       ylab("Value added score") +
-      geom_errorbar(aes(
-        ymin = lowlim,
-        ymax = upperlim,
-        x = 0
-      ),
-      width = 0.05
+      geom_errorbar(
+        aes(
+          ymin = lowlim,
+          ymax = upperlim,
+          x = 0
+        ),
+        width = 0.05
       ) +
       theme(
         axis.text.x = element_blank(),
