@@ -484,19 +484,8 @@ server <- function(input, output, session) {
   # })
 
   output$estvsactualebacsci <- renderPlotly({
-    estvsactualebacsci <- ggplot(df2, aes(x = x, y = y)) +
-      geom_line() +
-      geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "#00703c") +
-      # ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") +
-      ylab("Actual KS4 outcome") +
-      theme(
-        plot.title = element_text(color = "black", size = 14, face = "bold"),
-        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
-        axis.title.y = element_text(color = "black", size = 10, face = "plain")
-      )
-
-    ggplotly(estvsactualebacsci) %>%
+    estvsactuale_bacsci <- estvsactual(reactiveestimatedebacsci(), input$ebacscoresci, lims = c(0, 9))
+    ggplotly(estvsactuale_bacsci) %>%
       config(displayModeBar = F)
   })
 
