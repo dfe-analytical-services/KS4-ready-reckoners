@@ -24,6 +24,7 @@ server <- function(input, output, session) {
   # Call initial loading screen
 
   hide(id = "loading-content", anim = TRUE, animType = "fade")
+  # hide(id = "cookieMain")
   show("app-content")
 
   observeEvent(input$cookies, {
@@ -31,6 +32,7 @@ server <- function(input, output, session) {
       if (!("dfe_analytics" %in% names(input$cookies))) {
         shinyjs::show(id = "cookieMain")
       } else {
+        shinyjs::hide(id = "cookieMain")
         msg <- list(
           name = "dfe_analytics",
           value = input$cookies$dfe_analytics
@@ -54,23 +56,21 @@ server <- function(input, output, session) {
   observeEvent(input$cookieAccept, {
     msg <- list(
       name = "dfe_analytics",
-      value = ifelse(input$cookie_consent, "granted", "denied")
+      value = "granted"
     )
     session$sendCustomMessage("cookie-set", msg)
     session$sendCustomMessage("analytics-consent", msg)
-    if ("cookies" %in% names(input)) {
-      if ("dfe_analytics" %in% names(input$cookies)) {
-        if (input$cookies$dfe_analytics == "denied") {
-          ga_msg <- list(name = paste0("_ga_", google_analytics_key))
-          session$sendCustomMessage("cookie-remove", ga_msg)
-        }
-      }
-    }
     shinyjs::show(id = "cookieAcceptDiv")
     shinyjs::hide(id = "cookieMain")
   })
 
   observeEvent(input$cookieReject, {
+    msg <- list(
+      name = "dfe_analytics",
+      value = "denied"
+    )
+    session$sendCustomMessage("cookie-set", msg)
+    session$sendCustomMessage("analytics-consent", msg)
     shinyjs::show(id = "cookieRejectDiv")
     shinyjs::hide(id = "cookieMain")
   })
@@ -84,9 +84,12 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$remove, {
+    print(input$cookies)
+    shinyjs::toggle(id = "cookieMain")
     msg <- list(name = "dfe_analytics", value = "denied")
     session$sendCustomMessage("cookie-remove", msg)
     session$sendCustomMessage("analytics-consent", msg)
+    print(input$cookies)
   })
 
   cookies_data <- reactive({

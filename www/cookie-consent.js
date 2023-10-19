@@ -4,7 +4,7 @@ function getCookies(){
 }
 
 Shiny.addCustomMessageHandler('cookie-set', function(msg){
-  Cookies.set(msg.name, msg.value);
+  Cookies.set(msg.name, msg.value, { expires: 96 });
   getCookies();
 })
 
@@ -13,7 +13,7 @@ Shiny.addCustomMessageHandler('cookie-remove', function(msg){
   getCookies();
 })
 
-$(document).on('shiny:connected', function(ev){
+$(document).on('shiny:connected', function(){
   getCookies();
 })
 
