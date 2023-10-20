@@ -763,7 +763,6 @@ server <- function(input, output, session) {
       return(NULL)
     }
     data <- read.csv(csv_filename$datapath, header = TRUE)
-    print(colnames(data))
     data <- data %>%
       filter(`Pupil.included.in.progress.8.calculations` == 1) %>%
       select(p8score = Pupil.s.adjusted.progress.8.score)
@@ -808,20 +807,19 @@ server <- function(input, output, session) {
 
   output$errorbarchart <- renderPlotly({
     data <- user_VA_data()
-    point <- round(mean(data$`Pupil's adjusted progress 8 score`), 2)
-    df <- data.frame(x = c(-4:4), y = c(-4:4))
+    point <- round(mean(data$p8score), 2)
+    xlim <- c(-0.5, 0.5)
+    df <- data.frame(x = xlim, y = c(0, 0))
     upperlimit <- mean(data$p8score) + ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
     lowerlimit <- mean(data$p8score) - ((1.96 * (p8stdev$p8stdev)) / (sqrt(length(data$p8score))))
-
-
     # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
-    errorbar <- ggplot(df, aes(x = x, y = 0)) +
-      geom_line() +
+    errorbar <- ggplot(df, aes(x = x, y = y)) +
+      geom_line(linetype = "dashed") +
       geom_text(aes(label = "National average", x = -0.5, y = 0.5)) +
       # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
-      geom_point(aes(x = 0, y = point), colour = "#1d70b8", size = 2) +
+      geom_point(aes(x = 0, y = point), colour = gss_colour_pallette[1], size = 2) +
       ylim(c(-7.5, 7.5)) +
-      xlim(c(-0.5, 0.5)) +
+      xlim(xlim) +
       xlab("Comparison to national average") +
       ylab("Value added score") +
       geom_errorbar(
@@ -830,8 +828,10 @@ server <- function(input, output, session) {
           ymax = upperlimit,
           x = 0
         ),
+        color = gss_colour_pallette[1],
         width = 0.05
       ) +
+      theme_classic() +
       theme(
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank()
@@ -854,7 +854,7 @@ server <- function(input, output, session) {
 
     # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
     errorbar <- ggplot(df, aes(x = x, y = 0)) +
-      geom_line() +
+      geom_line(linetype = "dashed") +
       geom_text(aes(label = "National average", x = -0.5, y = 0.5)) +
       # geom_point(x = 0, y = point, aes(colour = 'blue', size = 5))
       geom_point(aes(x = 0, y = point), colour = "#00703c", size = 2) +
@@ -868,8 +868,10 @@ server <- function(input, output, session) {
           ymax = upperlim,
           x = 0
         ),
+        colour = "#00703c",
         width = 0.05
       ) +
+      theme_classic() +
       theme(
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank()
