@@ -9,29 +9,27 @@ homepage_panel <- function() {
           br(),
           br()
         ),
-
         card(
           card_header(
             class = "bg-primary",
             h2("Guidance")
           ),
           card_body(
-                  h3("Introduction"),
-                  p("There are four key stage 2 to 4 ready reckoners:"),
-                  strong("The Progress 8 element breakdown pupil ready reckoner."),
-                  ("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
-                  strong("The Progress 8 element breakdown school ready reckoner."),
-                  ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in Progress 8 or any of its elements, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-                  (a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
-                  strong("The EBacc subject pupil ready reckoner."),
-                  ("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 attainment in any of the three subject areas in the English Baccalaureate."),
-                  strong("The EBacc subject school ready reckoner."),
-                  ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in any of the three subject areas in the English Baccalaureate, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-                  (a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
-                  h3("How to use this app"),
-                  p("1) Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
-                  p("2) Follow the instructions steps within.")
-            )
+            h3("Introduction"),
+            p("There are four key stage 2 to 4 ready reckoners:"),
+            strong("The Progress 8 element breakdown pupil ready reckoner."),
+            ("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
+            strong("The Progress 8 element breakdown school ready reckoner."),
+            ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in Progress 8 or any of its elements, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
+            (a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
+            strong("The EBacc subject pupil ready reckoner."),
+            ("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 attainment in any of the three subject areas in the English Baccalaureate."),
+            strong("The EBacc subject school ready reckoner."),
+            ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in any of the three subject areas in the English Baccalaureate, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
+            (a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
+            h3("How to use this app"),
+            p("1) Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
+            p("2) Follow the instructions steps within.")
           )
         )
       )
@@ -372,8 +370,6 @@ dashboard3_panel <- function() {
         column(
           12,
           h1("Model values"),
-          br(),
-          br()
         ),
         card(
           card_header(
@@ -389,7 +385,7 @@ dashboard3_panel <- function() {
                   state-funded mainstream schools within the same prior attainment group at KS2. The
                   following table shows the provisional Attainment 8 averages for each KS2 prior
                   attainment group, based on the 2023 cohort averages."),
-                  p("##THIS NEEDS UPDATING## Changes to national subject entry patterns and performance, as well as changes to the
+            p("##THIS NEEDS UPDATING## Changes to national subject entry patterns and performance, as well as changes to the
                   methodology and grading as a result of COVID-19 this year will cause these averages to
                   change in future years."),
             p("Schools may change their curriculum offer in response to the
@@ -401,15 +397,12 @@ dashboard3_panel <- function() {
             reactable(ebacatt8splits),
             p("The below standard deviations are based on the Progress 8 scores of all eligible pupils at
                   mainstream schools and are the national figures used in confidence interval calculations."),
-                  h3("Progress 8 standard deviations"),
-                  reactable(p8stdevnamed),
-                  h3("EBacc subject area standard deviations"),
-                  reactable(ebacstdevnamed),
-                  ("For more information on these tables, please click here for the ##AB"),
-                  (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1187895/Secondary_accountabililty_measures.pdf", "Secondary Accountability measures document."))
-                )
-              )
-            )
+            h3("Progress 8 standard deviations"),
+            reactable(p8stdevnamed),
+            h3("EBacc subject area standard deviations"),
+            reactable(ebacstdevnamed),
+            ("For more information on these tables, please click here for the ##AB"),
+            (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1187895/Secondary_accountabililty_measures.pdf", "Secondary Accountability measures document."))
           )
         )
       )
