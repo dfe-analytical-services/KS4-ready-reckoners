@@ -26,15 +26,93 @@ server <- function(input, output, session) {
   hide(id = "loading-content", anim = TRUE, animType = "fade")
   show("app-content")
 
-  # Simple server stuff goes here ------------------------------------------------------------
-  # reactiveRevBal <- reactive({
-  #   dfRevBal %>% filter(
-  #     area_name == input$selectArea | area_name == "England",
-  #     school_phase == input$selectPhase
-  #   )
-  # })
+  observeEvent(input$cookies, {
+    if (!is.null(input$cookies)) {
+      if (!("dfe_analytics" %in% names(input$cookies))) {
+        shinyjs::show(id = "cookieMain")
+      } else {
+        msg <- list(
+          name = "dfe_analytics",
+          value = input$cookies$dfe_analytics
+        )
+        session$sendCustomMessage("analytics-consent", msg)
+        if ("cookies" %in% names(input)) {
+          if ("dfe_analytics" %in% names(input$cookies)) {
+            if (input$cookies$dfe_analytics == "denied") {
+              ga_msg <- list(name = paste0("_ga_", google_analytics_key))
+              session$sendCustomMessage("cookie-remove", ga_msg)
+            }
+          }
+        }
+      }
+    } else {
+      shinyjs::hide(id = "cookieMain")
+    }
+  })
 
+  # Need these set of observeEvent to create a path through the cookie banner
+  observeEvent(input$cookieAccept, {
+    msg <- list(
+      name = "dfe_analytics",
+      value = ifelse(input$cookie_consent, "granted", "denied")
+    )
+    session$sendCustomMessage("cookie-set", msg)
+    session$sendCustomMessage("analytics-consent", msg)
+    if ("cookies" %in% names(input)) {
+      if ("dfe_analytics" %in% names(input$cookies)) {
+        if (input$cookies$dfe_analytics == "denied") {
+          ga_msg <- list(name = paste0("_ga_", google_analytics_key))
+          session$sendCustomMessage("cookie-remove", ga_msg)
+        }
+      }
+    }
+    shinyjs::show(id = "cookieAcceptDiv")
+    shinyjs::hide(id = "cookieMain")
+  })
 
+  observeEvent(input$cookieReject, {
+    shinyjs::show(id = "cookieRejectDiv")
+    shinyjs::hide(id = "cookieMain")
+  })
+
+  observeEvent(input$hideAccept, {
+    shinyjs::toggle(id = "cookieDiv")
+  })
+
+  observeEvent(input$hideReject, {
+    shinyjs::toggle(id = "cookieDiv")
+  })
+
+  observeEvent(input$remove, {
+    msg <- list(name = "dfe_analytics", value = "denied")
+    session$sendCustomMessage("cookie-remove", msg)
+    session$sendCustomMessage("analytics-consent", msg)
+  })
+
+  cookies_data <- reactive({
+    input$cookies
+  })
+
+  output$cookie_status <- renderText({
+    cookie_text_stem <- "To better understand the reach of our dashboard tools, this site uses cookies to identify numbers of unique users as part of Google Analytics. You have chosen to"
+    cookie_text_tail <- "the use of cookies on this website."
+    if ("cookies" %in% names(input)) {
+      if ("dfe_analytics" %in% names(input$cookies)) {
+        if (input$cookies$dfe_analytics == "granted") {
+          paste(cookie_text_stem, "accept", cookie_text_tail)
+        } else {
+          paste(cookie_text_stem, "reject", cookie_text_tail)
+        }
+      }
+    } else {
+      "Cookies consent has not been confirmed."
+    }
+  })
+
+  observeEvent(input$cookieLink, {
+    # Need to link here to where further info is located.  You can
+    # updateTabsetPanel to have a cookie page for instance
+  })
 
   #  ---------------------
 
@@ -322,20 +400,9 @@ server <- function(input, output, session) {
   })
 
   output$estvsactual <- renderPlotly({
-    estvsactual <- ggplot(df, aes(x = x, y = y)) +
-      geom_line() +
-      geom_point(x = as.numeric(reactiveestimated()), y = input$p8score, size = 2, colour = "#FF007F") +
-      # ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") +
-      ylab("Actual KS4 outcome") +
-      theme(
-        plot.title = element_text(color = "black", size = 14, face = "bold"),
-        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
-        axis.title.y = element_text(color = "black", size = 10, face = "plain")
-      )
-
+    estvsactual <- estvsactual_ggplot(reactiveestimated(), input$p8score, lims = c(0, 90))
     ggplotly(estvsactual) %>%
-      config(displayModeBar = F)
+      config(displayModeBar = FALSE)
   })
 
   output$estimatedscoreboxeng <- renderValueBox({
@@ -475,19 +542,8 @@ server <- function(input, output, session) {
   # })
 
   output$estvsactualebacsci <- renderPlotly({
-    estvsactualebacsci <- ggplot(df2, aes(x = x, y = y)) +
-      geom_line() +
-      geom_point(x = as.numeric(reactiveestimatedebacsci()), y = input$ebacscoresci, size = 2, colour = "#00703c") +
-      # ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") +
-      ylab("Actual KS4 outcome") +
-      theme(
-        plot.title = element_text(color = "black", size = 14, face = "bold"),
-        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
-        axis.title.y = element_text(color = "black", size = 10, face = "plain")
-      )
-
-    ggplotly(estvsactualebacsci) %>%
+    estvsactuale_bacsci <- estvsactual_ggplot(reactiveestimatedebacsci(), input$ebacscoresci, lims = c(0, 9), point_colour = "#00703c")
+    ggplotly(estvsactuale_bacsci) %>%
       config(displayModeBar = F)
   })
 
@@ -513,19 +569,11 @@ server <- function(input, output, session) {
   # })
 
   output$estvsactualebachum <- renderPlotly({
-    estvsactualebachum <- ggplot(df2, aes(x = x, y = y)) +
-      geom_line() +
-      geom_point(x = as.numeric(reactiveestimatedebachum()), y = input$ebacscorehum, size = 2, colour = "#F46A25") +
-      # ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") +
-      ylab("Actual KS4 outcome") +
-      theme(
-        plot.title = element_text(color = "black", size = 14, face = "bold"),
-        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
-        axis.title.y = element_text(color = "black", size = 10, face = "plain")
-      )
-
-    ggplotly(estvsactualebachum) %>%
+    estvsactual_ebachum <- estvsactual_ggplot(
+      reactiveestimatedebachum(), input$ebacscorehum,
+      lims = c(0, 9), point_colour = "#F46A25"
+    )
+    ggplotly(estvsactual_ebachum) %>%
       config(displayModeBar = F)
   })
 
@@ -551,19 +599,12 @@ server <- function(input, output, session) {
   # })
 
   output$estvsactualebaclan <- renderPlotly({
-    estvsactualebaclan <- ggplot(df2, aes(x = x, y = y)) +
-      geom_line() +
-      geom_point(x = as.numeric(reactiveestimatedebaclan()), y = input$ebacscorelan, size = 2, colour = "#1d70b8") +
-      # ggtitle("Estimated against actual KS4 outcome") +
-      xlab("Estimated KS4 outcome") +
-      ylab("Actual KS4 outcome") +
-      theme(
-        plot.title = element_text(color = "black", size = 14, face = "bold"),
-        axis.title.x = element_text(color = "black", size = 10, face = "plain"),
-        axis.title.y = element_text(color = "black", size = 10, face = "plain")
-      )
+    estvsactual_ebaclan <- estvsactual_ggplot(
+      reactiveestimatedebaclan(), input$ebacscorelan,
+      lims = c(0, 9), point_colour = "#1d70b8"
+    )
 
-    ggplotly(estvsactualebaclan) %>%
+    ggplotly(estvsactual_ebaclan) %>%
       config(displayModeBar = F)
   })
 
@@ -731,14 +772,15 @@ server <- function(input, output, session) {
 
 
 
-  output$user_view <- DT::renderDataTable({
+  output$user_view <- renderReactable({
     if (is.null(user_VA_data())) {
-      DT::datatable(data.frame(`Adjusted progress 8 score` = c("Please upload data")))
+      tabledata <- data.frame(`Adjusted progress 8 score` = c("Please upload data"))
     } else {
       tabledata <- user_VA_data() %>%
         select(`Adjusted progress 8 score` = p8score)
-      DT::datatable(tabledata)
     }
+    names(tabledata) <- names(tabledata) %>% gsub("\\.", " ", .)
+    reactable(tabledata)
   })
 
   user_VA_data_ebac <- reactive({
@@ -753,14 +795,15 @@ server <- function(input, output, session) {
     return(data)
   })
 
-  output$user_view_ebac <- DT::renderDataTable({
+  output$user_view_ebac <- renderReactable({
     if (is.null(user_VA_data_ebac())) {
-      DT::datatable(data.frame(`Adjusted progress 8 score` = c("Please upload data")))
+      tabledata <- data.frame(`Adjusted progress 8 score` = c("Please upload data"))
     } else {
       tabledata <- user_VA_data_ebac() %>%
         select(`Adjusted progress 8 score` = p8score)
-      DT::datatable(tabledata)
     }
+    names(tabledata) <- names(tabledata) %>% gsub("\\.", " ", .)
+    reactable(tabledata)
   })
 
   output$errorbarchart <- renderPlotly({
@@ -832,6 +875,9 @@ server <- function(input, output, session) {
         axis.ticks.x = element_blank()
       )
 
+    validate(
+      need(data, "Upload data in order to create plot"),
+    )
     ggplotly(errorbar) %>%
       config(displayModeBar = F) %>%
       style(textposition = "right")
