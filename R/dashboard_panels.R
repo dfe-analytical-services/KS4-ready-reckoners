@@ -16,20 +16,28 @@ homepage_panel <- function() {
           ),
           card_body(
             h3("Introduction"),
-            p("There are four key stage 2 to 4 ready reckoners:"),
-            strong("The Progress 8 element breakdown pupil ready reckoner."),
-            ("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
-            strong("The Progress 8 element breakdown school ready reckoner."),
-            ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in Progress 8 or any of its elements, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-            (a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
-            strong("The EBacc subject pupil ready reckoner."),
-            ("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 attainment in any of the three subject areas in the English Baccalaureate."),
-            strong("The EBacc subject school ready reckoner."),
-            ("The aim of this is to help the user understand how we arrive at a value added score for their school. The ready reckoner allows the user to input the value added scores in any of the three subject areas in the English Baccalaureate, for all pupils in their school. These value added scores can be copied and pasted directly from the pupil level file on the "),
-            (a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
+            p("There are four key stage 2 to 4 ready reckoners as outlined below."),
+            h4("The Progress 8 element breakdown pupil ready reckoner."),
+            p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
+            h4("The Progress 8 element breakdown school ready reckoner."),
+            p("The aim of this is to help the user understand how we arrive at a value added score for their school.
+              The ready reckoner allows the user to input the value added scores in Progress 8 or any of its
+              elements, for all pupils in their school. These value added scores can be copied and pasted directly
+              from the pupil level file on the ", a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
+            h4("The EBacc subject pupil ready reckoner."),
+            p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil.
+              The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment
+              and key stage 4 attainment in any of the three subject areas in the English Baccalaureate."),
+            h4("The EBacc subject school ready reckoner."),
+            p("The aim of this is to help the user understand how we arrive at a value added score for their school.
+              The ready reckoner allows the user to input the value added scores in any of the three subject areas
+              in the English Baccalaureate, for all pupils in their school. These value added scores can be copied
+              and pasted directly from the pupil level file on the ", a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
             h3("How to use this app"),
-            p("1) Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
-            p("2) Follow the instructions steps within.")
+            tags$ol(
+              tags$li("Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
+              tags$li("Follow the instructions steps within.")
+            )
           )
         )
       )
