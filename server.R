@@ -780,7 +780,7 @@ server <- function(input, output, session) {
         select(`Adjusted progress 8 score` = p8score)
     }
     names(tabledata) <- names(tabledata) %>% gsub("\\.", " ", .)
-    reactable(tabledata)
+    reactable(tabledata, rownames = TRUE, defaultColDef = colDef(minWidth = 160), fullWidth = FALSE)
   })
 
   user_VA_data_ebac <- reactive({
@@ -803,7 +803,7 @@ server <- function(input, output, session) {
         select(`Adjusted progress 8 score` = p8score)
     }
     names(tabledata) <- names(tabledata) %>% gsub("\\.", " ", .)
-    reactable(tabledata)
+    reactable(tabledata, rownames = TRUE, defaultColDef = colDef(minWidth = 160), fullWidth = FALSE, wrap = TRUE)
   })
 
   output$errorbarchart <- renderPlotly({

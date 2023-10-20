@@ -131,6 +131,7 @@ dashboard_panel <- function() {
               label = "Please select the EBacc subject area measure for which you would like to calculate a school VA score.",
               choices = c("KS2-4 English Baccalaureate - science subject area", "KS2-4 English Baccalaureate - humanities subject area", "KS2-4 English Baccalaureate - languages subject area"),
               selected = "KS2-4 English Baccalaureate - science subject area",
+              width = "72%",
               selectize = FALSE
             ),
             layout_columns(
