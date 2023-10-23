@@ -806,6 +806,9 @@ server <- function(input, output, session) {
   })
 
   output$errorbarchart <- renderPlotly({
+    validate(
+      need(input$user_input_VA, "Upload school data in order to create plot"),
+    )
     data <- user_VA_data()
     point <- round(mean(data$p8score), 2)
     xlim <- c(-0.5, 0.5)
@@ -837,15 +840,15 @@ server <- function(input, output, session) {
         axis.ticks.x = element_blank()
       )
 
-    validate(
-      need(data, "Upload school data in order to create plot"),
-    )
     ggplotly(errorbar) %>%
       config(displayModeBar = F) %>%
       style(textposition = "right")
   })
 
   output$ebacerrorbarchart <- renderPlotly({
+    validate(
+      need(input$user_input_VA_ebac, "Upload data in order to create plot"),
+    )
     data <- user_VA_data_ebac()
     point <- round(mean(data$p8score), 2)
     df <- data.frame(x = c(-7.5:7.5), y = c(-7.5:7.5))
@@ -877,9 +880,6 @@ server <- function(input, output, session) {
         axis.ticks.x = element_blank()
       )
 
-    validate(
-      need(data, "Upload data in order to create plot"),
-    )
     ggplotly(errorbar) %>%
       config(displayModeBar = F) %>%
       style(textposition = "right")

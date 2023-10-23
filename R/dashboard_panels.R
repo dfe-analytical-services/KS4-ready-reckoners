@@ -102,8 +102,11 @@ dashboard_panel <- function() {
             p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
             p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
             p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
-            h4("Comparison of value added score to the national average score"),
-            plotlyOutput("errorbarchart")
+            card(
+              class = "border-0",
+              card_header(h4("Comparison of value added score to the national average score")),
+              card_body(plotlyOutput("errorbarchart"))
+            )
           )
           #          h2("Select KS2 scaled score for READING"),
           #          valueBoxOutput("boxavgRevBal", width = 6),
@@ -150,8 +153,11 @@ dashboard_panel <- function() {
             p("If the whole range of the confidence interval is above the National Average line, we can say the school score is significantly above the national average, and we can be confident the school is helping its pupils make better than average progress."),
             p("Similarly, when the entire range of the confidence interval is below the National Average line, we can say the school score is significantly below the national average."),
             p("Finally, if the confidence interval straddles the National Average line, then we can say that the school is not significantly different from the national average, in other words, we cannot confidently say that the school's Progress 8 score is definitely above or definitely below the national average."),
-            htmlOutput("ebacerrorbarchart_title"),
-            plotlyOutput("ebacerrorbarchart")
+            card(
+              class = "border-0",
+              card_header(htmlOutput("ebacerrorbarchart_title")),
+              card_body(plotlyOutput("ebacerrorbarchart"))
+            )
           )
         )
       )
