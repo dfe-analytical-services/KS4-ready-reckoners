@@ -48,7 +48,8 @@ if(any(tidy_output)){
 }
 
 if (error_flag) {
-  cat("Code does not appear to have been tidied.\nPlease run tidy_code() before committing your changes.")
+  cat("Warning: Code did not appear to have been tidied.\nI've run tidy code for you, 
+      please check your files and the dashboard still works and then re-stage and try committing again.")
   quit(save = "no", status = 1, runLast = FALSE)
 }
 # End of hooks

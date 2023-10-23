@@ -85,6 +85,7 @@ ui <- function(input, output, session) {
         href = "dfe_shiny_gov_style.css"
       )
     ),
+    shinyGovstyle::cookieBanner("DfE Key Stage 4 Ready Reckoner tool"),
     shinyGovstyle::header(
       main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
@@ -93,7 +94,6 @@ ui <- function(input, output, session) {
       logo_width = 150,
       logo_height = 32
     ),
-    shinyGovstyle::cookieBanner("DfE Key Stage 4 Ready Reckoner tool"),
     shinyGovstyle::banner(
       "beta banner",
       "beta",
