@@ -82,9 +82,8 @@ appLoadingCSS <- "
 }
 "
 
-site_primary <- "https://department-for-education.shinyapps.io/dfe-shiny-template/"
-site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
-
+site_primary <- "https://department-for-education.shinyapps.io/ks4_ready_reckoners/"
+google_analytics_key <- "3L9Y07E864"
 source("R/support_links.R")
 source("R/read_data.R")
 
