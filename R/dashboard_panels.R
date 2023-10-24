@@ -6,8 +6,6 @@ homepage_panel <- function() {
         column(
           12,
           h1("KS4 Ready Reckoner dashboard"),
-          br(),
-          br()
         ),
         card(
           card_header(

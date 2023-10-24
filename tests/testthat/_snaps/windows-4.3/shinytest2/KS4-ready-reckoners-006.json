@@ -4,11 +4,6 @@
     "cookieAccept": 0,
     "cookieLink": 0,
     "cookieReject": 0,
-    "cookies": {
-      "_ga": "GA1.1.1506497097.1698070412",
-      "dfe_analytics": "granted",
-      "_ga_3L9Y07E864": "GS1.1.1698070412.1.1.1698072203.0.0.0"
-    },
     "ebacelementinput": "KS2-4 English Baccalaureate - science subject area",
     "ebacscorehum": 0,
     "ebacscorelan": 0,
@@ -17,7 +12,7 @@
     "hideReject": 0,
     "mathsinput": "Grade = N",
     "mathsinputebac": "Grade = N",
-    "navlistPanel": "Homepage",
+    "navlistPanel": "Support and feedback",
     "p8elementinput": "Progress 8",
     "p8scoreebac": 0,
     "p8scoreeng": 0,
@@ -30,11 +25,5 @@
     "tabsetpanels2": "Progress 8",
     "user_input_VA": null,
     "user_input_VA_ebac": null
-  },
-  "output": {
-
-  },
-  "export": {
-
   }
 }
