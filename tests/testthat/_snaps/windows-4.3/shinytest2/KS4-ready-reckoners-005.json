@@ -1,0 +1,449 @@
+{
+  "input": {
+    ".clientValue-default-plotlyCrosstalkOpts": {
+      "on": "plotly_click",
+      "persistent": false,
+      "dynamic": false,
+      "selectize": false,
+      "opacityDim": 0.2,
+      "selected": {
+        "opacity": 1
+      },
+      "debounce": 0,
+      "color": [
+
+      ]
+    },
+    "chartbutton": "Science",
+    "cookieAccept": 0,
+    "cookieLink": 0,
+    "cookieReject": 0,
+    "cookies": [
+      "GA1.1.438056990.1664964290",
+      "GS1.1.1664964290.1.1.1664964307.0.0.0",
+      "GS1.1.1679648688.2.0.1679648688.0.0.0",
+      "GS1.1.1686930955.4.1.1686931408.0.0.0",
+      "GS1.1.1696865015.1.1.1696865853.0.0.0",
+      "GS1.1.1698069133.1.1.1698069320.0.0.0",
+      "granted",
+      "GS1.1.1698070420.5.1.1698071073.0.0.0"
+    ],
+    "ebacelementinput": "KS2-4 English Baccalaureate - science subject area",
+    "ebacscorehum": 0,
+    "ebacscorelan": 0,
+    "ebacscoresci": 0,
+    "hideAccept": 0,
+    "hideReject": 0,
+    "mathsinput": "Grade = N",
+    "mathsinputebac": "Grade = N",
+    "navlistPanel": "Model values",
+    "p8elementinput": "Progress 8",
+    "p8score": 0,
+    "p8scoreebac": 0,
+    "p8scoreeng": 0,
+    "p8scoremath": 0,
+    "p8scoreopen": 0,
+    "plotly_afterplot-A": "\"estvsactual\"",
+    "plotly_relayout-A": "{\"width\":552,\"height\":400}",
+    "readinginput": "Grade = N",
+    "readinginputebac": "Grade = N",
+    "remove": 0,
+    "tabsetpanels": "Progress 8",
+    "tabsetpanels2": "Progress 8",
+    "user_input_VA": null,
+    "user_input_VA_ebac": null
+  },
+  "output": {
+    "PAGbox": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">1<\/p>\n    <p id=\"vboxdetail-medium\">Prior attainment group categorisation<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "PAGcatbox": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">Below standard<\/p>\n    <p id=\"vboxdetail-medium\">Prior attainment group categorisation<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscoreavbox": {
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">-1.58<\/p>\n    <p id=\"vboxdetail-medium\">Pupil value added average score<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "VAscorebox": {
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">-15.83<\/p>\n    <p id=\"vboxdetail-medium\">Pupil value added score<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxavgreadmaths": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">79<\/p>\n    <p id=\"vboxdetail-medium\">Pupil's KS2 average point score<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "estimatedscorebox": {
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">15.83<\/p>\n    <p id=\"vboxdetail-medium\">Estimated key stage 4 score<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "estvsactual": {
+      "x": {
+        "data": [
+          {
+            "x": 15.83,
+            "y": 0,
+            "text": "estimated: 15.83<br />score: 0",
+            "type": "scatter",
+            "mode": "markers",
+            "marker": {
+              "autocolorscale": false,
+              "color": "rgba(18,67,109,1)",
+              "opacity": 1,
+              "size": 5.6692913385826778,
+              "symbol": "circle",
+              "line": {
+                "width": 1.8897637795275593,
+                "color": "rgba(18,67,109,1)"
+              }
+            },
+            "hoveron": "points",
+            "showlegend": false,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "x": [
+              -4.5,
+              94.5
+            ],
+            "y": [
+              -4.5,
+              94.5
+            ],
+            "text": "intercept: 0<br />slope: 1",
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 1.8897637795275593,
+              "color": "rgba(40,161,151,1)",
+              "dash": "dash"
+            },
+            "hoveron": "points",
+            "showlegend": false,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          }
+        ],
+        "layout": {
+          "margin": {
+            "t": 25.74124809741248,
+            "r": 7.3059360730593621,
+            "b": 38.367233983672342,
+            "l": 35.931921959319219
+          },
+          "plot_bgcolor": "rgba(255,255,255,1)",
+          "paper_bgcolor": "rgba(255,255,255,1)",
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 14.611872146118724
+          },
+          "xaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              -4.5,
+              94.5
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "0",
+              "25",
+              "50",
+              "75"
+            ],
+            "tickvals": [
+              0,
+              24.999999999999996,
+              50,
+              75
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "0",
+              "25",
+              "50",
+              "75"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 11.68949771689498
+            },
+            "tickangle": 0,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 0.66417600664176002,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "y",
+            "title": {
+              "text": "Estimated KS4 outcome",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 13.283520132835198
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "yaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              -4.5,
+              94.5
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "0",
+              "25",
+              "50",
+              "75"
+            ],
+            "tickvals": [
+              0,
+              24.999999999999996,
+              50,
+              75
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "0",
+              "25",
+              "50",
+              "75"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 11.68949771689498
+            },
+            "tickangle": 0,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 0.66417600664176002,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "x",
+            "title": {
+              "text": "Actual KS4 outcome",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 13.283520132835198
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "shapes": [
+            {
+              "type": "rect",
+              "fillcolor": null,
+              "line": {
+                "color": null,
+                "width": 0,
+                "linetype": [
+
+                ]
+              },
+              "yref": "paper",
+              "xref": "paper",
+              "x0": 0,
+              "x1": 1,
+              "y0": 0,
+              "y1": 1
+            }
+          ],
+          "showlegend": false,
+          "legend": {
+            "bgcolor": "rgba(255,255,255,1)",
+            "bordercolor": "transparent",
+            "borderwidth": 1.8897637795275593,
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 11.68949771689498
+            }
+          },
+          "hovermode": "closest",
+          "barmode": "relative"
+        },
+        "config": {
+          "doubleClick": "reset",
+          "modeBarButtonsToAdd": [
+            "hoverclosest",
+            "hovercompare"
+          ],
+          "showSendToCloud": false,
+          "displayModeBar": false
+        },
+        "source": "A",
+        "highlight": {
+          "on": "plotly_click",
+          "persistent": false,
+          "dynamic": false,
+          "selectize": false,
+          "opacityDim": 0.20000000000000001,
+          "selected": {
+            "opacity": 1
+          },
+          "debounce": 0
+        },
+        "shinyEvents": [
+          "plotly_hover",
+          "plotly_click",
+          "plotly_selected",
+          "plotly_relayout",
+          "plotly_brushed",
+          "plotly_brushing",
+          "plotly_clickannotation",
+          "plotly_doubleclick",
+          "plotly_deselect",
+          "plotly_afterplot",
+          "plotly_sunburstclick"
+        ],
+        "base_url": "https://plot.ly"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "setprototypeof",
+          "version": "0.1",
+          "src": {
+            "href": "setprototypeof-0.1"
+          },
+          "meta": null,
+          "script": "setprototypeof.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "typedarray",
+          "version": "0.1",
+          "src": {
+            "href": "typedarray-0.1"
+          },
+          "meta": null,
+          "script": "typedarray.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "jquery",
+          "version": "3.5.1",
+          "src": {
+            "href": "jquery-3.5.1"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.2.0",
+          "src": {
+            "href": "crosstalk-1.2.0"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "plotly-htmlwidgets-css",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-htmlwidgets-css-2.11.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "plotly-htmlwidgets.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "plotly-main",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-main-2.11.1"
+          },
+          "meta": null,
+          "script": "plotly-latest.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        }
+      ]
+    },
+    "p8scoreinputbox": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"p8score-label\" for=\"p8score\">\n    <p>Enter the pupil's key stage 4 attainment score:<\/p>\n  <\/label>\n  <input id=\"p8score\" type=\"number\" class=\"shiny-input-number form-control\" value=\"0\" min=\"0\" max=\"95\" step=\"0.01\"/>\n<\/div>",
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
