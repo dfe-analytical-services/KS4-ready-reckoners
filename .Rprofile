@@ -8,7 +8,7 @@
 #
 # ---------------------------------------------------------
 
-cat("Sourcing .Rprofile.", fill = TRUE)
+# message("Sourcing .Rprofile.")
 
 source("renv/activate.R")
 
@@ -31,7 +31,7 @@ run_tests_locally <- function() {
   message("================================================================================")
   message("== shinytest ===================================================================")
   message("")
-  shinytest::testApp()
+  shinytest2::test_app()
   message("")
   message("================================================================================")
 }
