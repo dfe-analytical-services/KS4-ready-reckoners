@@ -122,7 +122,12 @@ ui <- function(input, output, session) {
       dashboard2_panel(),
       dashboard3_panel(),
       a11y_panel(),
-      support_links()
+      support_panel(
+        team_email = "attainment.statistics@education.gov.uk",
+        repo_name = "KS4-ready-reckoners",
+        publication_name = "Key Stage 4 Performance",
+        publication_stub = "key-stage-4-performance-revised"
+      )
     ),
     tags$script(
       src = "script.js"
