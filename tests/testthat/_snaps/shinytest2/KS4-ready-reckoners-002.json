@@ -84,11 +84,19 @@
                 "id": "Adjusted progress 8 score",
                 "name": "Adjusted progress 8 score",
                 "type": "character",
-                "minWidth": 160
+                "minWidth": 160,
+                "format": {
+                  "cell": {
+                    "digits": 2
+                  },
+                  "aggregated": {
+                    "digits": 2
+                  }
+                }
               }
             ],
             "inline": true,
-            "dataKey": "6a79698cf3289ec452ecee50c3ce8ef6",
+            "dataKey": "a62dec60ec134fec81aef845a9de50de",
             "static": false
           },
           "children": [
