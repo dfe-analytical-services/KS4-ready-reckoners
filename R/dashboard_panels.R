@@ -407,12 +407,18 @@ dashboard3_panel <- function() {
             h3("Progress 8 PAGs and Attainment 8 splits"),
             reactable(
               p8att8splits,
-              defaultColDef = colDef(format = colFormat(digits = 2))
+              defaultColDef = colDef(format = colFormat(digits = 2)),
+              columns = list(
+                "KS2 prior attainment group" = colDef(format = colFormat(digits = 0))
+              )
             ),
             h3("EBacc subject area PAGs and Attainment 8 splits"),
             reactable(
               ebacatt8splits,
-              defaultColDef = colDef(format = colFormat(digits = 2))
+              defaultColDef = colDef(format = colFormat(digits = 2)),
+              columns = list(
+                "KS2 prior attainment group" = colDef(format = colFormat(digits = 0))
+              )
             ),
             p("The below standard deviations are based on the Progress 8 scores of all eligible pupils at
                   mainstream schools and are the national figures used in confidence interval calculations."),
