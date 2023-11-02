@@ -1,50 +1,21 @@
-createAvgRevTimeSeries <- function(dfRevenueBalance, inputArea) {
-  ggplot(dfRevenueBalance, aes(x = year, y = average_revenue_balance, color = area_name)) +
-    geom_line(size = 1.2) +
+estvsactual_ggplot <- function(estimated, actual, lims = c(0, 90), point_colour = "#12436D") {
+  score <- ifelse(is.null(actual), 0, actual)
+  data <- data.frame(estimated = c(as.numeric(estimated)), actual = c(score))
+  ggplot(
+    data = data,
+    aes(x = estimated, y = score)
+  ) +
+    geom_point(colour = point_colour) +
+    geom_abline(intercept = 0, slope = 1, color = "#28A197", linetype = "dashed") +
+    # ggtitle("Estimated against actual KS4 outcome") +
+    xlab("Estimated KS4 outcome") +
+    ylab("Actual KS4 outcome") +
+    xlim(lims) +
+    ylim(lims) +
     theme_classic() +
     theme(
-      text = element_text(size = 12),
-      axis.title.x = element_text(margin = margin(t = 12)),
-      axis.title.y = element_text(margin = margin(r = 12)),
-      axis.line = element_line(size = 1.0),
-      legend.position = "top"
-    ) +
-    scale_y_continuous(
-      labels = scales::number_format(accuracy = 1, big = ",", prefix = "£")
-    ) +
-    xlab("Academic year end") +
-    ylab("Average revenue balance") +
-    scale_color_manual(
-      "Area",
-      breaks = unique(c("England", inputArea)),
-      values = c("#f47738", "#1d70b8")
-    )
-}
-
-plotAvgRevBenchmark <- function(dfRevenueBalance, inputArea) {
-  ggplot(dfRevenueBalance, aes(
-    x = area_name,
-    y = average_revenue_balance,
-    fill = area_name
-  )) +
-    geom_col() +
-    theme_classic() +
-    theme(
-      text = element_text(size = 12),
-      axis.text.x = element_text(angle = 300),
-      axis.title.x = element_blank(),
-      axis.title.y = element_text(margin = margin(r = 12)),
-      axis.line = element_line(size = 1.0),
-      legend.position = "none"
-    ) +
-    scale_y_continuous(
-      labels = scales::number_format(accuracy = 1, big = ",", prefix = "£")
-    ) +
-    xlab("Area") +
-    ylab("Average revenue balance") +
-    scale_fill_manual(
-      "Area",
-      breaks = unique(dfRevenueBalance$area_name),
-      values = gss_colour_pallette
+      plot.title = element_text(color = "black", size = 14, face = "bold"),
+      axis.title.x = element_text(color = "black", size = 10, face = "plain"),
+      axis.title.y = element_text(color = "black", size = 10, face = "plain")
     )
 }

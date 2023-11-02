@@ -8,3 +8,4 @@ data/ebac_stdev_file_named.csv,reference
 data/p8_att8_splits.csv,reference
 data/ebac_att8_splits.csv,reference
 data/model_values.xlsx,reference
+tests/test_data/p8_dummy_v6.csv,dummy

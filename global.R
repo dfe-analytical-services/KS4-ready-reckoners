@@ -10,14 +10,16 @@
 
 # Library calls ---------------------------------------------------------------------------------
 shhh <- suppressPackageStartupMessages # It's a library, so shhh!
+shhh(library(htmltools))
 shhh(library(shiny))
 shhh(library(shinyjs))
 shhh(library(tools))
 shhh(library(testthat))
-shhh(library(shinytest))
-shhh(library(shinydashboard))
+shhh(library(shinytest2))
 shhh(library(shinyWidgets))
+shhh(library(shinydashboard))
 shhh(library(shinyGovstyle))
+shhh(library(bslib))
 shhh(library(dplyr))
 shhh(library(ggplot2))
 shhh(library(plotly))
@@ -25,6 +27,7 @@ shhh(library(DT))
 shhh(library(shinyvalidate))
 shhh(library(metathis))
 shhh(library(reactable))
+shhh(library(dfeshiny))
 
 # Functions ---------------------------------------------------------------------------------
 
@@ -80,9 +83,8 @@ appLoadingCSS <- "
 }
 "
 
-site_primary <- "https://department-for-education.shinyapps.io/dfe-shiny-template/"
-site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
-
+site_primary <- "https://department-for-education.shinyapps.io/ks4_ready_reckoners/"
+google_analytics_key <- "3L9Y07E864"
 source("R/support_links.R")
 source("R/read_data.R")
 
@@ -98,10 +100,20 @@ p8stdevnamed <- read.csv("data/p8_stdev_file_named.csv")
 ebacstdevnamed <- read.csv("data/ebac_stdev_file_named.csv")
 
 
-names(p8att8splits) <- c("KS2 prior attainment group", "KS2 average scaled score range", "Attainment 8 average", "English average", "Maths average", "EBacc average", "Open average", "Average EBacc slots filled
-                         (out of 3)", "Average open slots filled (out of 3)")
-names(ebacatt8splits) <- c("KS2 prior attainment group", "KS2 average scaled score range", "Science average", "Humanities average", "Languages average")
-names(p8stdevnamed) <- c("Progress 8", "Progress 8 English element", "Progress 8 Maths element", "Progress 8 Open element", "Progress 8 EBacc element")
+names(p8att8splits) <- c(
+  "KS2 prior attainment group", "KS2 average scaled score range",
+  "Attainment 8 average", "English average", "Maths average", "EBacc average",
+  "Open average", "Average EBacc slots filled (out of 3)",
+  "Average open slots filled (out of 3)"
+)
+names(ebacatt8splits) <- c(
+  "KS2 prior attainment group", "KS2 average scaled score range",
+  "Science average", "Humanities average", "Languages average"
+)
+names(p8stdevnamed) <- c(
+  "Progress 8", "Progress 8 English element", "Progress 8 Maths element",
+  "Progress 8 Open element", "Progress 8 EBacc element"
+)
 names(ebacstdevnamed) <- c("Science VA", "Humanities VA", "Languages VA")
 
 

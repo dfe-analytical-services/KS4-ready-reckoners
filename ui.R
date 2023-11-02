@@ -54,10 +54,8 @@
 #    https://github.com/moj-analytical-services/shinyGovstyle
 #
 
-
-
 ui <- function(input, output, session) {
-  fluidPage(
+  page(
     # use_tota11y(),
     title = tags$head(
       tags$link(
@@ -79,7 +77,17 @@ ui <- function(input, output, session) {
         referrer = "no-referrer"
       ),
     shinyjs::useShinyjs(),
-    useShinydashboard(),
+    # Setting up cookie consent based on a cookie recording the consent:
+    # https://book.javascript-for-r.com/shiny-cookies.html
+    tags$head(
+      tags$script(
+        src = paste0(
+          "https://cdn.jsdelivr.net/npm/js-cookie@rc/",
+          "dist/js.cookie.min.js"
+        )
+      ),
+      tags$script(src = "cookie-consent.js")
+    ),
     tags$head(includeHTML(("google-analytics.html"))),
     tags$head(
       tags$link(
@@ -88,11 +96,14 @@ ui <- function(input, output, session) {
         href = "dfe_shiny_gov_style.css"
       )
     ),
+    shinyGovstyle::cookieBanner("DfE Key Stage 4 Ready Reckoner tool"),
     shinyGovstyle::header(
-      main_text = "DfE",
+      main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "KS4 Ready Reckoner app",
-      logo = "images/DfE_logo.png"
+      secondary_text = "Key Stage 4 Ready Reckoner Tool",
+      logo = "images/DfE_logo_landscape.png",
+      logo_width = 150,
+      logo_height = 32
     ),
     shinyGovstyle::banner(
       "beta banner",
@@ -111,7 +122,12 @@ ui <- function(input, output, session) {
       dashboard2_panel(),
       dashboard3_panel(),
       a11y_panel(),
-      support_links()
+      support_panel(
+        team_email = "attainment.statistics@education.gov.uk",
+        repo_name = "KS4-ready-reckoners",
+        publication_name = "Key Stage 4 Performance",
+        publication_stub = "key-stage-4-performance-revised"
+      )
     ),
     tags$script(
       src = "script.js"
