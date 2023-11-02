@@ -19,6 +19,14 @@
   font-display:fallback
 }
 
+.bg-primary {
+    background-color: #1d70b8!important;
+}
+
+.primary {
+    color: #1d70b8!important;
+}
+
 html {
   background-color: #f3f2f1;
 }
@@ -43,6 +51,10 @@ a:active {
   text-decoration: underline
 }
 
+.govuk-cookie-banner {
+  padding: 6px 6px 6px 6px;
+}
+
 /* This line sets the main area width. Originally set to 66.667% in the GDS 
 template. 80% works well here to reduce white space on the right hand side.*/
 .col-sm-8{ width: 80%}
@@ -55,6 +67,29 @@ template. 80% works well here to reduce white space on the right hand side.*/
   margin-right: 0px;
 }
 
+.nav-pills {
+  --bs-blue: #1d70b8;
+    --bs-nav-pills-border-radius: .375rem;
+    --bs-nav-pills-link-active-color: #1d70b8;
+    --bs-nav-pills-link-active-bg: #f3f2f1;
+    --bs-nav-pills-link-active-border: 4px;
+    --bs-nav-link-color: #1d70b8;
+  
+}
+
+.nav-tabs .nav-link, .nav-tabs>li>a, .nav-tabs .nav-pills>li>a, .nav-tabs ul.nav.navbar-nav>li>a {
+  color: #1d70b8;
+}
+
+.btn-check:checked+.btn{
+  background-color: #1d70b8;
+  border-color: #1d70b8;
+}
+
+.btn{
+  color: #1d70b8;
+}
+
 .nav-pills > li.active > a {
   font-family: "GDS Transport", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -64,20 +99,21 @@ template. 80% works well here to reduce white space on the right hand side.*/
   background-color: #f3f2f1 !important;
   color: #1d70b8;
   font-size: 15px;
-  border-color: #1d70b8;
+  border-left: 4px solid #1d70b8;
   text-decoration: none
 }
 
-.nav-pills > li.active > a,
-.nav-pills > li.active > a:focus,
-.nav-pills > li.active > a:hover {
+.nav-pills > li > a,
+.nav-pills > li.active > a {
   color: #1d70b8 !important;
 }
 
-.nav-pills > li > a:focus,
-.nav-pills > li > a:hover {
-   border-color: #1d70b8;
+.nav-pills > li > a:hover,
+.nav-pills > li.active > a:hover {
+  background-color: #f3f2f1 !important;
+  border-left: 4px solid #1d70b8;
 }
+
 
 .nav-pills > li > a {
   font-family: "GDS Transport", Arial, sans-serif;
@@ -193,6 +229,11 @@ template. 80% works well here to reduce white space on the right hand side.*/
      margin:10px;
 }
 
+.small-box {
+     padding: 12px;
+     margin:10px;
+}
+
 .small-box.bg-purple {
     background-color: 	#801650 !important;
     color: #ffffff;
@@ -207,8 +248,6 @@ template. 80% works well here to reduce white space on the right hand side.*/
 .small-box.bg-blue{
      background-color: #1d70b8 !important; 
      color: #ffffff;
-     padding: 120px
-     margin:10px;
 }
 
 .small-box.bg-orange{
@@ -342,3 +381,4 @@ template. 80% works well here to reduce white space on the right hand side.*/
   font-weight: bold;
   font-size: 28px;
 }
+

@@ -1,0 +1,119 @@
+{
+  "input": {
+    "chartbutton": "Science",
+    "cookieAccept": 0,
+    "cookieLink": 0,
+    "cookieReject": 0,
+    "ebacelementinput": "KS2-4 English Baccalaureate - science subject area",
+    "ebacscorehum": 0,
+    "ebacscorelan": 0,
+    "ebacscoresci": 0,
+    "hideAccept": 0,
+    "hideReject": 0,
+    "mathsinput": "Grade = N",
+    "mathsinputebac": "Grade = N",
+    "navlistPanel": "dashboard",
+    "p8elementinput": "Progress 8",
+    "p8scoreebac": 0,
+    "p8scoreeng": 0,
+    "p8scoremath": 0,
+    "p8scoreopen": 0,
+    "readinginput": "Grade = N",
+    "readinginputebac": "Grade = N",
+    "remove": 0,
+    "tabsetpanels": "Progress 8",
+    "tabsetpanels2": "Progress 8",
+    "user_input_VA": null,
+    "user_input_VA_ebac": null
+  },
+  "output": {
+    "boxavgschoolp8score": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">NA<\/p>\n    <p id=\"vboxdetail-medium\">Final school  score (average of pupils' scores)<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxlowconflimp8score": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">NA<\/p>\n    <p id=\"vboxdetail-medium\">Lower confidence limit<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxp8scorenatcomp": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">NA<\/p>\n    <p id=\"vboxdetail-medium\">Your school's Progress 8 score compared to the national average<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxpupilnumberp8score": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">0<\/p>\n    <p id=\"vboxdetail-medium\">Number of pupils included in P8 calculation<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxuppconflimp8score": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">NA<\/p>\n    <p id=\"vboxdetail-medium\">Upper confidence limit<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "user_view": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              ".rownames": [
+                1
+              ],
+              "Adjusted progress 8 score": [
+                "Please upload data"
+              ]
+            },
+            "columns": [
+              {
+                "id": ".rownames",
+                "name": "",
+                "type": "numeric",
+                "minWidth": 160,
+                "sortable": false,
+                "filterable": false,
+                "rowHeader": true
+              },
+              {
+                "id": "Adjusted progress 8 score",
+                "name": "Adjusted progress 8 score",
+                "type": "character",
+                "minWidth": 160,
+                "format": {
+                  "cell": {
+                    "digits": 2
+                  },
+                  "aggregated": {
+                    "digits": 2
+                  }
+                }
+              }
+            ],
+            "inline": true,
+            "dataKey": "a62dec60ec134fec81aef845a9de50de",
+            "static": false
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    }
+  }
+}

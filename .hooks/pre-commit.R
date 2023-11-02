@@ -39,11 +39,17 @@ for (file in current_files$files) {
 if (error_flag) {
   cat("Warning, aborting commit. Unrecognised data files found, please update .gitignore or datafiles_log.csv.\n")
   quit(save = "no", status = 1, runLast = FALSE)
-} else {
-  tidy_output <- tidy_code()
-  if(any(tidy_output)){
-    git2r::add(path='.')
-  }
 }
 
+
+tidy_output <- tidy_code()
+if(any(tidy_output)){
+  error_flag <- TRUE
+}
+
+if (error_flag) {
+  cat("Warning: Code did not appear to have been tidied.\nI've run tidy code for you, 
+      please check your files and the dashboard still works and then re-stage and try committing again.")
+  quit(save = "no", status = 1, runLast = FALSE)
+}
 # End of hooks

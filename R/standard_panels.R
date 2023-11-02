@@ -56,27 +56,28 @@ support_links <- function() {
         column(
           width = 12,
           h2("Give us feedback"),
-          "This dashboard is a new service that we are developing. If you have any feedback or suggestions for improvements, or if you spot any errors or bugs while using it, please email (with screenshots if errors) ",
-          a(href = "mailto:attainment.statistics@education.gov.uk", "attainment.statistics@education.gov.uk", .noWS = c("after")), ".",
-          br(),
+          p(
+            "This dashboard is a new service that we are developing. If you have any feedback or suggestions for improvements, or if you spot any errors or bugs while using it, please email (with screenshots if errors) ",
+            a(href = "mailto:attainment.statistics@education.gov.uk", "attainment.statistics@education.gov.uk", .noWS = c("after")), "."
+          ),
           h2("Find more information on the data"),
-          "The data used to produce the dashboard, along with methodological information can be found on ",
-          a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance-revised", "Explore Education Statistics", .noWS = c("after")),
-          ".",
-          br(),
+          p(
+            "The data used to produce the dashboard, along with methodological information can be found on ",
+            a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance-revised", "Explore Education Statistics", .noWS = c("after")), "."
+          ),
           h2("Contact us"),
-          "If you have questions about the dashboard or data within it, please contact us at ",
-          a(href = "mailto:attainment.statistics@education.gov.uk", "attainment.statistics@education.gov.uk", .noWS = c("after")), br(),
+          p(
+            "If you have questions about the dashboard or data within it, please contact us at ",
+            a(href = "mailto:attainment.statistics@education.gov.uk", "attainment.statistics@education.gov.uk", .noWS = c("after"))
+          ),
           h2("See the source code"),
-          "The source code for this dashboard is available in our ",
-          a(href = "https://github.com/dfe-analytical-services/KS4-ready-reckoners", "GitHub repository", .noWS = c("after")),
-          ".",
-          br(),
-          br(),
-          br(),
-          br(),
-          br(),
-          br()
+          p(
+            "The source code for this dashboard is available in our ",
+            a(href = "https://github.com/dfe-analytical-services/KS4-ready-reckoners", "GitHub repository", .noWS = c("after")), "."
+          ),
+          h2("Use of cookies"),
+          textOutput("cookie_status"),
+          actionButton("remove", "Reset cookie consent"),
         )
       )
     )
