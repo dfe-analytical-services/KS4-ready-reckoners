@@ -405,15 +405,27 @@ dashboard3_panel <- function() {
                   Progress 8 measure and to the Government’s EBacc ambition, so any modelling based
                   on current national results could be misleading."),
             h3("Progress 8 PAGs and Attainment 8 splits"),
-            reactable(p8att8splits),
+            reactable(
+              p8att8splits,
+              defaultColDef = colDef(format = colFormat(digits = 2))
+            ),
             h3("EBacc subject area PAGs and Attainment 8 splits"),
-            reactable(ebacatt8splits),
+            reactable(
+              ebacatt8splits,
+              defaultColDef = colDef(format = colFormat(digits = 2))
+            ),
             p("The below standard deviations are based on the Progress 8 scores of all eligible pupils at
                   mainstream schools and are the national figures used in confidence interval calculations."),
             h3("Progress 8 standard deviations"),
-            reactable(p8stdevnamed),
+            reactable(
+              p8stdevnamed,
+              defaultColDef = colDef(format = colFormat(digits = 2))
+            ),
             h3("EBacc subject area standard deviations"),
-            reactable(ebacstdevnamed),
+            reactable(
+              ebacstdevnamed,
+              defaultColDef = colDef(format = colFormat(digits = 2))
+            ),
             ("For more information on these tables, please click here for the ##AB"),
             (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1187895/Secondary_accountabililty_measures.pdf", "Secondary Accountability measures document."))
           )
