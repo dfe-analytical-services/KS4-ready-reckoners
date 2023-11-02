@@ -394,21 +394,26 @@ dashboard3_panel <- function() {
                 class = "panel-body",
                 tags$div(
                   ("You can download an Excel file containing all of the "),
-                  (a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/557c22cb-360b-4bc1-a480-f23afe6cce20/files/c5c28b00-5266-49de-5254-08dafad050ee", "model values tables here.")),
+                  (a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/82449810-99ca-4307-adc2-08d9ebca404d/files/95833e9f-b99e-432c-9f09-fec0f8906625", "model values tables here.")),
                   br(),
                   br(),
                   p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in
                   state-funded mainstream schools within the same prior attainment group at KS2. The
                   following table shows the provisional Attainment 8 averages for each KS2 prior
                   attainment group, based on the 2023 cohort averages."),
-                  p("##THIS NEEDS UPDATING## Changes to national subject entry patterns and performance, as well as changes to the
+                  p("Changes to national subject entry patterns and performance, as well as changes to the
                   methodology and grading as a result of COVID-19 this year will cause these averages to
                   change in future years."),
                   p("Schools may change their curriculum offer in response to the
                   Progress 8 measure and to the Government’s EBacc ambition, so any modelling based
                   on current national results could be misleading."),
                   h3("Progress 8 PAGs and Attainment 8 splits"),
-                  reactable(p8att8splits),
+                  reactable(p8att8splits, columns = list(
+                    "Average EBacc slots filled (out of 3)" = colDef(format = list(
+                      cell = htmlwidgets::JS("function(value) { return value.toFixed(2); }")
+                    )),
+                    "Average open slots filled (out of 3)" = colDef(format = list(
+                      cell = htmlwidgets::JS("function(value) { return value.toFixed(2); }")))))
                   h3("EBacc subject area PAGs and Attainment 8 splits"),
                   reactable(ebacatt8splits),
                   br(),
@@ -423,8 +428,8 @@ dashboard3_panel <- function() {
                   reactable(ebacstdevnamed),
                   br(),
                   br(),
-                  ("For more information on these tables, please click here for the ##AB"),
-                  (a(href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1187895/Secondary_accountabililty_measures.pdf", "Secondary Accountability measures document."))
+                  ("For more information on these tables, please click here for the"),
+                  (a(href = "https://assets.publishing.service.gov.uk/media/652fad41d0666200131b7c47/Secondary_accountability_measures_-_2023_guidance_for_maintained_secondary_schools__academies_and_free_schools.pdf", "Secondary Accountability measures document."))
                 )
               )
             )
