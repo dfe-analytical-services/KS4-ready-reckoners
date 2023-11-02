@@ -398,7 +398,7 @@ dashboard3_panel <- function() {
                   state-funded mainstream schools within the same prior attainment group at KS2. The
                   following table shows the provisional Attainment 8 averages for each KS2 prior
                   attainment group, based on the 2023 cohort averages."),
-                        p("Changes to national subject entry patterns and performance, as well as changes to the
+            p("Changes to national subject entry patterns and performance, as well as changes to the
                               methodology and grading as a result of COVID-19 this year will cause these averages to
                               change in future years."),
             p("Schools may change their curriculum offer in response to the
