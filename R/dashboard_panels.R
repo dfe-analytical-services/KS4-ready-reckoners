@@ -392,7 +392,7 @@ dashboard3_panel <- function() {
           card_body(
             p(
               "You can download an Excel file containing all of the ",
-              a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/82449810-99ca-4307-adc2-08d9ebca404d/files/95833e9f-b99e-432c-9f09-fec0f8906625", "model values tables here.")
+              a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/90c95fb2-f2a1-4723-aba8-09c4b6e231a5/files/65a7f69f-f21b-4001-883f-247f13ebc971", "model values tables here.")
             ),
             p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in
                   state-funded mainstream schools within the same prior attainment group at KS2. The
