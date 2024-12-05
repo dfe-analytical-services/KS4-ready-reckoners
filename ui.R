@@ -124,11 +124,18 @@ ui <- function(input, output, session) {
       a11y_panel(),
       tabPanel(
         "Support and feedback",
-        dfeshiny::support_panel(
-          team_email = "attainment.statistics@education.gov.uk",
-          repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
-          publication_name = "Key Stage 4 Performance",
-          publication_slug = "key-stage-4-performance-revised"
+        gov_main_layout(
+          gov_row(
+            column(
+              12,
+              dfeshiny::support_panel(
+                team_email = "attainment.statistics@education.gov.uk",
+                repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
+                publication_name = "Key Stage 4 Performance",
+                publication_slug = "key-stage-4-performance-revised"
+              )
+            )
+          )
         )
       )
     ),
