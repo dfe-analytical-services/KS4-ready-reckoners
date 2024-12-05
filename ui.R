@@ -124,9 +124,9 @@ ui <- function(input, output, session) {
       a11y_panel(),
       support_panel(
         team_email = "attainment.statistics@education.gov.uk",
-        repo_name = "KS4-ready-reckoners",
+        repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
         publication_name = "Key Stage 4 Performance",
-        publication_stub = "key-stage-4-performance-revised"
+        publication_slug = "key-stage-4-performance-revised"
       )
     ),
     tags$script(

@@ -21,7 +21,7 @@ homepage_panel <- function() {
             p("The aim of this is to help the user understand how we arrive at a value added score for their school.
               The ready reckoner allows the user to input the value added scores in Progress 8 or any of its
               elements, for all pupils in their school. These value added scores can be copied and pasted directly
-              from the pupil level file on the ", a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
+              from the pupil level file on the ", a(href = "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb", "checking site.")),
             h4("The EBacc subject pupil ready reckoner."),
             p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil.
               The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment
@@ -30,7 +30,7 @@ homepage_panel <- function() {
             p("The aim of this is to help the user understand how we arrive at a value added score for their school.
               The ready reckoner allows the user to input the value added scores in any of the three subject areas
               in the English Baccalaureate, for all pupils in their school. These value added scores can be copied
-              and pasted directly from the pupil level file on the ", a(href = "https://tableschecking.education.gov.uk/", "checking site.")),
+              and pasted directly from the pupil level file on the ", a(href = "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb", "checking site.")),
             h3("How to use this app"),
             tags$ol(
               tags$li("Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
@@ -64,12 +64,12 @@ dashboard_panel <- function() {
             class = "border-0",
             p(
               strong("Please download a csv file your school's pupil scores from "),
-              a(href = "https://tableschecking.education.gov.uk/", "https://tableschecking.education.gov.uk/", .noWS = c("after")),
+              a(href = "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb", "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb", .noWS = c("after")),
               strong(" and upload the file here:")
             ),
             fileInput("user_input_VA",
               label = NULL,
-              # (a(href="https://tableschecking.education.gov.uk/",  "https://tableschecking.education.gov.uk/ and upload the file here:")),
+              # (a(href="https://check-your-performance-measures-data.education.gov.uk/hc/en-gb",  "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb and upload the file here:")),
               multiple = FALSE,
               accept = c("text/csv", "text/comma-separated-values", ".csv")
             ),
@@ -392,15 +392,14 @@ dashboard3_panel <- function() {
           card_body(
             p(
               "You can download an Excel file containing all of the ",
-              a(href = "https://content.explore-education-statistics.service.gov.uk/api/releases/90c95fb2-f2a1-4723-aba8-09c4b6e231a5/files/65a7f69f-f21b-4001-883f-247f13ebc971", "model values tables here.")
+              a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/key-stage-4-performance#explore-data-and-files", "model values tables in the 'Additional supporting files' section here.")
             ),
             p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in
                   state-funded mainstream schools within the same prior attainment group at KS2. The
                   following table shows the revised Attainment 8 averages for each KS2 prior
-                  attainment group, based on the 2023 cohort averages."),
-            ##           p("Changes to national subject entry patterns and performance, as well as changes to the
-            ##                             methodology and grading as a result of COVID-19 this year will cause these averages to
-            ##                            change in future years."),
+                  attainment group, based on the 2024 cohort averages."),
+            p("Changes to national subject entry patterns and performance will cause these averages to
+                            change in future years."),
             p("Schools may change their curriculum offer in response to the
                   Progress 8 measure and to the Government’s EBacc ambition, so any modelling based
                   on current national results could be misleading."),
@@ -433,7 +432,7 @@ dashboard3_panel <- function() {
               defaultColDef = colDef(format = colFormat(digits = 2))
             ),
             ("For more information on these tables, please click here for the"),
-            (a(href = "https://assets.publishing.service.gov.uk/media/652fad41d0666200131b7c47/Secondary_accountability_measures_-_2023_guidance_for_maintained_secondary_schools__academies_and_free_schools.pdf", "Secondary Accountability measures document."))
+            (a(href = "https://www.gov.uk/government/publications/progress-8-school-performance-measure", "Secondary Accountability measures document."))
           )
         )
       )
