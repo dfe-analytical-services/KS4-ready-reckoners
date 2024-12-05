@@ -42,7 +42,7 @@ if (error_flag) {
 }
 
 
-tidy_output <- tidy_code()
+tidy_output <- dfeshiny::tidy_code()
 if(any(tidy_output)){
   error_flag <- TRUE
 }
