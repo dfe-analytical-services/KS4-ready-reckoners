@@ -40,13 +40,13 @@
       ]
     },
     "VAscoreavbox": {
-      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">-1.58<\/p>\n    <p id=\"vboxdetail-medium\">Pupil value added average score<\/p>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">-1.59<\/p>\n    <p id=\"vboxdetail-medium\">Pupil value added average score<\/p>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "VAscorebox": {
-      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">-15.83<\/p>\n    <p id=\"vboxdetail-medium\">Pupil value added score<\/p>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">-15.86<\/p>\n    <p id=\"vboxdetail-medium\">Pupil value added score<\/p>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
@@ -58,7 +58,7 @@
       ]
     },
     "estimatedscorebox": {
-      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">15.83<\/p>\n    <p id=\"vboxdetail-medium\">Estimated key stage 4 score<\/p>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"small-box bg-green\">\n  <div class=\"inner\">\n    <p id=\"vboxhead-medium\">15.86<\/p>\n    <p id=\"vboxdetail-medium\">Estimated key stage 4 score<\/p>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
