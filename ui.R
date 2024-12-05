@@ -122,11 +122,14 @@ ui <- function(input, output, session) {
       dashboard2_panel(),
       dashboard3_panel(),
       a11y_panel(),
-      support_panel(
-        team_email = "attainment.statistics@education.gov.uk",
-        repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
-        publication_name = "Key Stage 4 Performance",
-        publication_slug = "key-stage-4-performance-revised"
+      tabPanel(
+        "Support and feedback",
+        dfeshiny::support_panel(
+          team_email = "attainment.statistics@education.gov.uk",
+          repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
+          publication_name = "Key Stage 4 Performance",
+          publication_slug = "key-stage-4-performance-revised"
+        )
       )
     ),
     tags$script(
