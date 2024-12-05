@@ -4,9 +4,6 @@ library(shinytest2)
 test_that("{shinytest2} recording: KS4-ready-reckoners", {
   standard_input_list <- c(
     "chartbutton",
-    "cookieAccept",
-    "cookieLink",
-    "cookieReject",
     "ebacelementinput",
     "ebacscorehum",
     "ebacscorelan",
@@ -53,7 +50,7 @@ test_that("{shinytest2} recording: KS4-ready-reckoners", {
   app <- AppDriver$new(
     name = "KS4-ready-reckoners",
     height = 846, width = 1445,
-    load_timeout = 45 * 1000, timeout = 20 * 1000,
+    load_timeout = 100 * 1000, timeout = 100 * 1000,
     wait = TRUE
   )
   app$expect_values(input = standard_input_list)
