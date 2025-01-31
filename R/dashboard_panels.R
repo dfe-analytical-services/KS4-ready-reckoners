@@ -14,6 +14,7 @@ homepage_panel <- function() {
           ),
           card_body(
             h3("Introduction"),
+            p("Last updated: 5 December 2024"),
             p("There are four key stage 2 to 4 ready reckoners as outlined below."),
             h4("The Progress 8 element breakdown pupil ready reckoner."),
             p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
@@ -396,7 +397,7 @@ dashboard3_panel <- function() {
             ),
             p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in
                   state-funded mainstream schools within the same prior attainment group at KS2. The
-                  following table shows the revised Attainment 8 averages for each KS2 prior
+                  following table shows the provisional Attainment 8 averages for each KS2 prior
                   attainment group, based on the 2024 cohort averages."),
             p("Changes to national subject entry patterns and performance will cause these averages to
                             change in future years."),
