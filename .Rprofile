@@ -11,3 +11,6 @@
 # message("Sourcing .Rprofile.")
 
 source("renv/activate.R")
+
+
+statusWriteCommit <- file.copy(".hooks/pre-commit.R", ".git/hooks/pre-commit", overwrite = TRUE)

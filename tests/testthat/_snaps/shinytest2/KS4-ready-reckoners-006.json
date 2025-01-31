@@ -1,9 +1,6 @@
 {
   "input": {
     "chartbutton": "Science",
-    "cookieAccept": 0,
-    "cookieLink": 0,
-    "cookieReject": 0,
     "ebacelementinput": "KS2-4 English Baccalaureate - science subject area",
     "ebacscorehum": 0,
     "ebacscorelan": 0,
@@ -12,7 +9,7 @@
     "hideReject": 0,
     "mathsinput": "Grade = N",
     "mathsinputebac": "Grade = N",
-    "navlistPanel": "Support and feedback",
+    "navlistPanel": "Accessibility",
     "p8elementinput": "Progress 8",
     "p8scoreebac": 0,
     "p8scoreeng": 0,
@@ -20,7 +17,6 @@
     "p8scoreopen": 0,
     "readinginput": "Grade = N",
     "readinginputebac": "Grade = N",
-    "remove": 0,
     "tabsetpanels": "Progress 8",
     "tabsetpanels2": "Progress 8",
     "user_input_VA": null,
