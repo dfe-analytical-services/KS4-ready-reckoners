@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.4.1",
+    "Version": "4.4.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -388,7 +388,7 @@
       "RemoteUsername": "dfe-analytical-services",
       "RemoteRepo": "dfeshiny",
       "RemoteRef": "main",
-      "RemoteSha": "59aae9be4e942f5518b742588d7393e89f06061b",
+      "RemoteSha": "9494b730bef062e73b6b887afd9b0527e8ee78b0",
       "Requirements": [
         "R",
         "checkmate",
@@ -403,7 +403,7 @@
         "stringr",
         "styler"
       ],
-      "Hash": "e83b22ad00b339299c6d95f9c6ebc5c3"
+      "Hash": "047416a36493afc0223aecff94967931"
     },
     "diffobj": {
       "Package": "diffobj",
