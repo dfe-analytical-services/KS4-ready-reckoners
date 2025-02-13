@@ -24,7 +24,6 @@ server <- function(input, output, session) {
   # Call initial loading screen
 
   hide(id = "loading-content", anim = TRUE, animType = "fade")
-  # hide(id = "cookieMain")
   show("app-content")
 
   # Server logic for the pop up banner, can be placed anywhere in server.R -
@@ -226,26 +225,27 @@ server <- function(input, output, session) {
   })
 
   reactiveestimatedebacsci <- reactive({
-    as.numeric(pupil_modelvalues %>%
-      filter(ks2emss_grp == reactiveKS2ebac()) %>%
-      select(sciest))
+    as.numeric(
+      pupil_modelvalues %>%
+        filter(ks2emss_grp == reactiveKS2ebac()) %>%
+        select(sciest)
+    )
   })
 
   reactiveestimatedebachum <- reactive({
-    as.numeric(pupil_modelvalues %>%
-      filter(ks2emss_grp == reactiveKS2ebac()) %>%
-      select(humest))
+    as.numeric(
+      pupil_modelvalues %>%
+        filter(ks2emss_grp == reactiveKS2ebac()) %>%
+        select(humest)
+    )
   })
 
   reactiveestimatedebaclan <- reactive({
-    as.numeric(pupil_modelvalues %>%
-      filter(ks2emss_grp == reactiveKS2ebac()) %>%
-      select(lanest))
-  })
-
-  reactiveconfidenceintervalsp8 <- reactive({
-    data <- user_VA_data()
-    round(mean(data$p8score) - ((1.96 * (reactivep8elstdev())) / (sqrt(length(data$p8score)))), 2)
+    as.numeric(
+      pupil_modelvalues %>%
+        filter(ks2emss_grp == reactiveKS2ebac()) %>%
+        select(lanest)
+    )
   })
 
   # Numeric input warnings --------------------------------------------------
@@ -260,12 +260,6 @@ server <- function(input, output, session) {
   iv$add_rule("ebacscorehum", sv_between(0, 9))
   iv$add_rule("ebacscorelan", sv_between(0, 9))
   iv$enable()
-
-  reactiveconfidenceintervalsebac <- reactive({
-    data <- user_VA_data_ebac()
-    round(mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score)))), 2)
-  })
-
 
   output$p8scoreinputbox <- renderUI({
     numericInput("p8score", p("Enter the pupil's key stage 4 attainment score:"), sum(input$p8scoreeng, input$p8scoremath, input$p8scoreebac, input$p8scoreopen), min = 0, max = 95, step = 0.01)
@@ -459,17 +453,10 @@ server <- function(input, output, session) {
     )
   })
 
-  # output$VAscoreavbox <- renderValueBox({
-  #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
-  #            subtitle = "Pupil value added score",
-  #            color = "green"
-  #   )
-  # })
-
   output$estvsactualebacsci <- renderPlotly({
     estvsactuale_bacsci <- estvsactual_ggplot(reactiveestimatedebacsci(), input$ebacscoresci, lims = c(0, 9), point_colour = "#00703c")
     ggplotly(estvsactuale_bacsci) %>%
-      config(displayModeBar = F)
+      config(displayModeBar = FALSE)
   })
 
   output$estimatedscoreboxebachum <- renderValueBox({
@@ -486,20 +473,13 @@ server <- function(input, output, session) {
     )
   })
 
-  # output$VAscoreavbox <- renderValueBox({
-  #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
-  #            subtitle = "Pupil value added score",
-  #            color = "green"
-  #   )
-  # })
-
   output$estvsactualebachum <- renderPlotly({
     estvsactual_ebachum <- estvsactual_ggplot(
       reactiveestimatedebachum(), input$ebacscorehum,
       lims = c(0, 9), point_colour = "#F46A25"
     )
     ggplotly(estvsactual_ebachum) %>%
-      config(displayModeBar = F)
+      config(displayModeBar = FALSE)
   })
 
   output$estimatedscoreboxebaclan <- renderValueBox({
@@ -516,13 +496,6 @@ server <- function(input, output, session) {
     )
   })
 
-  # output$VAscoreavbox <- renderValueBox({
-  #   valueBox(round(((input$p8score - reactiveestimated()) / 10), 2),
-  #            subtitle = "Pupil value added score",
-  #            color = "green"
-  #   )
-  # })
-
   output$estvsactualebaclan <- renderPlotly({
     estvsactual_ebaclan <- estvsactual_ggplot(
       reactiveestimatedebaclan(), input$ebacscorelan,
@@ -530,7 +503,7 @@ server <- function(input, output, session) {
     )
 
     ggplotly(estvsactual_ebaclan) %>%
-      config(displayModeBar = F)
+      config(displayModeBar = FALSE)
   })
 
   ##############################
@@ -783,7 +756,7 @@ server <- function(input, output, session) {
       )
 
     ggplotly(errorbar) %>%
-      config(displayModeBar = F) %>%
+      config(displayModeBar = FALSE) %>%
       style(textposition = "right")
   })
 
@@ -797,7 +770,6 @@ server <- function(input, output, session) {
     upperlim <- mean(data$p8score) + ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))))
     lowlim <- mean(data$p8score) - ((1.96 * (reactiveebacelstdev())) / (sqrt(length(data$p8score))))
 
-    # ggplot(data, aes(xlab = "Comparison to national average", ylab = "Value added score")) +
     errorbar <- ggplot(df, aes(x = x, y = 0)) +
       geom_line(linetype = "dashed") +
       geom_text(aes(label = "National average", x = -0.5, y = 0.5)) +
@@ -823,7 +795,7 @@ server <- function(input, output, session) {
       )
 
     ggplotly(errorbar) %>%
-      config(displayModeBar = F) %>%
+      config(displayModeBar = FALSE) %>%
       style(textposition = "right")
   })
 
