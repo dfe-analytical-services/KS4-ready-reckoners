@@ -36,7 +36,6 @@ jobs:
       - name: Setup R
         uses: r-lib/actions/setup-r@4e1feaf90520ec1215d1882fdddfe3411c08e492
         with:
-          r-version: 4.4.2
           use-public-rspm: true
       
       - name: restore renv
