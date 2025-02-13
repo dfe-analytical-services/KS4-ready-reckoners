@@ -65,6 +65,7 @@ appLoadingCSS <- "
 }
 "
 
+site_title <- "Key Stage 4 Ready Reckoner tool"
 site_primary <- "https://department-for-education.shinyapps.io/ks4_ready_reckoners/"
 google_analytics_key <- "3L9Y07E864"
 source("R/support_links.R")
