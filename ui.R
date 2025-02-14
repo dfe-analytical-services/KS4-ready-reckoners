@@ -63,31 +63,20 @@ ui <- function(input, output, session) {
         href = "dfefavicon.png"
       ),
       # Add title for browser tabs
-      tags$title("KS4 Ready Reckoner")
+      tags$title("Key Stage 4 Ready Reckoner tool")
     ),
     tags$html(lang = "en"),
     # Add meta description for search engines
     meta() %>%
       meta_general(
-        application_name = "KS4 Ready Reckoner",
-        description = "KS4 Ready Reckoner",
+        application_name = site_title,
+        description = site_title,
         robots = "index,follow",
         generator = "R-Shiny",
         rating = "General",
         referrer = "no-referrer"
       ),
     shinyjs::useShinyjs(),
-    # Setting up cookie consent based on a cookie recording the consent:
-    # https://book.javascript-for-r.com/shiny-cookies.html
-    tags$head(
-      tags$script(
-        src = paste0(
-          "https://cdn.jsdelivr.net/npm/js-cookie@rc/",
-          "dist/js.cookie.min.js"
-        )
-      ),
-      tags$script(src = "cookie-consent.js")
-    ),
     tags$head(includeHTML(("google-analytics.html"))),
     tags$head(
       tags$link(
@@ -96,18 +85,12 @@ ui <- function(input, output, session) {
         href = "dfe_shiny_gov_style.css"
       )
     ),
-    shinyGovstyle::cookieBanner("DfE Key Stage 4 Ready Reckoner tool"),
-    shinyGovstyle::header(
-      main_text = "",
-      main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "Key Stage 4 Ready Reckoner Tool",
-      logo = "images/DfE_logo_landscape.png",
-      logo_width = 150,
-      logo_height = 32
-    ),
+    dfe_cookies_script(),
+    cookies_banner_ui(name = site_title),
+    dfeshiny::header(header = site_title),
     shinyGovstyle::banner(
       "beta banner",
-      "beta",
+      "Beta",
       paste0(
         "This Dashboard is in beta phase and we are still reviewing performance and reliability."
       )
@@ -121,22 +104,21 @@ ui <- function(input, output, session) {
       dashboard_panel(),
       dashboard2_panel(),
       dashboard3_panel(),
-      a11y_panel(),
       tabPanel(
         "Support and feedback",
-        gov_main_layout(
-          gov_row(
-            column(
-              12,
-              dfeshiny::support_panel(
-                team_email = "attainment.statistics@education.gov.uk",
-                repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
-                publication_name = "Key Stage 4 Performance",
-                publication_slug = "key-stage-4-performance-revised"
-              )
-            )
-          )
+        dfeshiny::support_panel(
+          team_email = "attainment.statistics@education.gov.uk",
+          repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
+          publication_name = "Key Stage 4 Performance",
+          publication_slug = "key-stage-4-performance-revised"
         )
+      ),
+      a11y_panel(),
+      ## Cookies panel -----------------------------------------------------
+      shiny::tabPanel(
+        value = "cookies_panel_ui",
+        "Cookies",
+        cookies_panel_ui(google_analytics_key = google_analytics_key)
       )
     ),
     tags$script(
