@@ -14,7 +14,7 @@ homepage_panel <- function() {
           ),
           card_body(
             h3("Introduction"),
-            p("Last updated: 5 December 2024"),
+            p("Last updated: 27 February 2025"),
             p("There are four key stage 2 to 4 ready reckoners as outlined below."),
             h4("The Progress 8 element breakdown pupil ready reckoner."),
             p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
@@ -22,7 +22,7 @@ homepage_panel <- function() {
             p("The aim of this is to help the user understand how we arrive at a value added score for their school.
               The ready reckoner allows the user to input the value added scores in Progress 8 or any of its
               elements, for all pupils in their school. These value added scores can be copied and pasted directly
-              from the pupil level file on the ", a(href = "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb", "checking site.")),
+              from a pupil-level data file for your institution, ready to be used in the Ready Reckoner."),
             h4("The EBacc subject pupil ready reckoner."),
             p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil.
               The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment
@@ -30,8 +30,8 @@ homepage_panel <- function() {
             h4("The EBacc subject school ready reckoner."),
             p("The aim of this is to help the user understand how we arrive at a value added score for their school.
               The ready reckoner allows the user to input the value added scores in any of the three subject areas
-              in the English Baccalaureate, for all pupils in their school. These value added scores can be copied
-              and pasted directly from the pupil level file on the ", a(href = "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb", "checking site.")),
+              in the English Baccalaureate, for all pupils in their school. These value added scores can be copied and pasted directly
+              from a pupil-level data file for your institution, ready to be used in the Ready Reckoner."),
             h3("How to use this app"),
             tags$ol(
               tags$li("Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
@@ -64,9 +64,7 @@ dashboard_panel <- function() {
           card(
             class = "border-0",
             p(
-              strong("Please download a csv file your school's pupil scores from "),
-              a(href = "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb", "https://check-your-performance-measures-data.education.gov.uk/hc/en-gb", .noWS = c("after")),
-              strong(" and upload the file here:")
+              strong("Please upload a .csv file containing the pupil-level data for your institution, ready to be used in the Ready Reckoner, here:")
             ),
             fileInput("user_input_VA",
               label = NULL,
@@ -116,9 +114,7 @@ dashboard_panel <- function() {
           card(
             class = "border-0",
             p(
-              strong("Please download a csv file your school's pupil scores from "),
-              a(href = "https://tableschecking.education.gov.uk/", "https://tableschecking.education.gov.uk/", .noWS = c("after")),
-              strong(" and upload the file here:")
+              strong("Please upload a .csv file containing the pupil-level data for your institution, ready to be used in the Ready Reckoner, here:")
             ),
             fileInput("user_input_VA_ebac",
               label = NULL,
@@ -397,7 +393,7 @@ dashboard3_panel <- function() {
             ),
             p("Each Attainment 8 average is the average Attainment 8 score of all pupils nationally in
                   state-funded mainstream schools within the same prior attainment group at KS2. The
-                  following table shows the provisional Attainment 8 averages for each KS2 prior
+                  following table shows the revised Attainment 8 averages for each KS2 prior
                   attainment group, based on the 2024 cohort averages."),
             p("Changes to national subject entry patterns and performance will cause these averages to
                             change in future years."),
