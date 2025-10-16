@@ -14,7 +14,8 @@ homepage_panel <- function() {
           ),
           card_body(
             h3("Introduction"),
-            p("Last updated: 27 February 2025"),
+            p("Last updated: 16 October 2025"),
+            h4("Progress measures will not be published for the 2024/25 academic year as KS4 pupils in these years did not have KS2 assessments due to the COVID-19 pandemic. Therefore all the data on the Ready Reckoners are still based on the 2023/24 academic year."),
             p("There are four key stage 2 to 4 ready reckoners as outlined below."),
             h4("The Progress 8 element breakdown pupil ready reckoner."),
             p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
