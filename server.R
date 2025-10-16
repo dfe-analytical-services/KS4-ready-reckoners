@@ -668,7 +668,6 @@ server <- function(input, output, session) {
   })
 
 
-
   output$user_view <- renderReactable({
     if (is.null(user_VA_data())) {
       tabledata <- data.frame(`Adjusted progress 8 score` = c("Please upload data"))
