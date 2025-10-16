@@ -54,7 +54,6 @@ dashboard_panel <- function() {
     # Define UI for application that draws a histogram
 
 
-
     # Sidebar with a slider input for number of bins
     gov_main_layout(
       h1("School level ready reckoner"),
