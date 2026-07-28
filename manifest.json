@@ -717,19 +717,19 @@
       }
     },
     "chromote": {
-      "Source": "github",
-      "Repository": null,
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
       "description": {
         "Package": "chromote",
         "Title": "Headless Chrome Web Browser Interface",
-        "Version": "0.5.1.9000",
+        "Version": "0.5.1",
         "Authors@R": "c(\n    person(\"Garrick\", \"Aden-Buie\", , \"garrick@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0002-7111-0077\")),\n    person(\"Winston\", \"Chang\", , \"winston@posit.co\", role = \"aut\"),\n    person(\"Barret\", \"Schloerke\", , \"barret@posit.co\", role = \"aut\",\n           comment = c(ORCID = \"0000-0001-9986-114X\")),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"), comment = c(ROR = \"03wc8by49\"))\n  )",
         "Description": "An implementation of the 'Chrome DevTools Protocol', for\n    controlling a headless Chrome web browser.",
         "License": "MIT + file LICENSE",
         "URL": "https://rstudio.github.io/chromote/,\nhttps://github.com/rstudio/chromote",
         "BugReports": "https://github.com/rstudio/chromote/issues",
-        "Imports": "cli,\ncurl,\nfastmap,\njsonlite,\nlater (>= 1.1.0),\nmagrittr,\nprocessx,\npromises (>= 1.1.1),\nR6,\nrlang (>= 1.1.0),\nutils,\nwebsocket (>= 1.2.0),\nwithr,\nzip",
-        "Suggests": "knitr,\nrmarkdown,\nshowimage,\ntestthat (>= 3.0.0)",
+        "Imports": "cli, curl, fastmap, jsonlite, later (>= 1.1.0), magrittr,\nprocessx, promises (>= 1.1.1), R6, rlang (>= 1.1.0), utils,\nwebsocket (>= 1.2.0), withr, zip",
+        "Suggests": "knitr, rmarkdown, showimage, testthat (>= 3.0.0)",
         "VignetteBuilder": "knitr",
         "Config/Needs/website": "r-lib/pkgdown, rstudio/bslib",
         "Config/testthat/edition": "3",
@@ -737,23 +737,22 @@
         "Config/testthat/start-first": "chromote_session",
         "Encoding": "UTF-8",
         "Language": "en-US",
-        "Roxygen": "list(markdown = TRUE)",
         "RoxygenNote": "7.3.2",
         "SystemRequirements": "Google Chrome or other Chromium-based browser.\nchromium: chromium (rpm) or chromium-browser (deb)",
-        "Author": "Garrick Aden-Buie [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-7111-0077>),\n  Winston Chang [aut],\n  Barret Schloerke [aut] (ORCID: <https://orcid.org/0000-0001-9986-114X>),\n  Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
+        "NeedsCompilation": "no",
+        "Packaged": "2025-04-24 03:18:21 UTC; garrick",
+        "Author": "Garrick Aden-Buie [aut, cre] (<https://orcid.org/0000-0002-7111-0077>),\n  Winston Chang [aut],\n  Barret Schloerke [aut] (<https://orcid.org/0000-0001-9986-114X>),\n  Posit Software, PBC [cph, fnd] (03wc8by49)",
         "Maintainer": "Garrick Aden-Buie <garrick@posit.co>",
-        "Built": "R 4.5.3; ; 2026-04-01 15:56:25 UTC; windows",
-        "RemoteType": "github",
-        "RemoteUsername": "rstudio",
-        "RemoteRepo": "chromote",
-        "RemoteRef": "main",
-        "RemoteSha": "13a789a2c2f9bae17687cb11b724e6c26ff46ada",
-        "RemoteHost": "api.github.com",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "chromote",
-        "GithubUsername": "rstudio",
-        "GithubRef": "main",
-        "GithubSHA1": "13a789a2c2f9bae17687cb11b724e6c26ff46ada"
+        "Repository": "CRAN",
+        "Date/Publication": "2025-04-24 03:40:02 UTC",
+        "Built": "R 4.5.0; ; 2025-04-28 01:25:55 UTC; windows",
+        "RemoteType": "standard",
+        "RemoteRef": "chromote",
+        "RemotePkgRef": "chromote",
+        "RemoteRepos": "https://www.stats.bris.ac.uk/R",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "x86_64-w64-mingw32",
+        "RemoteSha": "0.5.1"
       }
     },
     "cli": {
@@ -3325,40 +3324,39 @@
       }
     },
     "shinyGovstyle": {
-      "Source": "github",
-      "Repository": null,
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
       "description": {
         "Package": "shinyGovstyle",
         "Title": "Custom Gov Style Inputs for Shiny",
-        "Version": "0.2.0.9000",
+        "Version": "0.2.0",
         "Authors@R": "c(\n    person(\"Ross\", \"Wyatt\", , \"ross.wyatt@justice.gov.uk\", role = \"aut\"),\n    person(\"Cam\", \"Race\", , \"camrace8@gmail.com\", role = c(\"aut\", \"cre\")),\n    person(\"Sarah\", \"Wong\", role = \"aut\"),\n    person(\"Richard\", \"Bielby\", , \"richard.bielby@education.gov.uk\", role = \"ctb\"),\n    person(\"Charlotte\", \"Foster\", , \"charlotte.foster@education.gov.uk\", role = \"ctb\"),\n    person(\"Jeni\", \"Martin\", role = \"ctb\"),\n    person(\"Andrew\", \"Baker\", , \"andrew.baker1@dhsc.gov.uk\", role = \"ctb\")\n  )",
         "Description": "Collection of 'shiny' application styling that are based on\n    the GOV.UK Design System. See\n    <https://design-system.service.gov.uk/components/> for details.",
         "License": "GPL (>= 3)",
         "URL": "https://github.com/dfe-analytical-services/shinyGovstyle",
         "BugReports": "https://github.com/dfe-analytical-services/shinyGovstyle/issues",
         "Depends": "R (>= 4.1.0)",
-        "Imports": "htmltools,\njsonlite,\nlifecycle,\npurrr,\nreactable,\nreadODS,\nreadr,\nshiny (>= 0.14),\nshinyjs,\nstringr,\nwritexl",
-        "Suggests": "bslib,\nknitr,\nrlang,\nrmarkdown,\nshinytest2,\ntestthat",
+        "Imports": "htmltools, jsonlite, lifecycle, purrr, reactable, readODS,\nreadr, shiny (>= 0.14), shinyjs, stringr, writexl",
+        "Suggests": "bslib, knitr, rlang, rmarkdown, shinytest2, testthat",
         "VignetteBuilder": "knitr",
         "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "LazyData": "true",
-        "Roxygen": "list(markdown = TRUE)",
         "RoxygenNote": "7.3.3",
+        "NeedsCompilation": "no",
+        "Packaged": "2026-04-13 12:07:26 UTC; camra",
         "Author": "Ross Wyatt [aut],\n  Cam Race [aut, cre],\n  Sarah Wong [aut],\n  Richard Bielby [ctb],\n  Charlotte Foster [ctb],\n  Jeni Martin [ctb],\n  Andrew Baker [ctb]",
         "Maintainer": "Cam Race <camrace8@gmail.com>",
-        "Built": "R 4.5.2; ; 2026-07-02 12:47:44 UTC; windows",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteUsername": "dfe-analytical-services",
-        "RemoteRepo": "shinyGovstyle",
-        "RemoteRef": "main",
-        "RemoteSha": "fcca6ea3b9b4f9dba2a7b1ddea568a854f8a1535",
-        "GithubHost": "api.github.com",
-        "GithubRepo": "shinyGovstyle",
-        "GithubUsername": "dfe-analytical-services",
-        "GithubRef": "main",
-        "GithubSHA1": "fcca6ea3b9b4f9dba2a7b1ddea568a854f8a1535"
+        "Repository": "RSPM",
+        "Date/Publication": "2026-04-13 12:40:02 UTC",
+        "Built": "R 4.5.0; ; 2026-04-14 04:49:10 UTC; windows",
+        "RemoteType": "standard",
+        "RemotePkgRef": "shinyGovstyle",
+        "RemoteRef": "shinyGovstyle",
+        "RemoteRepos": "https://packagemanager.posit.co/cran/latest",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "x86_64-w64-mingw32",
+        "RemoteSha": "0.2.0"
       }
     },
     "shinyWidgets": {
@@ -4391,10 +4389,10 @@
       "checksum": "21373c552fa1b0b8404341b9e3c127ac"
     },
     ".RData": {
-      "checksum": "c5a9188d7c8b88e31ac1a95656ead96a"
+      "checksum": "c5e16e33991f03aae19bb770082cd63b"
     },
     ".Rprofile": {
-      "checksum": "21a26daee0664694ae11050f3235df96"
+      "checksum": "3fad4c7d8409e36b82b9885837ae4464"
     },
     "CODE_OF_CONDUCT.md": {
       "checksum": "7dcf9b0b5bac78fc7d7fe45f8c5102b1"
@@ -4475,7 +4473,7 @@
       "checksum": "8c305411494e4917f036680d2e3a130b"
     },
     "renv.lock": {
-      "checksum": "2939f3e5749bdceb5e9cd4140c86db70"
+      "checksum": "f307ed4c54ebb50372e791cef54e2a0c"
     },
     "server.R": {
       "checksum": "48b6ade8bd2c8c904af36af11f9be78a"
