@@ -27,7 +27,10 @@ shhh(library(DT))
 shhh(library(shinyvalidate))
 shhh(library(metathis))
 shhh(library(reactable))
-shhh(library(dfeshiny))
+
+if (FALSE) {
+  shhh(library(rsconnect))
+}
 
 # Functions ---------------------------------------------------------------------------------
 

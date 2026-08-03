@@ -14,3 +14,6 @@ source("renv/activate.R")
 
 
 statusWriteCommit <- file.copy(".hooks/pre-commit.R", ".git/hooks/pre-commit", overwrite = TRUE)
+
+# Maybe needed to be able to install from GitHub on Explore dashboards
+options(packrat.authenticated.downloads.use.renv = TRUE)
