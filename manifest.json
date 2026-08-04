@@ -3600,42 +3600,39 @@
     },
     "shinyGovstyle": {
       "Source": "github",
-      "Repository": "CRAN",
+      "Repository": null,
       "description": {
         "Package": "shinyGovstyle",
         "Title": "Custom Gov Style Inputs for Shiny",
-        "Version": "0.2.0",
+        "Version": "0.2.0.9000",
         "Authors@R": "c(\n    person(\"Ross\", \"Wyatt\", , \"ross.wyatt@justice.gov.uk\", role = \"aut\"),\n    person(\"Cam\", \"Race\", , \"camrace8@gmail.com\", role = c(\"aut\", \"cre\")),\n    person(\"Sarah\", \"Wong\", role = \"aut\"),\n    person(\"Richard\", \"Bielby\", , \"richard.bielby@education.gov.uk\", role = \"ctb\"),\n    person(\"Charlotte\", \"Foster\", , \"charlotte.foster@education.gov.uk\", role = \"ctb\"),\n    person(\"Jeni\", \"Martin\", role = \"ctb\"),\n    person(\"Andrew\", \"Baker\", , \"andrew.baker1@dhsc.gov.uk\", role = \"ctb\")\n  )",
         "Description": "Collection of 'shiny' application styling that are based on\n    the GOV.UK Design System. See\n    <https://design-system.service.gov.uk/components/> for details.",
         "License": "GPL (>= 3)",
         "URL": "https://github.com/dfe-analytical-services/shinyGovstyle",
         "BugReports": "https://github.com/dfe-analytical-services/shinyGovstyle/issues",
         "Depends": "R (>= 4.1.0)",
-        "Imports": "htmltools, jsonlite, lifecycle, purrr, reactable, readODS,\nreadr, shiny (>= 0.14), shinyjs, stringr, writexl",
-        "Suggests": "bslib, knitr, rlang, rmarkdown, shinytest2, testthat",
+        "Imports": "htmltools,\njsonlite,\nlifecycle,\npurrr,\nreactable,\nreadODS,\nreadr,\nshiny (>= 0.14),\nshinyjs,\nstringr,\nwritexl",
+        "Suggests": "bslib,\nknitr,\nrlang,\nrmarkdown,\nshinytest2,\ntestthat",
         "VignetteBuilder": "knitr",
         "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "LazyData": "true",
+        "Roxygen": "list(markdown = TRUE)",
         "RoxygenNote": "7.3.3",
-        "NeedsCompilation": "no",
-        "Packaged": "2026-04-13 12:07:26 UTC; camra",
         "Author": "Ross Wyatt [aut],\n  Cam Race [aut, cre],\n  Sarah Wong [aut],\n  Richard Bielby [ctb],\n  Charlotte Foster [ctb],\n  Jeni Martin [ctb],\n  Andrew Baker [ctb]",
         "Maintainer": "Cam Race <camrace8@gmail.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2026-04-13 12:40:02 UTC",
-        "Built": "R 4.6.0; ; 2026-06-17 12:22:20 UTC; windows",
+        "Built": "R 4.6.1; ; 2026-08-04 13:30:59 UTC; windows",
         "RemoteType": "github",
         "RemoteHost": "api.github.com",
-        "RemoteUsername": "CRAN",
+        "RemoteUsername": "dfe-analytical-services",
         "RemoteRepo": "shinyGovstyle",
-        "RemoteRef": "master",
-        "RemoteSha": "4a8c676ab8bfae2344cdd1ef4fc6371ccdd66b66",
+        "RemoteRef": "main",
+        "RemoteSha": "f0427bf4a8927839cc194a2836cd099064d1e033",
         "GithubHost": "api.github.com",
         "GithubRepo": "shinyGovstyle",
-        "GithubUsername": "CRAN",
-        "GithubRef": "master",
-        "GithubSHA1": "4a8c676ab8bfae2344cdd1ef4fc6371ccdd66b66"
+        "GithubUsername": "dfe-analytical-services",
+        "GithubRef": "main",
+        "GithubSHA1": "f0427bf4a8927839cc194a2836cd099064d1e033"
       }
     },
     "shinyWidgets": {
@@ -4758,7 +4755,7 @@
       "checksum": "21373c552fa1b0b8404341b9e3c127ac"
     },
     ".Rprofile": {
-      "checksum": "5e6ac66ed2f9e4ef2d79168498fbca5c"
+      "checksum": "a9317d4564b1f1ae532be7b848deb914"
     },
     "CODE_OF_CONDUCT.md": {
       "checksum": "7dcf9b0b5bac78fc7d7fe45f8c5102b1"
@@ -4800,7 +4797,7 @@
       "checksum": "12ec8a8981de38a0c0e149b9e67ae51c"
     },
     "global.R": {
-      "checksum": "1635a36c04502714de2ea80ece3f0d52"
+      "checksum": "60a86a767e9546ef05df841ba62b80b3"
     },
     "google-analytics.html": {
       "checksum": "14aadacb8aabd084ef73b95ea7d7ca29"
@@ -4839,7 +4836,7 @@
       "checksum": "8c305411494e4917f036680d2e3a130b"
     },
     "renv.lock": {
-      "checksum": "247ef9b473b6ee2842bff7a729bfda1f"
+      "checksum": "ab763f9e159799c05ce92e64fc88b8e4"
     },
     "server.R": {
       "checksum": "48b6ade8bd2c8c904af36af11f9be78a"
