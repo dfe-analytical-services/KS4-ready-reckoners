@@ -1,7 +1,7 @@
 {
   "version": 1,
   "locale": "en_GB",
-  "platform": "4.6.1",
+  "platform": "4.6.0",
   "metadata": {
     "appmode": "shiny",
     "primary_rmd": null,
@@ -914,7 +914,7 @@
         "Packaged": "2024-03-31 18:18:09 UTC; luke",
         "Repository": "CRAN",
         "Date/Publication": "2024-03-31 20:10:06 UTC",
-        "Built": "R 4.6.1; ; 2026-06-24 08:32:25 UTC; windows"
+        "Built": "R 4.6.0; ; 2026-04-24 08:16:28 UTC; windows"
       }
     },
     "commonmark": {
@@ -4755,7 +4755,7 @@
       "checksum": "21373c552fa1b0b8404341b9e3c127ac"
     },
     ".Rprofile": {
-      "checksum": "a9317d4564b1f1ae532be7b848deb914"
+      "checksum": "24b89242172928a29b48f1bf2465f408"
     },
     "CODE_OF_CONDUCT.md": {
       "checksum": "7dcf9b0b5bac78fc7d7fe45f8c5102b1"
@@ -4797,7 +4797,7 @@
       "checksum": "12ec8a8981de38a0c0e149b9e67ae51c"
     },
     "global.R": {
-      "checksum": "60a86a767e9546ef05df841ba62b80b3"
+      "checksum": "4c3b28b37f1fc8d73a70de126d260343"
     },
     "google-analytics.html": {
       "checksum": "14aadacb8aabd084ef73b95ea7d7ca29"
