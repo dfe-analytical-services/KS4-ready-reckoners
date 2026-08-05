@@ -87,7 +87,7 @@ ui <- function(input, output, session) {
     ),
     dfe_cookies_script(),
     cookies_banner_ui(name = site_title),
-    shinyGovstyle::header(header = site_title),
+    dfeshiny::header(header = site_title),
     shinyGovstyle::banner(
       "beta banner",
       "Beta",
