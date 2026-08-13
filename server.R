@@ -40,7 +40,7 @@ server <- function(input, output, session) {
   )
   #  ---------------------
 
-# Top level service navigation actions
+  # Top level service navigation actions
   observeEvent(
     input$homepage,
     bslib::nav_select("main_panels", "homepage")

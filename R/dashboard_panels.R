@@ -35,7 +35,8 @@ homepage_panel <- function() {
             gov_list(
               c(
                 "Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the service navigation.",
-              "Follow the instructions steps within.")
+                "Follow the instructions steps within."
+              )
             )
           )
         )

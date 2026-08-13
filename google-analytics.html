@@ -10,9 +10,13 @@ The tracking number below MUST be replaced with a unique number, contact the sta
 */
     gtag('config', 'G-3L9Y07E864');
   
-   $(document).on('click', 'ul#navlistPanel', function(e) {
-    gtag('event', 'navlistPanel', {'event_category' : 'navbar click',
-    'event_label' : document.querySelector('ul#navlistPanel > li.active > a').getAttribute('data-value')
+   $(document).on('click', 'ul#navigation', function(e) {
+    gtag(
+      'event', 
+      'service_navigation', 
+      {
+        'event_category' : 'service navigation',
+        'event_label' : document.querySelector('ul#navigation > li.active > a').getAttribute('data-value')
     });
   });
      
