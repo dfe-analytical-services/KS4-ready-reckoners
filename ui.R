@@ -54,7 +54,7 @@
 #
 
 ui <- function(input, output, session) {
-  page(
+  bslib::page_fluid(
     # use_tota11y(),
     title = tags$head(
       tags$link(
@@ -152,9 +152,6 @@ ui <- function(input, output, session) {
           cookies_panel_ui(google_analytics_key = google_analytics_key)
         )
       )
-    ),
-    tags$script(
-      src = "script.js"
     ),
     footer(
       full = TRUE,
