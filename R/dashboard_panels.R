@@ -5,38 +5,37 @@ homepage_panel <- function() {
       gov_row(
         column(
           12,
-          h1("KS4 Ready Reckoner dashboard"),
+          heading_text(site_title, level = 1, size = "l"),
         ),
         card(
           card_header(
-            class = "bg-primary",
-            h2("Guidance")
+            heading_text("Guidance", level = 2, size = "m")
           ),
           card_body(
-            h3("Introduction"),
-            p("Last updated: 16 October 2025"),
-            h4("Progress measures will not be published for the 2024/25 academic year as KS4 pupils in these years did not have KS2 assessments due to the COVID-19 pandemic. Therefore all the data on the Ready Reckoners are still based on the 2023/24 academic year."),
-            p("There are four key stage 2 to 4 ready reckoners as outlined below."),
-            h4("The Progress 8 element breakdown pupil ready reckoner."),
-            p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
-            h4("The Progress 8 element breakdown school ready reckoner."),
-            p("The aim of this is to help the user understand how we arrive at a value added score for their school.
+            gov_text("Last updated: 16 October 2025"),
+            warning_text("covid_note", "Progress measures will not be published for the 2024/25 academic year as KS4 pupils in these years did not have KS2 assessments due to the COVID-19 pandemic. Therefore all the data on the Ready Reckoners are still based on the 2023/24 academic year."),
+            gov_text("There are four key stage 2 to 4 ready reckoners as outlined below."),
+            heading_text("The Progress 8 element breakdown pupil ready reckoner.", level = 3, size = "s"),
+            gov_text("The aim of this is to help the user to understand how we arrive at a value added score for their pupil. The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment and key stage 4 outcome in Progress 8 or any of its elements."),
+            heading_text("The Progress 8 element breakdown school ready reckoner.", level = 3, size = "s"),
+            gov_text("The aim of this is to help the user understand how we arrive at a value added score for their school.
               The ready reckoner allows the user to input the value added scores in Progress 8 or any of its
               elements, for all pupils in their school. These value added scores can be copied and pasted directly
               from a pupil-level data file for your institution, ready to be used in the Ready Reckoner."),
-            h4("The EBacc subject pupil ready reckoner."),
-            p("The aim of this is to help the user to understand how we arrive at a value added score for their pupil.
+            heading_text("The EBacc subject pupil ready reckoner.", level = 3, size = "s"),
+            gov_text("The aim of this is to help the user to understand how we arrive at a value added score for their pupil.
               The ready reckoner allows the user to input, for an individual pupil, their key stage 2 prior attainment
               and key stage 4 attainment in any of the three subject areas in the English Baccalaureate."),
-            h4("The EBacc subject school ready reckoner."),
-            p("The aim of this is to help the user understand how we arrive at a value added score for their school.
+            heading_text("The EBacc subject school ready reckoner.", level = 3, size = "s"),
+            gov_text("The aim of this is to help the user understand how we arrive at a value added score for their school.
               The ready reckoner allows the user to input the value added scores in any of the three subject areas
               in the English Baccalaureate, for all pupils in their school. These value added scores can be copied and pasted directly
               from a pupil-level data file for your institution, ready to be used in the Ready Reckoner."),
-            h3("How to use this app"),
-            tags$ol(
-              tags$li("Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the left side bar."),
-              tags$li("Follow the instructions steps within.")
+            heading_text("How to use this app", level = 2, size = "m"),
+            gov_list(
+              c(
+                "Select the 'School ready reckoner' or 'Pupil ready reckoner' tab from the service navigation.",
+              "Follow the instructions steps within.")
             )
           )
         )

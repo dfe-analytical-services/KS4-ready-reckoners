@@ -40,6 +40,36 @@ server <- function(input, output, session) {
   )
   #  ---------------------
 
+# Top level service navigation actions
+  observeEvent(
+    input$homepage,
+    bslib::nav_select("main_panels", "homepage")
+  )
+  observeEvent(
+    input$school_ready_reckoner,
+    bslib::nav_select("main_panels", "school_ready_reckoner")
+  )
+  observeEvent(
+    input$pupil_ready_reckoner,
+    bslib::nav_select("main_panels", "pupil_ready_reckoner")
+  )
+  observeEvent(
+    input$model_values,
+    bslib::nav_select("main_panels", "model_values")
+  )
+  observeEvent(
+    input$cookie_information,
+    bslib::nav_select("main_panels", "cookies_panel_ui")
+  )
+  observeEvent(
+    input$accessibility_statement,
+    bslib::nav_select("main_panels", "accessibility_panel")
+  )
+  observeEvent(
+    input$support_and_feedback,
+    bslib::nav_select("main_panels", "support_panel")
+  )
+
   reactivemean <- reactive({
     average <- mean(c(choicesPupil$value[choicesPupil$label == input$mathsinput], choicesPupil$value[choicesPupil$label == input$readinginput]))
   })

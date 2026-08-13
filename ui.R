@@ -40,7 +40,6 @@
 #    https://github.com/moj-analytical-services/shinyGovstyle
 #
 
-
 #
 # This is the user-interface definition of a Shiny web application. You can
 # run the application by clicking 'Run App' above.
@@ -78,16 +77,10 @@ ui <- function(input, output, session) {
       ),
     shinyjs::useShinyjs(),
     tags$head(includeHTML(("google-analytics.html"))),
+    shinyGovstyle::full_width_overrides(),
     dfe_cookies_script(),
     cookies_banner_ui(name = site_title),
     shinyGovstyle::header(org_name = "Department for Education"),
-    shinyGovstyle::banner(
-      "beta banner",
-      "Beta",
-      paste0(
-        "This Dashboard is in beta phase and we are still reviewing performance and reliability."
-      )
-    ),
     shinyGovstyle::service_navigation(
       service_name = site_title,
       c(
@@ -97,32 +90,79 @@ ui <- function(input, output, session) {
         "Model values"
       )
     ),
+    shinyGovstyle::banner(
+      "beta banner",
+      "Beta",
+      paste0(
+        "This Dashboard is in beta phase and we are still reviewing performance and reliability."
+      )
+    ),
     bslib::navset_hidden(
-      id = "navlistPanel",
+      id = "main_panels",
       homepage_panel(),
       school_ready_reckoner(),
       pupil_ready_reckoner(),
       model_values(),
       bslib::nav_panel(
+        value = "support_panel",
         "Support and feedback",
-        dfeshiny::support_panel(
-          team_email = "attainment.statistics@education.gov.uk",
-          repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
-          publication_name = "Key Stage 4 Performance",
-          publication_slug = "key-stage-4-performance-revised"
+        layout_columns(
+          col_widths = c(-2, 8, -2),
+          dfeshiny::support_panel(
+            team_email = "attainment.statistics@education.gov.uk",
+            repo_name = "https://github.com/dfe-analytical-services/KS4-ready-reckoners",
+            publication_name = "Key Stage 4 Performance",
+            publication_slug = "key-stage-4-performance-revised"
+          )
         )
       ),
-      a11y_panel(),
+      bslib::nav_panel(
+        value = "accessibility_panel",
+        "Accessibility statement",
+        layout_columns(
+          col_widths = c(-2, 8, -2),
+          dfeshiny::a11y_panel(
+            dashboard_title = site_title,
+            dashboard_url = site_primary,
+            date_tested = "16/10/2023",
+            date_prepared = "18/10/2023",
+            date_reviewed = "18/10/2023",
+            date_template_reviewed = "16/10/2022",
+            specific_issues = c(
+              "Keyboard navigation through the interactive charts is currently limited, and some features are unavailable for keyboard only users",
+              "Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)",
+              "Some elements fail to have the appropriate aria tags",
+              "Some table header ids are not assigned correctly",
+              "Some image elements do not have an alt attributes (note that where this is the case, those images are primarily for presentation )"
+            ),
+            non_accessible_components = c(
+              "Interactive charts",
+              "Tables"
+            ),
+            issues_contact = "attainment.statistics@education.gov.uk"
+          )
+        )
+      ),
       ## Cookies panel -----------------------------------------------------
       bslib::nav_panel(
         value = "cookies_panel_ui",
-        "Cookies",
-        cookies_panel_ui(google_analytics_key = google_analytics_key)
+        "Cookie information",
+        layout_columns(
+          col_widths = c(-2, 8, -2),
+          cookies_panel_ui(google_analytics_key = google_analytics_key)
+        )
       )
     ),
     tags$script(
       src = "script.js"
     ),
-    footer(full = TRUE)
+    footer(
+      full = TRUE,
+      links = c(
+        "Accessibility statement",
+        "Cookie information",
+        "Support and feedback"
+      )
+    )
   )
 }
