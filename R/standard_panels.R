@@ -1,5 +1,5 @@
 a11y_panel <- function() {
-  tabPanel(
+  bslib::nav_panel(
     "Accessibility",
     gov_main_layout(
       gov_row(

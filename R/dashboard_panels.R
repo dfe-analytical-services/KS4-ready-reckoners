@@ -1,6 +1,6 @@
 homepage_panel <- function() {
-  tabPanel(
-    "Homepage",
+  bslib::nav_panel(
+    "homepage",
     gov_main_layout(
       gov_row(
         column(
@@ -46,15 +46,9 @@ homepage_panel <- function() {
 }
 
 
-dashboard_panel <- function() {
-  tabPanel(
-    value = "dashboard",
-    "School ready reckoner",
-
-    # Define UI for application that draws a histogram
-
-
-    # Sidebar with a slider input for number of bins
+school_ready_reckoner <- function() {
+  bslib::nav_panel(
+    "school_ready_reckoner",
     gov_main_layout(
       h1("School level ready reckoner"),
       navset_tab(
@@ -160,10 +154,9 @@ dashboard_panel <- function() {
   )
 }
 
-dashboard2_panel <- function() {
-  tabPanel(
-    value = "dashboard2",
-    "Pupil ready reckoner",
+pupil_ready_reckoner <- function() {
+  bslib::nav_panel(
+    "pupil_ready_reckoner",
     gov_main_layout(
       h1("Pupil level ready reckoner"),
       navset_tab(
@@ -372,9 +365,9 @@ dashboard2_panel <- function() {
 }
 ## work from here
 
-dashboard3_panel <- function() {
-  tabPanel(
-    "Model values",
+model_values <- function() {
+  bslib::nav_panel(
+    "model_values",
     gov_main_layout(
       gov_row(
         column(

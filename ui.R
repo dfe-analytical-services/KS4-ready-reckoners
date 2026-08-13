@@ -78,16 +78,9 @@ ui <- function(input, output, session) {
       ),
     shinyjs::useShinyjs(),
     tags$head(includeHTML(("google-analytics.html"))),
-    tags$head(
-      tags$link(
-        rel = "stylesheet",
-        type = "text/css",
-        href = "dfe_shiny_gov_style.css"
-      )
-    ),
     dfe_cookies_script(),
     cookies_banner_ui(name = site_title),
-    dfeshiny::header(header = site_title),
+    shinyGovstyle::header(org_name = "Department for Education"),
     shinyGovstyle::banner(
       "beta banner",
       "Beta",
@@ -95,16 +88,22 @@ ui <- function(input, output, session) {
         "This Dashboard is in beta phase and we are still reviewing performance and reliability."
       )
     ),
-    shiny::navlistPanel(
-      "",
+    shinyGovstyle::service_navigation(
+      service_name = site_title,
+      c(
+        "Homepage",
+        "School ready reckoner",
+        "Pupil ready reckoner",
+        "Model values"
+      )
+    ),
+    bslib::navset_hidden(
       id = "navlistPanel",
-      widths = c(2, 8),
-      well = FALSE,
       homepage_panel(),
-      dashboard_panel(),
-      dashboard2_panel(),
-      dashboard3_panel(),
-      tabPanel(
+      school_ready_reckoner(),
+      pupil_ready_reckoner(),
+      model_values(),
+      bslib::nav_panel(
         "Support and feedback",
         dfeshiny::support_panel(
           team_email = "attainment.statistics@education.gov.uk",
@@ -115,7 +114,7 @@ ui <- function(input, output, session) {
       ),
       a11y_panel(),
       ## Cookies panel -----------------------------------------------------
-      shiny::tabPanel(
+      bslib::nav_panel(
         value = "cookies_panel_ui",
         "Cookies",
         cookies_panel_ui(google_analytics_key = google_analytics_key)
