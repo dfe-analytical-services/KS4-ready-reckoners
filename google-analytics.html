@@ -16,9 +16,9 @@ The tracking number below MUST be replaced with a unique number, contact the sta
       'service_navigation', 
       {
         'event_category' : 'service navigation',
-        'event_label' : document.querySelector('ul#navigation > li.active > a').getAttribute('data-value')
+        'event_label' : e.target.closest('li').querySelector('a').getAttribute('id')
+      });
     });
-  });
      
      $(document).on('click', 'ul#tabsetpanels', function(e) {
     gtag('event', 'tab panels', {'event_category' : 'tab panel clicks',
